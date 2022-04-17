@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <g id="Group_283" data-name="Group 283" transform="translate(1521 -2705)">
+    <rect id="Rectangle_174" data-name="Rectangle 174" width="1000" height="1000" transform="translate(-1521 2705)" fill="none"/>
+    <g id="레이어_2" data-name="레이어 2" transform="translate(-1386 2860)">
+      <g id="레이어_1" data-name="레이어 1">
+        <g id="레이어_1-2" data-name="레이어 1">
+          <rect id="사각형_1607" data-name="사각형 1607" width="138.939" height="329.798" rx="69" transform="translate(50.198 179.071)" fill="#fd1e77"/>
+          <rect id="사각형_1608" data-name="사각형 1608" width="138.939" height="138.939" rx="69" transform="translate(50.198)" fill="#fd1e77"/>
+          <rect id="사각형_1609" data-name="사각형 1609" width="730.588" height="138.939" rx="69" transform="translate(0 551.914)" fill="#fd1e77"/>
+          <path id="패스_2912" data-name="패스 2912" d="M436.867,241.7V386.068a69.536,69.536,0,1,1-139.071,0V212.825a69.4,69.4,0,0,0-138.674,0V386.068a69.668,69.668,0,0,1-139.2,0V241.7h0v-25.43C18,101.429,109.322,6.669,224.154,4.35h9.139C347.916,6.956,438.923,101.632,437,216.268h0V241.7Z" transform="translate(243.523 53.265)" fill="#fd1e77"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
