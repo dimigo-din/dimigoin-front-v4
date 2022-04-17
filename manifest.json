@@ -1,0 +1,15 @@
+{
+  "background_color": "#ffffff",
+  "description": "디미고인",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "/src/asset/favicon.svg",
+      "sizes": "any"
+    }
+  ],
+  "name": "DIMIGOIN",
+  "start_url": "/",
+  "theme_color": "#FF3284",
+  "scope": "/"
+}

@@ -1,1 +1,0 @@
-import './Pretendard.css';

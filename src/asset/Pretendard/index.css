@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  src: url('./PretendardR.otf') format('otf');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  src: url('./PretendardB.otf') format('otf');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 800;
+  src: url('./PretendardEB.otf') format('otf');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 300;
+  src: url('./PretendardL.otf') format('otf');
+}
