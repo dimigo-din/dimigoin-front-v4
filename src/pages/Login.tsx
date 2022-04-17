@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { clearTokens, loginWithInfo } from '@/api';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const goto = useNavigate();
   useEffect(() => clearTokens(), []);
 
   const login = useCallback(async () => {
@@ -18,7 +20,7 @@ const Login: React.FC = () => {
         password: password,
       })
     ) {
-      window.location.replace('/');
+      goto('/');
     } else {
       toast.error('사용자 이름 또는 비밀번호를 확인해주세요.');
     }
