@@ -23,7 +23,7 @@ export const SideBar: React.FC = () => {
       </Logo>
       <ItemContainer>
         {myData?.userType === UserType.S && (
-          studentNavitions.map(({title, route, Accent, Disable, division = false}) => {
+          studentNavitions.map(({title, route, SVG, stroke, black, division = false}) => {
             return (
               division ? (
                 <Division key={title} />
@@ -31,8 +31,9 @@ export const SideBar: React.FC = () => {
                 <Item
                   title={title}
                   route={route}
-                  Accent={Accent}
-                  Disable={Disable}
+                  SVG={SVG}
+                  stroke={stroke}
+                  black={black}
                   selected={pathname.startsWith(route)}
                   key={`${title}${route}`}
                 />

@@ -9,11 +9,12 @@ export const containerCustom = (
   backgroundColor: '#fff',
   padding: padding,
   overflow: 'auto',
+  lineHeight: 2,
   variants: {
     column: {
       true: {
         flexDirection: 'column',
       }
     }
-  }
+  },
 });

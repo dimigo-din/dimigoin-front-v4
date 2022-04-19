@@ -4,7 +4,7 @@ import { containerCustom } from './style';
 
 export const Container: React.FC<{
   padding: string;
-  children: React.ReactElement[] | false;
+  children: React.ReactElement[] | React.ReactElement | false;
   column?: boolean;
   css?: CSS;
 }> = ({ padding, children, column, css }) => {

@@ -10,11 +10,9 @@ export const TopBar: React.FC = () => {
   const [path, setPath] = useState<string>('/');
   const { pathname } = useLocation();
   const myData = useMyData();
-
   useEffect(() => {
     const p = `${pathname}/`;
     setPath(p.substring(0, p.indexOf('/', 1)));
-    console.log(path);
   }, [pathname]);
 
   return (
@@ -22,25 +20,29 @@ export const TopBar: React.FC = () => {
       width: '100%',
       height: '10rem'
     }}>
-      {myData?.userType === UserType.S && (
-        studentNavitions[path] && studentNavitions[path].map(({
-          title,
-          Accent,
-          Disable,
-          route
-        }) => {
-          return (
-            <TopBarItem
-              title={title}
-              Accent={Accent}
-              Disable={Disable}
-              route={`${path}${route}`}
-              selected={pathname === `${path}${route}`}
-              key={`${path}${route}`}
-            />
-          );
-        })
-      )}
+      {
+        myData?.userType === UserType.S && (
+          studentNavitions[path] && studentNavitions[path].map(({
+            title,
+            SVG,
+            stroke,
+            black,
+            route
+          }) => {
+            return (
+              <TopBarItem
+                title={title}
+                SVG={SVG}
+                stroke={stroke}
+                black={black}
+                route={`${path}${route}`}
+                selected={pathname === `${path}${route}`}
+                key={`${path}${route}`}
+              />
+            );
+          })
+        )
+      }
     </Container>
   );
 };

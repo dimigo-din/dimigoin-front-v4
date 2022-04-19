@@ -1,13 +1,10 @@
 import { IconItem } from "./NavigationItem";
 import { Weekly } from "@/components/weekly";
 
-import BoardAccent from '@/asset/icons/accent/board.svg';
-import ChartAccent from '@/asset/icons/accent/chart.svg';
-import CheckDocumentAccent from '@/asset/icons/accent/checkDocument.svg';
+import { ReactComponent as Board } from '@/asset/icons/board.svg';
+import { ReactComponent as Chart } from '@/asset/icons/chart.svg';
+import { ReactComponent as CheckDocument } from '@/asset/icons/checkDocument.svg';
 
-import BoardDisable from '@/asset/icons/disable/board.svg';
-import ChartDisable from '@/asset/icons/disable/chart.svg';
-import CheckDocumentDisable from '@/asset/icons/disable/checkDocument.svg';
 
 export const studentNavitions: IconItem = {
   '/': [],
@@ -17,8 +14,8 @@ export const studentNavitions: IconItem = {
     {
       title: '전체',
       route: '',
-      Accent: BoardAccent,
-      Disable: BoardDisable,
+      SVG: Board,
+      black: true,
     },
     ...Weekly
   ],
@@ -26,22 +23,22 @@ export const studentNavitions: IconItem = {
     {
       title: '전체',
       route: '',
-      Accent: BoardAccent,
-      Disable: BoardDisable,
+      SVG: Board,
+      black: true,
     },
   ],
   '/music': [
     {
       title: '차트',
       route: '',
-      Accent: ChartAccent,
-      Disable: ChartDisable,
+      SVG: Chart,
+      black: true,
     },
     {
       title: '신청',
       route: '/application',
-      Accent: CheckDocumentAccent,
-      Disable: CheckDocumentDisable,
+      SVG: CheckDocument,
+      black: true,
     },
   ]
 }

@@ -38,12 +38,10 @@ export const ItemBox = styled(Link, {
         color: '$gray1',
       }
     }
-  }
-});
-export const IconBox = styled('img', {
-  width: '3rem',
-  height: '3rem',
-  marginRight: '1.5rem',
+  },
+  '& svg': {
+    marginRight: '1.5rem',
+  },
 });
 
 export const Division = styled('div', {

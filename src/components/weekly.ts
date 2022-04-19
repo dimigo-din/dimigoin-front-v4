@@ -1,52 +1,45 @@
-import MondayAccent from '@/asset/icons/accent/Monday.svg';
-import TuesdayAccent from '@/asset/icons/accent/Tuesday.svg';
-import WednesdayAccent from '@/asset/icons/accent/Wednesday.svg';
-import ThursdayAccent from '@/asset/icons/accent/Thursday.svg';
-import FridayAccent from '@/asset/icons/accent/Friday.svg';
-import SaturdayAccent from '@/asset/icons/accent/Saturday.svg';
-
-import MondayDisable from '@/asset/icons/disable/Monday.svg';
-import TuesdayDisable from '@/asset/icons/disable/Tuesday.svg';
-import WednesdayDisable from '@/asset/icons/disable/Wednesday.svg';
-import ThursdayDisable from '@/asset/icons/disable/Thursday.svg';
-import FridayDisable from '@/asset/icons/disable/Friday.svg';
-import SaturdayDisable from '@/asset/icons/disable/Saturday.svg';
+import { ReactComponent as Monday } from '@/asset/icons/Monday.svg';
+import { ReactComponent as Tuesday } from '@/asset/icons/Tuesday.svg';
+import { ReactComponent as Wednesday } from '@/asset/icons/Wednesday.svg';
+import { ReactComponent as Thursday } from '@/asset/icons/Thursday.svg';
+import { ReactComponent as Friday } from '@/asset/icons/Friday.svg';
+import { ReactComponent as Saturday } from '@/asset/icons/Saturday.svg';
 
 export const Weekly = [
   {
     title: '월요일',
     route: '/mon',
-    Accent: MondayAccent,
-    Disable: MondayDisable,
+    SVG: Monday,
+    black: true,
   },
   {
     title: '화요일',
     route: '/tue',
-    Accent: TuesdayAccent,
-    Disable: TuesdayDisable,
+    SVG: Tuesday,
+    black: true,
   },
   {
     title: '수요일',
     route: '/wed',
-    Accent: WednesdayAccent,
-    Disable: WednesdayDisable,
+    SVG: Wednesday,
+    black: true,
   },
   {
     title: '목요일',
     route: '/thr',
-    Accent: ThursdayAccent,
-    Disable: ThursdayDisable,
+    SVG: Thursday,
+    black: true,
   },
   {
     title: '금요일',
     route: '/fri',
-    Accent: FridayAccent,
-    Disable: FridayDisable,
+    SVG: Friday,
+    black: true,
   },
   {
     title: '토요일',
     route: '/sat',
-    Accent: SaturdayAccent,
-    Disable: SaturdayDisable,
+    SVG: Saturday,
+    black: true,
   },
 ];

@@ -8,9 +8,19 @@ export interface IconItem {
 
 export const TopBarItem: React.FC<
   NavigationItem
-> = ({ title, Accent, Disable, selected = false, route }) => (
+> = ({
+  title,
+  SVG,
+  selected = false,
+  stroke = false,
+  black = true,
+  route
+}) => (
   <ItemBox to={route} selected={selected}>
-    <Icon src={selected ? Accent : Disable} />
+    {SVG && <SVG
+      fill={selected ? (black ? '#000' :'#FF3284') : '#A6ABC0'}
+      stroke={stroke && (selected ? (black ? '#000' :'#FF3284') : '#A6ABC0')}
+    />}
     {title}
   </ItemBox>
 );

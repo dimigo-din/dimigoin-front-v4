@@ -21,6 +21,7 @@ import moment from 'moment-timezone';
 import 'react-toastify/dist/ReactToastify.min.css';
 import '@/asset/Pretendard/index.css';
 import '@/asset/toastStyle.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 moment.tz.setDefault('Asia/Seoul');
 

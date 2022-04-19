@@ -1,83 +1,65 @@
 import { NavigationItem } from './NavigationItem';
 
-import EarthAccent from '@/asset/icons/accent/earth.svg';
-import BachelorAccent from '@/asset/icons/accent/bachelor.svg';
-import TeachAccent from '@/asset/icons/accent/teach.svg';
-import ClubAccent from '@/asset/icons/accent/club.svg';
-import BookAccent from '@/asset/icons/accent/book.svg';
-import LaundryAccent from '@/asset/icons/accent/laundry.svg';
-import MusicAccent from '@/asset/icons/accent/music.svg';
-import WalkAccent from '@/asset/icons/accent/walk.svg';
-import NoteAccent from '@/asset/icons/accent/note.svg';
-
-import EarthDisable from '@/asset/icons/disable/earth.svg';
-import BachelorDisable from '@/asset/icons/disable/bachelor.svg';
-import TeachDisable from '@/asset/icons/disable/teach.svg';
-import ClubDisable from '@/asset/icons/disable/club.svg';
-import BookDisable from '@/asset/icons/disable/book.svg';
-import LaundryDisable from '@/asset/icons/disable/laundry.svg';
-import MusicDisable from '@/asset/icons/disable/music.svg';
-import WalkDisable from '@/asset/icons/disable/walk.svg';
-import NoteDisable from '@/asset/icons/disable/note.svg';
+import { ReactComponent as Earth } from '@/asset/icons/ingang.svg';
+import { ReactComponent as Bachelor } from '@/asset/icons/bachelor.svg';
+import { ReactComponent as Teach } from '@/asset/icons/teach.svg';
+import { ReactComponent as Club } from '@/asset/icons/club.svg';
+import { ReactComponent as Book } from '@/asset/icons/book.svg';
+import { ReactComponent as Laundry } from '@/asset/icons/laundry.svg';
+import { ReactComponent as Music } from '@/asset/icons/music.svg';
+import { ReactComponent as Walk } from '@/asset/icons/walk.svg';
+import { ReactComponent as Note } from '@/asset/icons/note.svg';
 
 export const studentNavitions: NavigationItem[] = [
   {
     title: '인강실',
     route: '/ingangsil',
-    Accent: EarthAccent,
-    Disable: EarthDisable,
+    SVG: Earth,
   },
   {
     title: '멘토링',
     route: '/mentoring',
-    Accent: BachelorAccent,
-    Disable: BachelorDisable,
+    SVG: Bachelor,
   },
   {
     title: '방과후',
     route: '/afterschool',
-    Accent: TeachAccent,
-    Disable: TeachDisable,
+    SVG: Teach,
   },
   {
     title: '동아리',
     route: '/circle',
-    Accent: ClubAccent,
-    Disable: ClubDisable,
+    SVG: Club,
+    stroke: true,
   },
   {
     title: 'DETS',
     route: '/dets',
-    Accent: BookAccent,
-    Disable: BookDisable,
+    SVG: Book,
   },
   {
     title: '구분선',
     route: 'division',
-    division: true
+    division: true,
   },
   {
     title: '세탁신청',
     route: '/laundry',
-    Accent: LaundryAccent,
-    Disable: LaundryDisable,
+    SVG: Laundry,
   },
   {
     title: '기상송 신청',
     route: '/music',
-    Accent: MusicAccent,
-    Disable: MusicDisable,
+    SVG: Music,
   },
   {
     title: '잔류 / 외출 신청',
     route: '/so',
-    Accent: WalkAccent,
-    Disable: WalkDisable,
+    SVG: Walk,
   },
   {
     title: '게시판',
     route: '/board',
-    Accent: NoteAccent,
-    Disable: NoteDisable,
+    SVG: Note,
   },
 ];

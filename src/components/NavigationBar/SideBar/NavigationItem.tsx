@@ -1,20 +1,31 @@
 import React from "react";
-import { ItemBox, IconBox } from "./style";
+import { ItemBox } from "./style";
 
 export interface NavigationItem {
   title?: string;
-  Accent?: string;
-  Disable?: string;
+  SVG?: any;
   selected?: boolean;
   route: string;
   division?: boolean;
+  stroke?: boolean;
+  black?: boolean;
 };
 
 const NavigationItem: React.FC<
   NavigationItem
-> = ({ title, Accent, Disable, selected = false, route }) => (
+> = ({
+  title,
+  SVG,
+  selected = false,
+  stroke = false,
+  black = false,
+  route
+}) => (
   <ItemBox to={route} selected={selected}>
-    <IconBox src={selected ? Accent : Disable} />
+    {SVG && <SVG
+      fill={selected ? (black ? '#000' :'#FF3284') : '#A6ABC0'}
+      stroke={stroke && (selected ? (black ? '#000' :'#FF3284') : '#A6ABC0')}
+    />}
     {title}
   </ItemBox>
 );
