@@ -8,7 +8,7 @@ export interface NavigationItem {
   selected?: boolean;
   route: string;
   division?: boolean;
-}
+};
 
 const NavigationItem: React.FC<
   NavigationItem

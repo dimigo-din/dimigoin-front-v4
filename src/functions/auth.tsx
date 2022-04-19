@@ -7,7 +7,7 @@ import {
 import { LoadableComponent } from '@loadable/component';
 import { User, UserType } from '@/constants/types';
 import { getMyData } from '@/api/user';
-import { SideBar } from '@/components/NavigationBar';
+import { SideBar, TopBar } from '@/components/NavigationBar';
 import { styled } from '#/stitches.config';
 
 const Container = styled('div', {
@@ -30,6 +30,7 @@ const Box: React.FC<{
     <Container>
       <SideBar />
       <Main>
+        <TopBar />
         <Children />
       </Main>
     </Container>

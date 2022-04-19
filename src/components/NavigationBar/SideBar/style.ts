@@ -29,7 +29,6 @@ export const ItemBox = styled(Link, {
   margin: '2rem 0',
   display: 'flex',
   alignItems: 'center',
-  fontWeight: 700,
   variants: {
     selected: {
       true: {

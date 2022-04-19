@@ -32,6 +32,7 @@ globalCss({
     fontFamily: 'Pretendard',
     fontSize: '1.6rem',
     boxSizing: 'border-box',
+    fontWeight: 700,
   },
   a: {
     color: 'inherit',
@@ -47,8 +48,12 @@ const Router = () => {
   return (
     <Routes>
       <Route path='/login' element={<Login />} />
+      <Route path='/ingangsil' element={<BranchRouting screens={Main} />}>
+        <Route path=':day' element={<BranchRouting screens={Main} />} />
+      </Route>
       <Route path='/' element={<BranchRouting screens={Main} />} />
-      <Route path='*' element={<Navigate to='/' />} />
+      {/* <Route path='*' element={<Navigate to='/' />} /> */}
+      <Route path='*' element={<BranchRouting screens={Main} />} />
     </Routes>
   );
 };

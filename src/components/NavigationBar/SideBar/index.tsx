@@ -10,6 +10,7 @@ import {
 } from "./style";
 import { studentNavitions } from "./navigations";
 import Item from './NavigationItem';
+import { UserType } from "@/constants/types";
 
 export const SideBar: React.FC = () => {
   const { pathname } = useLocation();
@@ -21,22 +22,24 @@ export const SideBar: React.FC = () => {
         <img src={LogoIcon} />
       </Logo>
       <ItemContainer>
-        {studentNavitions.map(({title, route, Accent, Disable, division = false}) => {
-          return (
-            division ? (
-              <Division key={title} />
-            ) : (
-              <Item
-                title={title}
-                route={route}
-                Accent={Accent}
-                Disable={Disable}
-                selected={pathname.startsWith(route)}
-                key={`${title}${route}`}
-              />
-            )
-          )
-        })}
+        {myData?.userType === UserType.S && (
+          studentNavitions.map(({title, route, Accent, Disable, division = false}) => {
+            return (
+              division ? (
+                <Division key={title} />
+              ) : (
+                <Item
+                  title={title}
+                  route={route}
+                  Accent={Accent}
+                  Disable={Disable}
+                  selected={pathname.startsWith(route)}
+                  key={`${title}${route}`}
+                />
+              )
+            );
+          })
+        )}
       </ItemContainer>
     </SideBarCustom>
   );

@@ -8,7 +8,6 @@ export const ButtonCustom = styled('button', {
   margin: 0,
   padding: 0,
   borderRadius: '1rem',
-  fontWeight: 700,
   variants: {
     large: {
       true: {
