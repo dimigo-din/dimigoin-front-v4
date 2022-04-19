@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 import {
   BrowserRouter,
   Routes,
-  Route
+  Route,
+  Navigate
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { globalCss, styled } from '#/stitches.config';
@@ -13,7 +14,7 @@ import {
 } from '@/pages';
 import {
   needAuth,
-  needAuthAndBranch
+  BranchRouting
 } from '@/functions/auth';
 import moment from 'moment-timezone';
 
@@ -24,11 +25,21 @@ import '@/asset/toastStyle.css';
 moment.tz.setDefault('Asia/Seoul');
 
 globalCss({
+  ':root': {
+    fontSize: '10px'
+  },
   '*': {
     fontFamily: 'Pretendard',
+    fontSize: '1.6rem',
+    boxSizing: 'border-box',
+  },
+  a: {
+    color: 'inherit',
+    textDecoration: 'none',
   },
   body: {
     backgroundColor: '$background',
+    margin: 0,
   }
 })();
 
@@ -36,7 +47,8 @@ const Router = () => {
   return (
     <Routes>
       <Route path='/login' element={<Login />} />
-      <Route path='/' element={needAuthAndBranch(Main)} />
+      <Route path='/' element={<BranchRouting screens={Main} />} />
+      <Route path='*' element={<Navigate to='/' />} />
     </Routes>
   );
 };
@@ -44,16 +56,8 @@ const Router = () => {
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ToastContainer />
       <Router />
     </BrowserRouter>
+    <ToastContainer />
   </React.StrictMode>
 );
-
-const Container = styled('div', {
-  display: 'flex',
-  minHeight: '100vh',
-  flexDirection: 'column',
-  paddingBottom: '20px',
-  boxSizing: 'border-box',
-});

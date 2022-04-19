@@ -24,14 +24,11 @@ export const {
     colors: COLORS
   },
   utils: {
-    card: () => ({
-      borderRadius: '10px',
-      backgroundColor: '#fff',
-      utils: {
-        pd: (value: string) => ({
-          padding: value
-        }),
-      }
+    fontL: () => ({
+      fontSize: '1.8rem'
     }),
+    fontS: () => ({
+      fontSize: '1.4rem'
+    })
   },
 });

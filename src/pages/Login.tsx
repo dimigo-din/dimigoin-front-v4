@@ -2,6 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { clearTokens, loginWithInfo } from '@/api';
+import {
+  Button
+} from '@/components';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
@@ -9,50 +12,44 @@ const Login: React.FC = () => {
   const goto = useNavigate();
   useEffect(() => clearTokens(), []);
 
-  const login = useCallback(async () => {
-    if (!username || !password) return;
-    setUsername('');
-    setPassword('');
-
+  const login = useCallback(async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!username || !password) return toast.warn('필드를 확인해주세요.');
+  
     if (
       await loginWithInfo({
         username: username,
         password: password,
       })
     ) {
+      console.log('test');
       goto('/');
     } else {
       toast.error('사용자 이름 또는 비밀번호를 확인해주세요.');
     }
+    
   }, [
     username,
     password,
     history,
   ]);
-  const enterToSubmit = useCallback(
-    ({ key }: React.KeyboardEvent) => {
-      if (key === 'Enter') login();
-    },
-    [login],
-  );
+  
   return (
-    <div>
+    <form onSubmit={login}>
       <input
         defaultValue={username}
         onChange={({target: {value} }) => setUsername(value)}
-        onKeyPress={enterToSubmit}
         placeholder="아이디"
         type="text"
       />
       <input
         defaultValue={password}
         onChange={({target: {value} }) => setPassword(value)}
-        onKeyPress={enterToSubmit}
         placeholder="비밀번호"
         type="password"
       />
-      <input type="submit" value="로그인" onClick={login} />
-    </div>
+      <Button active value="로그인" type="submit" />
+    </form>
   );
 };
 
