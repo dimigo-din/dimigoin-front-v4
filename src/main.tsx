@@ -42,7 +42,10 @@ globalCss({
   body: {
     backgroundColor: '$background',
     margin: 0,
-  }
+  },
+  svg: {
+    trasition: 'fill 1s ease',
+  },
 })();
 
 const Router = () => {

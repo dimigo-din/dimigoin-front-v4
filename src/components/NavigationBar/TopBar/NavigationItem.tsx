@@ -1,5 +1,5 @@
 import React from "react";
-import { ItemBox, Icon } from "./style";
+import { ItemBox } from "./style";
 import { NavigationItem } from "@/components/NavigationBar/SideBar/NavigationItem";
 
 export interface IconItem {

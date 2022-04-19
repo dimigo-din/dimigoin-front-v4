@@ -10,6 +10,7 @@ export const TopBar: React.FC = () => {
   const [path, setPath] = useState<string>('/');
   const { pathname } = useLocation();
   const myData = useMyData();
+  
   useEffect(() => {
     const p = `${pathname}/`;
     setPath(p.substring(0, p.indexOf('/', 1)));

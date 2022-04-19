@@ -20,16 +20,3 @@ export const ItemBox = styled(Link, {
     },
   },
 });
-
-export const Icon = styled('img', {
-  width: '3rem',
-  height: '3rem',
-  transition: 'all .3s ease',
-  variants: {
-    selected: {
-      true: {
-        filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
-      },
-    },
-  },
-});

@@ -1,7 +1,7 @@
 import { useMyData } from "@/hooks/api/useMyData";
 import React from "react";
 import { useLocation } from 'react-router-dom';
-import { default as LogoIcon } from '@/asset/dimigoin.svg';
+import { ReactComponent as LogoIcon } from '@/asset/dimigoin.svg';
 import {
   Logo,
   SideBarCustom,
@@ -19,7 +19,7 @@ export const SideBar: React.FC = () => {
   return (
     <SideBarCustom>
       <Logo to='/'>
-        <img src={LogoIcon} />
+        <LogoIcon fill={pathname === '/' ? '#FF3284' : '#A6ABC0'} />
       </Logo>
       <ItemContainer>
         {myData?.userType === UserType.S && (

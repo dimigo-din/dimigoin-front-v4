@@ -11,7 +11,7 @@ export const SideBarCustom = styled('div', {
 });
 
 export const Logo = styled(Link, {
-  width: '4rem',
+  // width: '4rem',
   height: '4rem',
   margin: '1rem .5rem 5rem',
 });
