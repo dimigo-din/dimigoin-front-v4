@@ -43,8 +43,8 @@ globalCss({
     backgroundColor: '$background',
     margin: 0,
   },
-  svg: {
-    trasition: 'fill 1s ease',
+  'svg path': {
+    transition: 'fill .3s ease',
   },
 })();
 
