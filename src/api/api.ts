@@ -3,7 +3,6 @@ import makeAlert from '../functions/makeAlert';
 import { toast } from 'react-toastify';
 import { getAccessToken } from './auth';
 import { APIResource } from './serverResource';
-import { DefaultDeserializer } from 'v8';
 
 if (!import.meta.env.VITE_API_URI)
   makeAlert.error('서버 정보를 불러오는 데 실패했습니다');

@@ -39,6 +39,9 @@ globalCss({
     color: 'inherit',
     textDecoration: 'none',
   },
+  p: {
+    margin: 0,
+  },
   body: {
     backgroundColor: '$background',
     margin: 0,
@@ -55,9 +58,12 @@ const Router = () => {
       <Route path='/ingangsil' element={<BranchRouting screens={Main} />}>
         <Route path=':day' element={<BranchRouting screens={Main} />} />
       </Route>
+      <Route path='/afterschool' element={<BranchRouting screens={Main} />}>
+        <Route path=':day' element={<BranchRouting screens={Main} />} />
+      </Route>
       <Route path='/' element={<BranchRouting screens={Main} />} />
-      {/* <Route path='*' element={<Navigate to='/' />} /> */}
-      <Route path='*' element={<BranchRouting screens={Main} />} />
+      <Route path='*' element={<Navigate to='/' />} />
+      {/* <Route path='*' element={<BranchRouting screens={Main} />} /> */}
     </Routes>
   );
 };

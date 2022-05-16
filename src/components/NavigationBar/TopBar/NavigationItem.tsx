@@ -1,6 +1,6 @@
-import React from "react";
-import { ItemBox } from "./style";
-import { NavigationItem } from "@/components/NavigationBar/SideBar/NavigationItem";
+import React from 'react';
+import { ItemBox } from './style';
+import { NavigationItem } from '@/components/NavigationBar/SideBar/NavigationItem';
 
 export interface IconItem {
   [key: string]: Array<NavigationItem>;

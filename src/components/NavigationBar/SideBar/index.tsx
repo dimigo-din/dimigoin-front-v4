@@ -1,5 +1,5 @@
-import { useMyData } from "@/hooks/api/useMyData";
-import React from "react";
+import { useMyData } from '@/hooks/api/useMyData';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { ReactComponent as LogoIcon } from '@/asset/dimigoin.svg';
 import {
@@ -7,10 +7,10 @@ import {
   SideBarCustom,
   ItemContainer,
   Division
-} from "./style";
-import { studentNavitions } from "./navigations";
+} from './style';
+import { studentNavitions } from './navigations';
 import Item from './NavigationItem';
-import { UserType } from "@/constants/types";
+import { UserType } from '@/constants/types';
 
 export const SideBar: React.FC = () => {
   const { pathname } = useLocation();

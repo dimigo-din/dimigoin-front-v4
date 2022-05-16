@@ -1,5 +1,5 @@
-import { IconItem } from "./NavigationItem";
-import { Weekly } from "@/components/weekly";
+import { IconItem } from './NavigationItem';
+import { Weekly } from '@/components/weekly';
 
 import { ReactComponent as Board } from '@/asset/icons/board.svg';
 import { ReactComponent as Chart } from '@/asset/icons/chart.svg';

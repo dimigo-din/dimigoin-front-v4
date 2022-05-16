@@ -1,5 +1,5 @@
-import React from "react";
-import { ItemBox } from "./style";
+import React from 'react';
+import { ItemBox } from './style';
 
 export interface NavigationItem {
   title?: string;

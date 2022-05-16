@@ -1,5 +1,5 @@
-import { styled } from "#/stitches.config";
-import { Link } from "react-router-dom";
+import { styled } from '#/stitches.config';
+import { Link } from 'react-router-dom';
 
 export const SideBarCustom = styled('div', {
   width: '20rem',
