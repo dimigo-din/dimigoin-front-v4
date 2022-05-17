@@ -33,7 +33,6 @@ globalCss({
     fontFamily: 'Pretendard',
     fontSize: '1.6rem',
     boxSizing: 'border-box',
-    fontWeight: 700,
   },
   a: {
     color: 'inherit',
@@ -47,7 +46,7 @@ globalCss({
     margin: 0,
   },
   'svg path': {
-    transition: 'fill .3s ease',
+    transition: 'fill .2s ease',
   },
 })();
 

@@ -55,12 +55,14 @@ const Login: React.FC = () => {
           value={username}
           onChange={({target: {value}}) => setUsername(value)}
           type='text'
+          margin={5}
           />
           <Placeholder>비밀번호</Placeholder>
           <Input
           value={password}
           onChange={({target: {value}}) => setPassword(value)}
           type='password'
+          margin={6}
           />
           <Button value='로그인' large active />
         </LoginForm>
@@ -104,6 +106,16 @@ const Input = styled('input', {
   '&:focus': {
     borderBottom: '2.5px solid $accent',
   },
+  variants: {
+    margin: {
+      '5': {
+        marginBottom: '5rem',
+      },
+      '6': {
+        marginBottom: '6rem'
+      },
+    }
+  }
 });
 
 const Placeholder = styled('p', {

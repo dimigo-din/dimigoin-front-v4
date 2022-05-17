@@ -9,6 +9,7 @@ export const ItemBox = styled(Link, {
   justifyContent: 'space-between',
   margin: '0 4.5rem',
   whiteSpace: 'nowrap',
+  transition: 'color .2s ease',
   variants: {
     selected: {
       true: {
