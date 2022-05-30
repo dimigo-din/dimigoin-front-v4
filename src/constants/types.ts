@@ -32,6 +32,15 @@ export enum EngDay {
   'sat' = 'sat',
   'sun' = 'sun',
 }
+export enum MomentEngDay {
+  'Mon' = 'Mon',
+  'Tue' = 'Tue',
+  'Wed' = 'Wed',
+  'Thu' = 'Thu',
+  'Fri' = 'Fri',
+  'Sat' = 'Sat',
+  'Sun' = 'Sun',
+}
 
 export enum UserType {
   T = 'T',

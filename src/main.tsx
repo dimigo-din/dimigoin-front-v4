@@ -23,7 +23,7 @@ import '@/asset/Pretendard/index.css';
 import '@/asset/toastStyle.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-moment.tz.setDefault('Asia/Seoul');
+moment.tz.setDefault('Asia/Seoul').locale('ko');
 
 globalCss({
   ':root': {
@@ -33,6 +33,10 @@ globalCss({
     fontFamily: 'Pretendard',
     fontSize: '1.6rem',
     boxSizing: 'border-box',
+    fontWeight: 700,
+  },
+  span: {
+    fontSize: '1.8rem'
   },
   a: {
     color: 'inherit',
