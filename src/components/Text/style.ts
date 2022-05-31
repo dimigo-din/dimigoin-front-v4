@@ -7,9 +7,11 @@ export const CustomText = styled('span', {
     active: {
       true: {
         color: '$accent',
+        fontWeight: 700,
       },
       false: {
         color: '$gray1',
+        fontWeight: 500,
       }
     },
     button: {

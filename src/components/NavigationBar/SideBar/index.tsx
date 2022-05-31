@@ -17,11 +17,11 @@ export const SideBar: React.FC = () => {
   const myData = useMyData();
 
   return (
-    <SideBarCustom>
+    <SideBarCustom filly>
       <Logo to='/'>
         <LogoIcon fill={pathname === '/' ? '#FF3284' : '#A6ABC0'} />
       </Logo>
-      <ItemContainer>
+      <ItemContainer fillx>
         {myData?.userType === UserType.S && (
           studentNavitions.map(({title, route, SVG, stroke, black, division = false}) => {
             return (

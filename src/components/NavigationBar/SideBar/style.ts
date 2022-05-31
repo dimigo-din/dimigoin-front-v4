@@ -1,27 +1,21 @@
 import { styled } from '#/stitches.config';
 import { Link } from 'react-router-dom';
+import { Vexile } from '@haechi/flexile';
 
-export const SideBarCustom = styled('div', {
+export const SideBarCustom = styled(Vexile, {
   width: '20rem',
-  height: '100%',
   background: '#fff',
-  display: 'flex',
-  flexDirection: 'column',
   padding: '4rem 2rem',
 });
 
 export const Logo = styled(Link, {
-  // width: '4rem',
   height: '4rem',
   margin: '1rem .5rem 5rem',
 });
 
-export const ItemContainer = styled('div', {
-  width: '100%',
+export const ItemContainer = styled(Vexile, {
   height: '75%',
   overflowX: 'auto',
-  display: 'flex',
-  flexDirection: 'column',
 });
 
 export const ItemBox = styled(Link, {

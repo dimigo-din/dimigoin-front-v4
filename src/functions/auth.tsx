@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { Hexile, Vexile } from '@haechi/flexile';
 import {
   getAccessToken,
   refetchToken
@@ -10,16 +11,12 @@ import { getMyData } from '@/api/user';
 import { SideBar, TopBar } from '@/components/NavigationBar';
 import { styled } from '#/stitches.config';
 
-const Container = styled('div', {
-  display: 'flex',
+const Container = styled(Hexile, {
   width: '100vw',
   height: '100vh',
 });
-const Main = styled('div', {
+const Main = styled(Vexile, {
   width: 'calc(100% - 20rem)',
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
   padding: '2rem'
 });
 
@@ -29,7 +26,7 @@ const Box: React.FC<{
   return (
     <Container>
       <SideBar />
-      <Main>
+      <Main filly>
         <TopBar />
         <Children />
       </Main>

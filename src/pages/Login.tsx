@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { clearTokens, loginWithInfo } from '@/api';
+import { Hexile } from '@haechi/flexile';
 import {
   Container,
   Button,
@@ -75,14 +76,12 @@ const Login: React.FC = () => {
   
     if (
       await loginWithInfo({
-        username: username,
-        password: password,
+        username,
+        password,
       })
     ) {
       goto('/');
-    } else {
-      toast.error('사용자 이름 또는 비밀번호를 확인해주세요.');
-    }
+    } else toast.error('사용자 이름 또는 비밀번호를 확인해주세요.');
     
   }, [
     username,
@@ -91,7 +90,7 @@ const Login: React.FC = () => {
   ]);
   
   return (
-    <Wrapper>
+    <Wrapper x='center'  y='center'>
       <BottomImage src={dimigoBack} />
       <Container
       padding='12rem 10rem'
@@ -122,8 +121,8 @@ const Login: React.FC = () => {
           <Button value='로그인' large active />
         </LoginForm>
         <MealContainer>
-          <MealNavigationBox>
-            <MealTimeBox>
+          <MealNavigationBox x='space'>
+            <MealTimeBox x='space'>
               <Text
               active={time === 'breakfast'}
               css={time === 'breakfast' ? TextCss : undefined}
@@ -140,7 +139,7 @@ const Login: React.FC = () => {
               button
               onClick={() => setTime('dinner')}>저녁</Text>
             </MealTimeBox>
-            <MealDateBox>
+            <MealDateBox x='space'>
               <Prev onClick={() => setAddDate(prev => prev - 1)} />
               <MealDate>{date.format('M월 D일')} {momentDayEndKorMapper[(date.format('ddd')) as MomentEngDay]}</MealDate>
               <Next onClick={() => setAddDate(prev => prev + 1)} />
@@ -159,15 +158,12 @@ const Login: React.FC = () => {
 
 export default Login;
 
-const Wrapper = styled('div', {
+const Wrapper = styled(Hexile, {
   width: '100vw',
   height: '100vh',
   background: '#F8F8F9',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   position: 'relative',
-  color: '$gra  y6',
+  color: '$gray6',
 });
 
 const BottomImage = styled('img', {
@@ -195,7 +191,8 @@ const Input = styled('input', {
     borderBottom: '2.5px solid $accent',
   },
   '&::placeholder': {
-    color: '#A9A9B5',
+    color: '#c5c5d0',
+    fontWeight: 500
   },
   variants: {
     margin: {
@@ -222,21 +219,15 @@ const MealContainer = styled('div', {
   width: '100%',
   margin: '1.4rem 0'
 });
-const MealNavigationBox = styled('div', {
+const MealNavigationBox = styled(Hexile, {
   width: '100%',
-  display: 'flex',
-  justifyContent: 'space-between',
   marginBottom: '2.6rem'
 });
-const MealTimeBox = styled('div', {
+const MealTimeBox = styled(Hexile, {
   width: '35%',
-  display: 'flex',
-  justifyContent: 'space-between',
 });
-const MealDateBox = styled('div', {
+const MealDateBox = styled(Hexile, {
   width: '35%',
-  display: 'flex',
-  justifyContent: 'space-between',
   userSelect: 'none',
 });
 

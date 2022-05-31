@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@haechi/flexile": "^1.4.7",
     "@loadable/component": "^5.15.2",
     "@stitches/react": "^1.2.7",
     "@types/loadable__component": "^5.13.4",

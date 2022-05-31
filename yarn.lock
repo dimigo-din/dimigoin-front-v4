@@ -242,6 +242,11 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
+"@haechi/flexile@^1.4.7":
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/@haechi/flexile/-/flexile-1.4.7.tgz#1c1e87774d173860442673d3963958b8ca8273a4"
+  integrity sha512-n2IzvS5tC45JDrMoGtEo0yX1FSEln8g0OUos1r9+jGT7uf1YBBfU5a34EJIwGnARe5mfpmPSHwGoicLBic46zw==
+
 "@jridgewell/resolve-uri@^3.0.3":
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/@jridgewell/resolve-uri/-/resolve-uri-3.0.5.tgz#68eb521368db76d040a6315cdb24bf2483037b9c"
