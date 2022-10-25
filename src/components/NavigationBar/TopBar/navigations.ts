@@ -4,10 +4,10 @@ import { Weekly } from '@/components/weekly';
 import { ReactComponent as Board } from '@/asset/icons/board.svg';
 import { ReactComponent as Chart } from '@/asset/icons/chart.svg';
 import { ReactComponent as CheckDocument } from '@/asset/icons/checkDocument.svg';
-
+import { ReactComponent as pinDrop } from '@/asset/icons/pinDrop.svg';
 
 export const studentNavitions: IconItem = {
-  '/': [],
+  '/': [{ title: 'NO_PLACE_DATA', route: '', SVG: pinDrop }],
   '/ingangsil': [],
   '/mentoring': [],
   '/afterschool': [
@@ -17,7 +17,7 @@ export const studentNavitions: IconItem = {
       SVG: Board,
       black: true,
     },
-    ...Weekly
+    ...Weekly,
   ],
   '/circle': [
     {
@@ -40,5 +40,5 @@ export const studentNavitions: IconItem = {
       SVG: CheckDocument,
       black: true,
     },
-  ]
-}
+  ],
+};

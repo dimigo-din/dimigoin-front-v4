@@ -9,23 +9,23 @@ export interface NavigationItem {
   division?: boolean;
   stroke?: boolean;
   black?: boolean;
-};
+}
 
-const NavigationItem: React.FC<
-  NavigationItem
-> = ({
+const NavigationItem: React.FC<NavigationItem> = ({
   title,
   SVG,
   selected = false,
   stroke = false,
   black = false,
-  route
+  route,
 }) => (
   <ItemBox to={route} selected={selected}>
-    {SVG && <SVG
-      fill={selected ? (black ? '#000' :'#FF3284') : '#A6ABC0'}
-      stroke={stroke && (selected ? (black ? '#000' :'#FF3284') : '#A6ABC0')}
-    />}
+    {SVG && (
+      <SVG
+        fill={selected ? (black ? '#000' : '#E83C77') : '#8D90A0'}
+        stroke={stroke && (selected ? (black ? '#000' : '#E83C77') : '#8D90A0')}
+      />
+    )}
     {title}
   </ItemBox>
 );

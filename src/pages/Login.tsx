@@ -3,11 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { clearTokens, loginWithInfo } from '@/api';
 import { Hexile } from '@haechi/flexile';
-import {
-  Container,
-  Button,
-  Text
-} from '@/components';
+import { Container, Button, Text1 } from '@/components';
 import { MealType } from '@/types';
 import { styled } from '#/stitches.config';
 import moment, { Moment } from 'moment-timezone';
@@ -29,15 +25,15 @@ const TextCss = {
     position: 'absolute',
     bottom: '-0.4rem',
     left: '50%',
-    transform: 'translateX(-50%)'
-  }
+    transform: 'translateX(-50%)',
+  },
 };
 const BtnCss = {
   cursor: 'pointer',
   stroke: '$gray2',
   '&:hover': {
-    stroke: '#222222'
-  }
+    stroke: '#222222',
+  },
 };
 
 const NO_MEAL_DATA = '급식 정보가 없습니다.';
@@ -57,96 +53,108 @@ const Login: React.FC = () => {
   useEffect(() => {
     const period = getTimePeriod();
 
-    if(period === DAILY_TIME_PERIOD.MORNING) setTime('breakfast');
-    if(period === DAILY_TIME_PERIOD.BEFORE_NOON) setTime('lunch');
-    if(period === DAILY_TIME_PERIOD.EVENING) setTime('dinner');
-    if(period === DAILY_TIME_PERIOD.NEXT_MORNING) {
+    if (period === DAILY_TIME_PERIOD.MORNING) setTime('breakfast');
+    if (period === DAILY_TIME_PERIOD.BEFORE_NOON) setTime('lunch');
+    if (period === DAILY_TIME_PERIOD.EVENING) setTime('dinner');
+    if (period === DAILY_TIME_PERIOD.NEXT_MORNING) {
       setAddDate(1);
       setTime('breakfast');
     }
   }, []);
-  
+
   useEffect(() => {
     setDate(moment().add(addDate, 'd'));
   }, [addDate]);
 
-  const login = useCallback(async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!username || !password) return toast.warn('필드를 확인해주세요.');
-  
-    if (
-      await loginWithInfo({
-        username,
-        password,
-      })
-    ) {
-      goto('/');
-    } else toast.error('사용자 이름 또는 비밀번호를 확인해주세요.');
-    
-  }, [
-    username,
-    password,
-    history,
-  ]);
-  
+  const login = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!username || !password) return toast.warn('필드를 확인해주세요.');
+
+      if (
+        await loginWithInfo({
+          username,
+          password,
+        })
+      ) {
+        goto('/');
+      } else toast.error('사용자 이름 또는 비밀번호를 확인해주세요.');
+    },
+    [username, password, history],
+  );
+
   return (
-    <Wrapper x='center'  y='center'>
+    <Wrapper x="center" y="center">
       <BottomImage src={dimigoBack} />
       <Container
-      padding='12rem 10rem'
-      css={{
-        width: '67rem',
-        height: 'calc(100% - 10rem)',
-        borderRadius: '2rem',
-      }}
-      title='로그인'
-      column={true}>
+        padding="12rem 10rem"
+        css={{
+          width: '67rem',
+          height: 'calc(100% - 10rem)',
+          borderRadius: '2rem',
+        }}
+        title="로그인"
+        column={true}
+      >
         <LoginForm onSubmit={login}>
           <Placeholder>아이디</Placeholder>
           <Input
-          value={username}
-          onChange={({target: {value}}) => setUsername(value)}
-          type='text'
-          placeholder='아이디를 입력해주세요'
-          margin={5}
+            value={username}
+            onChange={({ target: { value } }) => setUsername(value)}
+            type="text"
+            placeholder="아이디를 입력해주세요"
+            margin={5}
           />
           <Placeholder>비밀번호</Placeholder>
           <Input
-          value={password}
-          onChange={({target: {value}}) => setPassword(value)}
-          type='password'
-          placeholder='비밀번호를 입력해주세요'
-          margin={6}
+            value={password}
+            onChange={({ target: { value } }) => setPassword(value)}
+            type="password"
+            placeholder="비밀번호를 입력해주세요"
+            margin={6}
           />
-          <Button value='로그인' large active />
+          <Button value="로그인" large active />
         </LoginForm>
         <MealContainer>
-          <MealNavigationBox x='space'>
-            <MealTimeBox x='space'>
-              <Text
-              active={time === 'breakfast'}
-              css={time === 'breakfast' ? TextCss : undefined}
-              button
-              onClick={() => setTime('breakfast')}>아침</Text>
-              <Text
-              active={time === 'lunch'}
-              css={time === 'lunch' ? TextCss : undefined}
-              button
-              onClick={() => setTime('lunch')}>점심</Text>
-              <Text
-              active={time === 'dinner'}
-              css={time === 'dinner' ? TextCss : undefined}
-              button
-              onClick={() => setTime('dinner')}>저녁</Text>
+          <MealNavigationBox x="space">
+            <MealTimeBox x="space">
+              <Text1
+                active={time === 'breakfast'}
+                css={time === 'breakfast' ? TextCss : undefined}
+                button
+                onClick={() => setTime('breakfast')}
+              >
+                아침
+              </Text1>
+              <Text1
+                active={time === 'lunch'}
+                css={time === 'lunch' ? TextCss : undefined}
+                button
+                onClick={() => setTime('lunch')}
+              >
+                점심
+              </Text1>
+              <Text1
+                active={time === 'dinner'}
+                css={time === 'dinner' ? TextCss : undefined}
+                button
+                onClick={() => setTime('dinner')}
+              >
+                저녁
+              </Text1>
             </MealTimeBox>
-            <MealDateBox x='space'>
-              <Prev onClick={() => setAddDate(prev => prev - 1)} />
-              <MealDate>{date.format('M월 D일')} {momentDayEndKorMapper[(date.format('ddd')) as MomentEngDay]}</MealDate>
-              <Next onClick={() => setAddDate(prev => prev + 1)} />
+            <MealDateBox x="space">
+              <Prev onClick={() => setAddDate((prev) => prev - 1)} />
+              <MealDate>
+                {date.format('M월 D일')}{' '}
+                {momentDayEndKorMapper[date.format('ddd') as MomentEngDay]}
+              </MealDate>
+              <Next onClick={() => setAddDate((prev) => prev + 1)} />
             </MealDateBox>
           </MealNavigationBox>
           <Meal>
-            {time === 'breakfast' && (meal?.breakfast.join(' | ') || NO_MEAL_DATA)}
+            {time === 'breakfast' &&
+              (meal?.breakfast.join(' | ') || NO_MEAL_DATA)}
             {time === 'lunch' && (meal?.lunch.join(' | ') || NO_MEAL_DATA)}
             {time === 'dinner' && (meal?.dinner.join(' | ') || NO_MEAL_DATA)}
           </Meal>
@@ -192,7 +200,7 @@ const Input = styled('input', {
   },
   '&::placeholder': {
     color: '#c5c5d0',
-    fontWeight: 500
+    fontWeight: 500,
   },
   variants: {
     margin: {
@@ -200,10 +208,10 @@ const Input = styled('input', {
         marginBottom: '5rem',
       },
       '6': {
-        marginBottom: '6rem'
+        marginBottom: '6rem',
       },
-    }
-  }
+    },
+  },
 });
 
 const Placeholder = styled('p', {
@@ -217,11 +225,11 @@ const Placeholder = styled('p', {
 
 const MealContainer = styled('div', {
   width: '100%',
-  margin: '1.4rem 0'
+  margin: '1.4rem 0',
 });
 const MealNavigationBox = styled(Hexile, {
   width: '100%',
-  marginBottom: '2.6rem'
+  marginBottom: '2.6rem',
 });
 const MealTimeBox = styled(Hexile, {
   width: '35%',

@@ -1,4 +1,5 @@
 import { styled } from '#/stitches.config';
+import { Hexile } from '@haechi/flexile';
 
 export const ContainerCustom = styled('div', {
   display: 'flex',
@@ -11,20 +12,34 @@ export const ContainerCustom = styled('div', {
     column: {
       true: {
         flexDirection: 'column',
-      }
-    }
+      },
+    },
   },
 });
 
-export const Title = styled('p', {
-  fontSize: '1.8rem',
-  lineHeight: '2.2rem',
-  fontWeight: 700,
-  color: '#000',
+export const TitleContainer = styled(Hexile, {
+  justifyContent: 'space-between',
 });
-export const SubTitle = styled('p', {
+
+export const Title = styled(Hexile, {
+  fontSize: '2rem',
+  lineHeight: '2.4rem',
+  fontWeight: 700,
+  color: '$subBlack',
+});
+
+export const InnerTitle = styled(Hexile, {
   fontSize: '1.6rem',
   lineHeight: '1.9rem',
-  fontWeight: 700,
-  color: '$gray1',
+  fontWeight: 600,
+  color: '$black2',
+});
+
+export const SubTitle = styled(Hexile, {
+  fontSize: '1.6rem',
+  lineHeight: '1.9rem',
+  fontWeight: 500,
+  color: '$gray3',
+  marginTop: '.6rem',
+  marginBottom: '2.5rem',
 });

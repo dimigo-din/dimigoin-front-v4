@@ -2,15 +2,11 @@ import { useMyData } from '@/hooks/api/useMyData';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { ReactComponent as LogoIcon } from '@/asset/dimigoin.svg';
-import {
-  Logo,
-  SideBarCustom,
-  ItemContainer,
-  Division
-} from './style';
+import { Logo, SideBarCustom, ItemContainer, Division } from './style';
 import { studentNavitions } from './navigations';
 import Item from './NavigationItem';
 import { UserType } from '@/constants/types';
+import { UserInfo } from '@/components/UserInfo';
 
 export const SideBar: React.FC = () => {
   const { pathname } = useLocation();
@@ -18,14 +14,20 @@ export const SideBar: React.FC = () => {
 
   return (
     <SideBarCustom filly>
-      <Logo to='/'>
+      <Logo to="/">
         <LogoIcon fill={pathname === '/' ? '#FF3284' : '#A6ABC0'} />
       </Logo>
+      <UserInfo
+        name={myData?.name}
+        grade={myData?.grade}
+        classNum={myData?.class}
+        number={myData?.number}
+      />
       <ItemContainer fillx>
-        {myData?.userType === UserType.S && (
-          studentNavitions.map(({title, route, SVG, stroke, black, division = false}) => {
-            return (
-              division ? (
+        {myData?.userType === UserType.S &&
+          studentNavitions.map(
+            ({ title, route, SVG, stroke, black, division = false }) => {
+              return division ? (
                 <Division key={title} />
               ) : (
                 <Item
@@ -37,10 +39,9 @@ export const SideBar: React.FC = () => {
                   selected={pathname.startsWith(route)}
                   key={`${title}${route}`}
                 />
-              )
-            );
-          })
-        )}
+              );
+            },
+          )}
       </ItemContainer>
     </SideBarCustom>
   );

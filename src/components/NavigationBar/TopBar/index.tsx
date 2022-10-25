@@ -5,6 +5,8 @@ import { useMyData } from '@/hooks/api/useMyData';
 import { studentNavitions } from './navigations';
 import { useLocation } from 'react-router-dom';
 import { TopBarItem } from './NavigationItem';
+import { TopBarMainItem } from './MainItem';
+import { TopBarCustom } from './style';
 
 export const TopBar: React.FC = () => {
   const [path, setPath] = useState<string>('/');
@@ -17,34 +19,28 @@ export const TopBar: React.FC = () => {
   }, [pathname]);
 
   return (
-    <Container padding='2rem 4.5rem' css={{
-      width: '100%',
-      height: '10rem',
-      alignItems: 'center',
-    }}>
-      {
-        myData?.userType === UserType.S && (
-          studentNavitions[path] && studentNavitions[path].map(({
-            title,
-            SVG,
-            stroke,
-            black,
-            route
-          }) => {
-            return (
-              <TopBarItem
-                title={title}
-                SVG={SVG}
-                stroke={stroke}
-                black={black}
-                route={`${path}${route}`}
-                selected={pathname === `${path}${route}`}
-                key={`${path}${route}`}
-              />
-            );
-          })
-        )
-      }
-    </Container>
+    <TopBarCustom fillx>
+      {myData?.userType === UserType.S &&
+        studentNavitions[path] &&
+        studentNavitions[path].map(({ title, SVG, stroke, black, route }) => {
+          return path === '/' ? (
+            <TopBarMainItem
+              title={`나의 현재 위치는 ? 이에요.`}
+              innerTitle={title}
+              SVG={SVG}
+            ></TopBarMainItem>
+          ) : (
+            <TopBarItem
+              title={title}
+              SVG={SVG}
+              stroke={stroke}
+              black={black}
+              route={`${path}${route}`}
+              selected={pathname === `${path}${route}`}
+              key={`${path}${route}`}
+            />
+          );
+        })}
+    </TopBarCustom>
   );
 };
