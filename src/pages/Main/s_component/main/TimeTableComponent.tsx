@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Button, Text2, Text } from '@/components';
+import React from 'react';
+import { Container, Text } from '@/components';
 import { CSS } from '@stitches/react';
 import { styled } from '#/stitches.config';
-import { Hexile, Vexile } from '@haechi/flexile';
+import { Vexile } from '@haechi/flexile';
 import { useTimetable, useMyData } from '@/hooks/api';
-import { LoadingType } from '@/types';
 import moment, { Moment } from 'moment-timezone';
-import { MomentEngDay, Student, TimeTable, UserType } from '@/constants/types';
 
 const weekDayCss = {
   textAlign: 'center',

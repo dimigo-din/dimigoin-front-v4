@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Button } from '@/components';
+import React from 'react';
+import { Container } from '@/components';
 import { CSS } from '@stitches/react';
 import { useNotice } from '@/hooks/api';
 import { styled } from '#/stitches.config';
-import { APIDocNotice } from '@/api';
 
 const NO_NOTICE_DATA = '공지사항이 없습니다';
 

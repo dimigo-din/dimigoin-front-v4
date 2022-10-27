@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React from 'react';
 import { Container } from '@/components';
 import { Hexile, Vexile } from '@haechi/flexile';
 import { styled } from '#/stitches.config';

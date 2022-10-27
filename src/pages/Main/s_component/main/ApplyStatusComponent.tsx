@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Container, Button, Text } from '@/components';
 import { CSS } from '@stitches/react';
 import { Hexile, Vexile } from '@haechi/flexile';

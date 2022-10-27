@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Button, Text } from '@/components';
+import { Container, Text } from '@/components';
 import { Hexile } from '@haechi/flexile';
 import { styled } from '#/stitches.config';
-import { ApplyType, MealType } from '@/types';
+import { MealType } from '@/types';
 import moment, { Moment } from 'moment-timezone';
-import { useMeal, useTimetable, useMyData } from '@/hooks/api';
+import { useMeal } from '@/hooks/api';
 import { momentDayEndKorMapper } from '@/constants';
 import { MomentEngDay } from '@/constants/types';
 import { getTimePeriod, DAILY_TIME_PERIOD } from '@/utils/getTimePeriod';
