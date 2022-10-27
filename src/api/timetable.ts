@@ -2,8 +2,8 @@ import { Grade, Class, TimeTable } from '@/constants/types';
 import { api } from './api';
 
 export const getTimetable = (
-  grade: Grade | undefined | null,
-  classNumber: Class | undefined | null,
+  grade?: Grade,
+  classNumber?: Class,
 ): Promise<TimeTable[]> =>
   api<'timetable'>(
     'GET',

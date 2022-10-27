@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Button, Text1 } from '@/components';
+import { Container, Button, Text } from '@/components';
 import { Hexile } from '@haechi/flexile';
 import { styled } from '#/stitches.config';
 import { ApplyType, MealType } from '@/types';
@@ -70,15 +70,15 @@ export const MealComponent: React.FC<{
       <MealContainer>
         <MealNavigationBox x="space">
           <MealTimeBox x="space">
-            <Text1
+            <Text
               active={time === 'breakfast'}
               css={time === 'breakfast' ? textCss : undefined}
               button
               onClick={() => setTime('breakfast')}
             >
               아침
-            </Text1>
-            <Text1
+            </Text>
+            <Text
               active={time === 'lunch'}
               css={time === 'lunch' ? textCss : undefined}
               button
@@ -87,15 +87,15 @@ export const MealComponent: React.FC<{
               // onClick={() => useTimetable(1, 5)}
             >
               점심
-            </Text1>
-            <Text1
+            </Text>
+            <Text
               active={time === 'dinner'}
               css={time === 'dinner' ? textCss : undefined}
               button
               onClick={() => setTime('dinner')}
             >
               저녁
-            </Text1>
+            </Text>
           </MealTimeBox>
         </MealNavigationBox>
         <Meal>

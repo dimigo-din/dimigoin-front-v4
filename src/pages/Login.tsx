@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { clearTokens, loginWithInfo } from '@/api';
 import { Hexile } from '@haechi/flexile';
-import { Container, Button, Text1 } from '@/components';
+import { Container, Button, Text } from '@/components';
 import { MealType } from '@/types';
 import { styled } from '#/stitches.config';
 import moment, { Moment } from 'moment-timezone';
@@ -118,30 +118,30 @@ const Login: React.FC = () => {
         <MealContainer>
           <MealNavigationBox x="space">
             <MealTimeBox x="space">
-              <Text1
+              <Text
                 active={time === 'breakfast'}
                 css={time === 'breakfast' ? TextCss : undefined}
                 button
                 onClick={() => setTime('breakfast')}
               >
                 아침
-              </Text1>
-              <Text1
+              </Text>
+              <Text
                 active={time === 'lunch'}
                 css={time === 'lunch' ? TextCss : undefined}
                 button
                 onClick={() => setTime('lunch')}
               >
                 점심
-              </Text1>
-              <Text1
+              </Text>
+              <Text
                 active={time === 'dinner'}
                 css={time === 'dinner' ? TextCss : undefined}
                 button
                 onClick={() => setTime('dinner')}
               >
                 저녁
-              </Text1>
+              </Text>
             </MealTimeBox>
             <MealDateBox x="space">
               <Prev onClick={() => setAddDate((prev) => prev - 1)} />

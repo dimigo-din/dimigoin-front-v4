@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Button, Text2, Text1 } from '@/components';
+import { Container, Button, Text2, Text } from '@/components';
 import { CSS } from '@stitches/react';
 import { styled } from '#/stitches.config';
 import { Hexile, Vexile } from '@haechi/flexile';
@@ -45,13 +45,13 @@ export const TimeTableComponent: React.FC<{
       <TimeTableContainer>
         <Week>
           {weekDays.map((weekDay, idx) => (
-            <Text1
+            <Text
               active={todayTimeTable(idx) && true}
               css={weekDayCss}
               key={idx}
             >
               {weekDay}
-            </Text1>
+            </Text>
           ))}
         </Week>
         <Hr />
@@ -60,13 +60,13 @@ export const TimeTableComponent: React.FC<{
             table.map((day, idx1) => (
               <Table key={idx1}>
                 {day.sequence.map((item, idx2) => (
-                  <Text1
+                  <Text
                     css={timeCss}
                     active={todayTimeTable(idx1) && true}
                     key={idx2}
                   >
                     {item}
-                  </Text1>
+                  </Text>
                 ))}
               </Table>
             ))}

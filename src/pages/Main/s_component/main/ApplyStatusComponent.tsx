@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Button, Text1 } from '@/components';
+import { Container, Button, Text } from '@/components';
 import { CSS } from '@stitches/react';
 import { Hexile, Vexile } from '@haechi/flexile';
 import { styled } from '#/stitches.config';
@@ -18,30 +18,30 @@ export const ApplyStatusComponent: React.FC<{
       <ApplyContainer>
         <ApplyNavigationBox x="space">
           <ApplyBox x="space">
-            <Text1
+            <Text
               active={apply === 'stayInSchool'}
               css={apply === 'stayInSchool' ? textCss : undefined}
               button
               onClick={() => setApply('stayInSchool')}
             >
               잔류
-            </Text1>
-            <Text1
+            </Text>
+            <Text
               active={apply === 'laundry'}
               css={apply === 'laundry' ? textCss : undefined}
               button
               onClick={() => setApply('laundry')}
             >
               세탁
-            </Text1>
-            <Text1
+            </Text>
+            <Text
               active={apply === 'fridayGoHome'}
               css={apply === 'fridayGoHome' ? textCss : undefined}
               button
               onClick={() => setApply('fridayGoHome')}
             >
               금요귀가
-            </Text1>
+            </Text>
           </ApplyBox>
         </ApplyNavigationBox>
         <TimeCheckBox>
