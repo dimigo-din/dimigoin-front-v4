@@ -4,23 +4,23 @@ import { NavigationItem } from '@/components/NavigationBar/SideBar/NavigationIte
 
 export interface IconItem {
   [key: string]: Array<NavigationItem>;
-};
+}
 
-export const TopBarItem: React.FC<
-  NavigationItem
-> = ({
+export const TopBarItem: React.FC<NavigationItem> = ({
   title,
   SVG,
   selected = false,
   stroke = false,
   black = true,
-  route
+  route,
 }) => (
   <ItemBox to={route} selected={selected}>
-    {SVG && <SVG
-      fill={selected ? (black ? '#000' :'#FF3284') : '#A6ABC0'}
-      stroke={stroke && (selected ? (black ? '#000' :'#FF3284') : '#A6ABC0')}
-    />}
+    {SVG && (
+      <SVG
+        fill={selected ? (black ? '#000' : '#FF3284') : '#A6ABC0'}
+        stroke={stroke && (selected ? (black ? '#000' : '#FF3284') : '#A6ABC0')}
+      />
+    )}
     {title}
   </ItemBox>
 );

@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import { refetchToken as refetchUserData } from '@/api';
 import { getMyData } from '@/api/user';
-import { User } from '@/constants/types';
+import { Student, User } from '@/constants/types';
 
 export const useMyData = ({ noLocalData }: { noLocalData?: boolean } = {}) => {
-  const [myData, setMyData] = useState<User | null>();
+  // const [myData, setMyData] = useState<User | null>();
+  const [myData, setMyData] = useState<Student | null>();
   useEffect(() => {
     (async () => {
       if (noLocalData) {
-        await refetchUserData()
+        await refetchUserData();
       }
       getMyData()
         .then((d) => {
-          setMyData(d)
+          setMyData(d as Student);
         })
         .catch(() => setMyData(null));
     })();

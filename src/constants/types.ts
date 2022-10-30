@@ -22,6 +22,7 @@ export interface AuthTokens {
 }
 
 export type Grade = 1 | 2 | 3;
+export type Class = 1 | 2 | 3 | 4 | 5 | 6;
 
 export enum EngDay {
   'mon' = 'mon',
@@ -100,7 +101,7 @@ export enum Permission {
   attendance = 'attendance',
   'circle-applier-selection' = 'circle-applier-selection',
   circle = 'circle',
-  meal = 'meal'
+  meal = 'meal',
 }
 
 export interface User {
@@ -114,10 +115,17 @@ export interface User {
 }
 
 export interface Student extends Doc<User> {
-  class: number;
+  class: Class;
   grade: Grade;
   number: number;
   serial: number;
+}
+
+export interface TimeTable {
+  sequence: string[];
+  date: string;
+  grade: Grade;
+  class: Class;
 }
 
 export interface Notice {
@@ -190,8 +198,8 @@ export interface AfterschoolClassApplication {
 }
 
 export enum CirclePeriod {
-  submitting = 'SUBMITTING',    // 기초정보 등록기간
-  registering = 'REGISTERING',  // 상세정보 입력기간
+  submitting = 'SUBMITTING', // 기초정보 등록기간
+  registering = 'REGISTERING', // 상세정보 입력기간
   application = 'APPLICATION',
   screening = 'SCREENING', // 서류심사
   interview = 'INTERVIEW',

@@ -5,22 +5,24 @@ import { Vexile } from '@haechi/flexile';
 export const SideBarCustom = styled(Vexile, {
   width: '20rem',
   background: '#fff',
-  padding: '4rem 2rem',
+  padding: '4rem 3.2rem',
 });
 
 export const Logo = styled(Link, {
   height: '4rem',
-  margin: '1rem .5rem 5rem',
+  margin: '1rem .5rem 7rem',
 });
 
 export const ItemContainer = styled(Vexile, {
-  height: '75%',
+  marginTop: '2rem',
+  height: '65%',
   overflowX: 'auto',
 });
 
 export const ItemBox = styled(Link, {
   width: '100%',
-  margin: '2rem 0',
+  margin: '2.2rem 0',
+  lineHeight: '1.9rem',
   display: 'flex',
   alignItems: 'center',
   transition: 'color .2s ease',
@@ -30,9 +32,9 @@ export const ItemBox = styled(Link, {
         color: '$accent',
       },
       false: {
-        color: '$gray1',
-      }
-    }
+        color: '$gray3',
+      },
+    },
   },
   '& svg': {
     marginRight: '1.5rem',
@@ -41,6 +43,7 @@ export const ItemBox = styled(Link, {
 
 export const Division = styled('div', {
   width: '100%',
-  border: '1px solid $gray3',
+  border: '.05rem solid $subWhite2',
+  borderRadius: '.1rem',
   margin: '.7rem 0',
 });

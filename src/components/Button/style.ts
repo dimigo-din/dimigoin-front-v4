@@ -24,7 +24,7 @@ export const ButtonCustom = styled('button', {
         backgroundColor: '$accent',
       },
       false: {
-        backgroundColor: '$gray2',
+        backgroundColor: '$gray3',
       },
     },
   },

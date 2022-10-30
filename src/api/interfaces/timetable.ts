@@ -1,4 +1,4 @@
-import { Grade } from '../../constants/types';
+import { Grade, Class } from '../../constants/types';
 
 export interface Timetable {
   endpoint: '/timetable/weekly/grade/:grade/class/:class';
@@ -9,7 +9,7 @@ export interface Timetable {
       sequence: string[];
       date: string;
       grade: Grade;
-      class: number;
+      class: Class;
     }[];
   };
 }
