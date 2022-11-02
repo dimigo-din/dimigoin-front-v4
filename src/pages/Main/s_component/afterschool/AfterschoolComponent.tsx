@@ -7,6 +7,7 @@ import { KorDay } from '@/constants/types';
 import { ReactComponent as Calendar } from '@/asset/icons/calendar.svg';
 import { ReactComponent as Alarm } from '@/asset/icons/alarm.svg';
 import { ReactComponent as Groups } from '@/asset/icons/Groups.svg';
+import { useAfterschool } from '@/hooks/api';
 
 const BtnCss = {
   fontSize: '1.4rem',
@@ -17,13 +18,18 @@ const BtnCss = {
 export const AfterschoolComponent: React.FC<{
   padding: string;
   css?: CSS;
-  title: string;
-  teacher: string;
-  time: string;
-  remaining: number;
   active?: boolean;
   btnVal: string;
-}> = ({ padding, css, title, teacher, time, remaining, active, btnVal }) => {
+}> = ({ padding, css, active, btnVal }) => {
+  const asdf = useAfterschool();
+  console.log(asdf);
+
+  const title = '상업경제 개념잡기';
+  const teacher = '김준식';
+  const week = '월';
+  const time = '방과후 1,2타임';
+  const remaining = 11;
+
   return (
     <Container padding={padding} css={css}>
       <Header>
@@ -32,7 +38,7 @@ export const AfterschoolComponent: React.FC<{
       </Header>
       <Body>
         <InfoBox>
-          <Infos week="월" SVG={Calendar} />
+          <Infos week={week} SVG={Calendar} />
           <Infos time={time} SVG={Alarm} />
           <Infos remaining={remaining} SVG={Groups} />
         </InfoBox>
