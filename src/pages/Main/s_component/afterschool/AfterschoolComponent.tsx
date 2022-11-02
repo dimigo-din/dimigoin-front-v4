@@ -21,9 +21,11 @@ export const AfterschoolComponent: React.FC<{
   active?: boolean;
   btnVal: string;
 }> = ({ padding, css, active, btnVal }) => {
-  const asdf = useAfterschool();
-  console.log(asdf);
+  const afterSchool = useAfterschool();
+  // console.log(afterSchool);
+  //방과후 return 값 없음
 
+  //밑 변수들은 임시 변수 입니다.
   const title = '상업경제 개념잡기';
   const teacher = '김준식';
   const week = '월';
