@@ -1,7 +1,17 @@
 @font-face {
   font-family: 'Pretendard';
+  font-weight: 300;
+  src: url('./PretendardL.otf') format('otf');
+}
+@font-face {
+  font-family: 'Pretendard';
   font-weight: 400;
   src: url('./PretendardR.otf') format('otf');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  src: url('./PretendardM.otf') format('otf');
 }
 @font-face {
   font-family: 'Pretendard';
@@ -12,9 +22,4 @@
   font-family: 'Pretendard';
   font-weight: 800;
   src: url('./PretendardEB.otf') format('otf');
-}
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 300;
-  src: url('./PretendardL.otf') format('otf');
 }

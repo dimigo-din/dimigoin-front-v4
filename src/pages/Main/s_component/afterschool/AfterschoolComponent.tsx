@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Button } from '@/components';
 import { CSS } from '@stitches/react';
 import { styled } from '#/stitches.config';
+import { Hexile, Vexile } from '@haechi/flexile';
 
 export const AfterschoolComponent: React.FC<{
   padding: string;
@@ -10,23 +11,30 @@ export const AfterschoolComponent: React.FC<{
   teacher: string;
   time: string;
   remaining: number;
-}> = ({ padding, css, title, teacher, time, remaining }) => {
-  return (
-    <Container padding={padding} css={css}>
+  active?: boolean;
+  btnVal: string;
+}> = ({ padding, css, title, teacher, time, remaining, active, btnVal }) => (
+  <Container padding={padding} css={css}>
+    <Header>
       <Title>{title}</Title>
-      <Teacher>{teacher}</Teacher>
-      <Button value="신청"></Button>
-    </Container>
-  );
-};
+      <Teacher>{teacher} 선생님</Teacher>
+    </Header>
+    <InfoBox>
+      <Button value={btnVal} active={active} />
+    </InfoBox>
+  </Container>
+);
 
-const NoticeContainer = styled('div', {
-  width: '100%',
-  marginTop: '2rem',
-  lineHeight: '2.4rem',
-  color: '$black2',
-  fontWeight: 400,
+const Header = styled(Vexile);
+const InfoBox = styled(Vexile);
+
+const Title = styled(Hexile, {
+  fontSize: '1.8rem',
+  lineHeight: '2.1rem',
 });
 
-const Title = styled('div');
-const Teacher = styled('div');
+const Teacher = styled(Hexile, {
+  fontSize: '1.4rem',
+  lineHeight: '1.7rem',
+  color: '$gray3',
+});
