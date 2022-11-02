@@ -43,6 +43,8 @@ export enum MomentEngDay {
   'Sun' = 'Sun',
 }
 
+export type KorDay = '월' | '화' | '수' | '목' | '금' | '토' | '일';
+
 export enum UserType {
   T = 'T',
   S = 'S',

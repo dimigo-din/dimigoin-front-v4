@@ -13,6 +13,7 @@ const containerCss = {
 const afterSchoolCss = {
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'space-between',
   maxWidth: '38rem',
   flex: '1 1 38rem',
   flexShrink: 1,
@@ -22,6 +23,7 @@ const afterSchoolCss = {
 const appliedClassCss = {
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'space-between',
   width: '100%',
   height: '18.8rem',
   backgroundColor: '$subWhite1',

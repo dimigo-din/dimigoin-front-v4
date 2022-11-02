@@ -15,8 +15,8 @@ export const ButtonCustom = styled('button', {
         height: '5rem',
       },
       false: {
-        width: '8rem',
-        height: '4rem',
+        width: '7.2rem',
+        height: '3.6rem',
       },
     },
     active: {

@@ -9,8 +9,8 @@ import AfterSchool from './temp_S/AfterSchool';
 const Main: React.FC = () => {
   return (
     <Wrapper>
-      <MainPage></MainPage>
-      {/* <AfterSchool></AfterSchool> */}
+      {/* <MainPage></MainPage> */}
+      <AfterSchool></AfterSchool>
     </Wrapper>
   );
 };
