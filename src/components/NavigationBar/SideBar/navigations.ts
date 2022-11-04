@@ -1,6 +1,6 @@
 import { NavigationItem } from './NavigationItem';
 
-import { ReactComponent as Earth } from '@/asset/icons/ingang.svg';
+import { ReactComponent as Click } from '@/asset/icons/ingang.svg';
 import { ReactComponent as Bachelor } from '@/asset/icons/bachelor.svg';
 import { ReactComponent as Teach } from '@/asset/icons/teach.svg';
 import { ReactComponent as Club } from '@/asset/icons/club.svg';
@@ -14,7 +14,7 @@ export const studentNavitions: NavigationItem[] = [
   {
     title: '인강실',
     route: '/ingangsil',
-    SVG: Earth,
+    SVG: Click,
   },
   {
     title: '멘토링',
@@ -30,7 +30,6 @@ export const studentNavitions: NavigationItem[] = [
     title: '동아리',
     route: '/circle',
     SVG: Club,
-    stroke: true,
   },
   {
     title: 'DETS',
@@ -53,7 +52,7 @@ export const studentNavitions: NavigationItem[] = [
     SVG: Music,
   },
   {
-    title: '잔류 / 외출 신청',
+    title: '잔류 / 외출',
     route: '/so',
     SVG: Walk,
   },

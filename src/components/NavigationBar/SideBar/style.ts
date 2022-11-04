@@ -14,8 +14,8 @@ export const Logo = styled(Link, {
 });
 
 export const ItemContainer = styled(Vexile, {
-  marginTop: '2rem',
-  height: '65%',
+  marginTop: '3.8rem',
+  height: '70%',
   overflowX: 'auto',
 });
 
