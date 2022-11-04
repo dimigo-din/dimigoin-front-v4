@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Text } from '@/components';
 import { CSS } from '@stitches/react';
 import { styled } from '#/stitches.config';
@@ -9,14 +9,14 @@ import moment, { Moment } from 'moment-timezone';
 const weekDayCss = {
   textAlign: 'center',
   fontSize: '1.8rem',
-  fontWeight: 700,
+  fontWeight: 500,
   lineHeight: '2.1rem',
 };
 // 과목 css
 const timeCss = {
   textAlign: 'center',
   fontSize: '1.8rem',
-  fontWeight: 700,
+  fontWeight: 500,
   lineHeight: '2.1rem',
   height: '2.1rem',
   marginTop: '2.4rem',
