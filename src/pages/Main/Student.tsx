@@ -10,7 +10,7 @@ const Main: React.FC = () => {
   return (
     <Wrapper>
       {/* <MainPage></MainPage> */}
-      <AfterSchool></AfterSchool>
+      {/* <AfterSchool></AfterSchool> */}
     </Wrapper>
   );
 };

@@ -15,8 +15,8 @@ const afterSchoolCss = {
   flexDirection: 'column',
   justifyContent: 'space-between',
   maxWidth: '38rem',
-  flex: '1 1 38rem',
-  flexShrink: 1,
+  flexBasis: '38rem',
+  // flexShrink: 1,
   height: '22rem',
 };
 
@@ -38,30 +38,26 @@ const AfterSchool: React.FC = () => {
   );
 
   useEffect(() => {
-    // setToApplyClass([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-    // setAppliedClass([1, 2, 3, 4, 5]);
+    setToApplyClass([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    setAppliedClass([1, 2, 3, 4, 5]);
   }, []);
 
   return (
     <Wrapper>
       <LeftBox>
-        <ToApplyBox>
-          {toApplyClass ? (
-            toApplyClass.map((idx) => (
-              <AfterschoolComponent
-                padding="3.2rem"
-                css={afterSchoolCss}
-                active={true}
-                btnVal={'신청'}
-                key={idx}
-              />
-            ))
-          ) : (
-            <NO_AFTERSCHOOL_DATA>
-              신청가능한 방과후가 없어요
-            </NO_AFTERSCHOOL_DATA>
-          )}
-        </ToApplyBox>
+        {toApplyClass ? (
+          toApplyClass.map((idx) => (
+            <AfterschoolComponent
+              padding="3.2rem"
+              css={afterSchoolCss}
+              active={true}
+              btnVal={'신청'}
+              key={idx}
+            />
+          ))
+        ) : (
+          <NO_AFTERSCHOOL_DATA>신청가능한 방과후가 없어요</NO_AFTERSCHOOL_DATA>
+        )}
       </LeftBox>
       <Container padding="4rem 3.5rem" css={containerCss}>
         <Title>내가 신청한 강좌</Title>
@@ -97,10 +93,13 @@ const Wrapper = styled('div', {
   gridTemplateColumns: '1fr 45rem',
 });
 
+// window size에 따라서 1~3 정렬 해야함 => how?
 const LeftBox = styled(Hexile, {
   position: 'relative',
   height: 'calc(100vh - 14.5rem)',
-  justifyContent: 'center',
+  flexWrap: 'wrap',
+  overflowY: 'auto',
+  gap: '2rem',
 });
 
 const Title = styled('span', {
@@ -120,11 +119,7 @@ const AppliedBox = styled(Hexile, {
   gap: '2rem',
 });
 
-const ToApplyBox = styled(Hexile, {
-  flexWrap: 'wrap',
-  overflowY: 'auto',
-  gap: '2rem',
-});
+const ToApplyBox = styled(Hexile);
 
 const NO_AFTERSCHOOL_DATA = styled('div', {
   position: 'absolute',
