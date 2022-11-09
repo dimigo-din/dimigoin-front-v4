@@ -119,8 +119,6 @@ const AppliedBox = styled(Hexile, {
   gap: '2rem',
 });
 
-const ToApplyBox = styled(Hexile);
-
 const NO_AFTERSCHOOL_DATA = styled('div', {
   position: 'absolute',
   top: '50%',

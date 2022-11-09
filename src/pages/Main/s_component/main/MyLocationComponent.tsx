@@ -4,6 +4,7 @@ import { Hexile, Vexile } from '@haechi/flexile';
 import { styled } from '#/stitches.config';
 import { CSS } from '@stitches/react';
 import { ReactComponent as Frame } from '@/asset/icons/Frame.svg';
+import { ReactComponent as Bath } from '@/asset/icons/bath.svg';
 
 export const MyLocationComponent: React.FC<{
   padding: string;
@@ -20,21 +21,21 @@ export const MyLocationComponent: React.FC<{
     >
       <Bookmark>즐겨찾기</Bookmark>
       <PlacesBox>
-        <Place active={true} />
-        <Place active={false} />
-        <Place active={false} />
-        <Place active={false} />
-        <Place active={false} />
-        <Place active={false} />
+        <Place SVG={Frame} active={true} />
+        <Place SVG={Bath} active={false} />
+        <Place SVG={Frame} active={false} />
+        <Place SVG={Frame} active={false} />
+        <Place SVG={Frame} active={false} />
+        <Place SVG={Frame} active={false} />
       </PlacesBox>
     </Container>
   );
 };
 
-const Place: React.FC<{ active: boolean }> = ({ active }) => {
+const Place: React.FC<{ active: boolean; SVG: any }> = ({ active, SVG }) => {
   return (
     <PlaceBox>
-      <Frame fill={active ? '#E83C77' : '#8D90A0'} />
+      <SVG fill={active ? '#E83C77' : '#8D90A0'} />
       <PlaceLocation>
         <Floor active={active}>본관 2층</Floor>
         <PlaceName active={active}>1학년 6반</PlaceName>
