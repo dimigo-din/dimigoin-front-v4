@@ -21,7 +21,6 @@ export const SideBar: React.FC = () => {
         name={myData?.name}
         grade={myData?.grade}
         classNum={myData?.class}
-        number={myData?.number}
       />
       <ItemContainer fillx>
         {myData?.userType === UserType.S &&

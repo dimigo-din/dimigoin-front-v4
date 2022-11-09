@@ -35,7 +35,11 @@ export const TimeTableComponent: React.FC<{
   const table = useTimetable(myData?.grade, myData?.class);
 
   const todayTimeTable = (e: number) => {
-    if (date.format('Y-M-D') === (table && table[e].date)) return true;
+    console.log(typeof date.format('Y-M-D'), typeof (table && table[e].date));
+    if (table && date.format('Y-M-D') === table[e].date) {
+      console.log('true!');
+      return true;
+    }
   };
 
   return (

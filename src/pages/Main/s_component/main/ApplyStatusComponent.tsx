@@ -5,6 +5,11 @@ import { Hexile, Vexile } from '@haechi/flexile';
 import { styled } from '#/stitches.config';
 import { ApplyType } from '@/types';
 
+const cancelBtn = {
+  fontSize: '1.6rem',
+  fontWeight: '500',
+};
+
 export const ApplyStatusComponent: React.FC<{
   padding: string;
   css: CSS;
@@ -49,7 +54,7 @@ export const ApplyStatusComponent: React.FC<{
             <WhatTime>n타임</WhatTime>
             <LocationNTime>2층 왼쪽 세탁기 | 12:00</LocationNTime>
           </TimeDetail>
-          <Button value="취소"></Button>
+          <Button css={cancelBtn} value="취소"></Button>
         </TimeCheckBox>
       </ApplyContainer>
     </Container>
