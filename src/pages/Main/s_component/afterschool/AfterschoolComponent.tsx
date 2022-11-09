@@ -6,7 +6,7 @@ import { Hexile, Vexile } from '@haechi/flexile';
 import { KorDay } from '@/constants/types';
 import { ReactComponent as Calendar } from '@/asset/icons/calendar.svg';
 import { ReactComponent as Alarm } from '@/asset/icons/alarm.svg';
-import { ReactComponent as Groups } from '@/asset/icons/Groups.svg';
+import { ReactComponent as Groups } from '@/asset/icons/groups.svg';
 import { useAfterschool } from '@/hooks/api';
 
 const BtnCss = {
