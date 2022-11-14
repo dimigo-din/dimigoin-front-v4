@@ -6,13 +6,15 @@ import { useAfterschool } from '@/hooks/api';
 import MainPage from './route/MainPage';
 import AfterSchool from './route/AfterSchool';
 import Club from './route/Club';
+import Laundry from './route/Laundry';
 
 const Main: React.FC = () => {
   return (
     <Wrapper>
-      <MainPage></MainPage>
+      {/* <MainPage></MainPage> */}
       {/* <AfterSchool></AfterSchool> */}
       {/* <Club></Club> */}
+      <Laundry></Laundry>
     </Wrapper>
   );
 };
