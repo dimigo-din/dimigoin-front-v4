@@ -10,9 +10,9 @@ import Club from './route/Club';
 const Main: React.FC = () => {
   return (
     <Wrapper>
-      {/* <MainPage></MainPage> */}
+      <MainPage></MainPage>
       {/* <AfterSchool></AfterSchool> */}
-      <Club></Club>
+      {/* <Club></Club> */}
     </Wrapper>
   );
 };

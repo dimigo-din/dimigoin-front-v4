@@ -8,7 +8,7 @@ export const CustomText = styled('span', {
     active: {
       true: {
         color: '$accent',
-        fontWeight: 700,
+        fontWeight: '700 !important',
       },
       false: {
         color: '$gray3',
@@ -22,26 +22,3 @@ export const CustomText = styled('span', {
     },
   },
 });
-
-// export const CustomText2 = styled('span', {
-//   fontSize: '1.6rem',
-//   lineHeight: '2.2rem',
-//   position: 'relative',
-//   variants: {
-//     active: {
-//       true: {
-//         color: '$black2',
-//         fontWeight: 700,
-//       },
-//       false: {
-//         color: '$gray1',
-//         fontWeight: 500,
-//       },
-//     },
-//     button: {
-//       true: {
-//         cursor: 'pointer',
-//       },
-//     },
-//   },
-// });

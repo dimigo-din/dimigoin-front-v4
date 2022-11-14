@@ -2,7 +2,6 @@ import React from 'react';
 import { CSS } from '@stitches/react';
 import { CustomText } from './style';
 
-// $accent
 export const Text: React.FC<
   {
     active?: boolean;
