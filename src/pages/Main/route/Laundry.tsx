@@ -32,7 +32,7 @@ const prev_next_css = {
   flexDirection: 'column',
   justifyContent: 'space-between',
   width: '100%',
-  height: '14.1rem',
+  height: '15.8rem',
   backgroundColor: '$subWhite1',
   marginTop: '2.4rem',
 };
@@ -54,7 +54,7 @@ const Laundry: React.FC = () => {
   useEffect(() => {
     setToApplyLaundry([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     setPrevLaundry([1]);
-    // setNextLaundry([1]);
+    setNextLaundry([1]);
     setAppliedLaundry([]);
   }, []);
 
@@ -118,7 +118,7 @@ const Laundry: React.FC = () => {
             css={{
               display: 'flex',
               flexDirection: 'column',
-              minHeight: `${prevLaundry ? '19rem' : '15rem'}`,
+              minHeight: `${prevLaundry ? '20.8rem' : '15rem'}`,
             }}
             title="앞 타임 정보"
           >
@@ -128,6 +128,7 @@ const Laundry: React.FC = () => {
                 css={prev_next_css}
                 btnVal={'취소'}
                 active={false}
+                applingPeo={'김도현'}
               />
             ) : (
               <NO_AFTERSCHOOL_DATA>앞 타임 정보가 없어요</NO_AFTERSCHOOL_DATA>
@@ -138,7 +139,7 @@ const Laundry: React.FC = () => {
             css={{
               display: 'flex',
               flexDirection: 'column',
-              minHeight: `${nextLaundry ? '19rem' : '15rem'}`,
+              minHeight: `${nextLaundry ? '20.8rem' : '15rem'}`,
             }}
             title="뒤 타임 정보"
           >
@@ -148,6 +149,7 @@ const Laundry: React.FC = () => {
                 css={prev_next_css}
                 btnVal={'취소'}
                 active={false}
+                applingPeo={'김도현'}
               />
             ) : (
               <NO_AFTERSCHOOL_DATA>뒤 타임 정보가 없어요</NO_AFTERSCHOOL_DATA>

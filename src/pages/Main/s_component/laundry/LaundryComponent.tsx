@@ -3,10 +3,8 @@ import { Container, Button } from '@/components';
 import { CSS } from '@stitches/react';
 import { styled } from '#/stitches.config';
 import { Hexile, Vexile } from '@haechi/flexile';
-import { KorDay } from '@/constants/types';
-import { ReactComponent as Calendar } from '@/asset/icons/calendar.svg';
 import { ReactComponent as Alarm } from '@/asset/icons/alarm.svg';
-import { ReactComponent as Groups } from '@/asset/icons/groups.svg';
+import { ReactComponent as Person } from '@/asset/icons/person.svg';
 import { useAfterschool } from '@/hooks/api';
 
 const BtnCss = {
@@ -20,7 +18,8 @@ export const LaundryComponent: React.FC<{
   css?: CSS;
   active?: boolean;
   btnVal: string;
-}> = ({ padding, css, active, btnVal }) => {
+  applingPeo?: string;
+}> = ({ padding, css, active, btnVal, applingPeo }) => {
   const afterSchool = useAfterschool();
   // console.log(afterSchool);
   //방과후 return 값 없음
@@ -38,8 +37,8 @@ export const LaundryComponent: React.FC<{
       </Header>
       <Body>
         <InfoBox>
-          <Alarm />
-          {detailTime && <InfoText>{detailTime}</InfoText>}
+          {applingPeo && <Infos detailTime={applingPeo} SVG={Person} />}
+          <Infos detailTime={detailTime} SVG={Alarm} />
         </InfoBox>
         <BtnBox>
           <Button css={BtnCss} value={btnVal} active={active} />
@@ -49,13 +48,30 @@ export const LaundryComponent: React.FC<{
   );
 };
 
+const Infos: React.FC<{
+  detailTime?: string;
+  applingPeo?: string;
+  SVG?: any;
+}> = ({ detailTime, applingPeo, SVG }) => (
+  <Info>
+    <SVG />
+    {detailTime && <InfoText>{detailTime}</InfoText>}
+    {applingPeo && <InfoText>{applingPeo}</InfoText>}
+  </Info>
+);
+
 const Header = styled(Vexile);
 const Body = styled(Hexile, {
   justifyContent: 'space-between',
 });
 
-const InfoBox = styled(Hexile, {
-  alignItems: 'flex-end',
+const InfoBox = styled(Vexile, {
+  justifyContent: 'flex-end',
+});
+
+const Info = styled(Hexile, {
+  alignItems: 'center',
+  marginTop: '.8rem',
 });
 
 const BtnBox = styled('div', {
