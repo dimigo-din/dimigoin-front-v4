@@ -16,6 +16,7 @@ export const ClassNum = styled('span', {
   fontSize: '1.2rem',
   lineHeight: '1.4rem',
   paddingBottom: '.3rem',
+  color: '$gray3',
 });
 
 export const Name = styled('span', {

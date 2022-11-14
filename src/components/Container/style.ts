@@ -32,7 +32,7 @@ export const InnerTitle = styled(Hexile, {
   fontSize: '1.6rem',
   lineHeight: '1.9rem',
   fontWeight: 600,
-  color: '$black2',
+  color: '$gray5',
 });
 
 export const SubTitle = styled(Hexile, {

@@ -16,7 +16,8 @@ export const Container: React.FC<{
   subTitle?: string;
   column?: boolean;
   css?: CSS;
-}> = ({ padding, children, title, innerTitle, subTitle, column, css }) => {
+  innerTitleCss?: CSS;
+}> = ({ padding, children, title, innerTitle, subTitle, column, css, innerTitleCss }) => {
   return (
     <ContainerCustom
       column={column || false}
@@ -26,7 +27,7 @@ export const Container: React.FC<{
       {innerTitle ? (
         <TitleContainer>
           <Title>{title}</Title>
-          {innerTitle}
+          <InnerTitle css={innerTitleCss}>{innerTitle}</InnerTitle>
         </TitleContainer>
       ) : (
         title && <Title>{title}</Title>
