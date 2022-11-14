@@ -6,6 +6,9 @@ import { ReactComponent as Chart } from '@/asset/icons/chart.svg';
 import { ReactComponent as CheckDocument } from '@/asset/icons/checkDocument.svg';
 import { ReactComponent as pinDrop } from '@/asset/icons/pinDrop.svg';
 import { ReactComponent as programming } from '@/asset/icons/programming.svg';
+import { ReactComponent as skill } from '@/asset/icons/skill.svg';
+import { ReactComponent as study } from '@/asset/icons/study.svg';
+import { ReactComponent as ans } from '@/asset/icons/ANS.svg';
 
 export const studentNavitions: IconItem = {
   '/': [{ title: 'NO_PLACE_DATA', route: '', SVG: pinDrop }],
@@ -30,25 +33,25 @@ export const studentNavitions: IconItem = {
     {
       title: '개발',
       route: '/pro',
-      SVG: Chart,
+      SVG: programming,
       black: true,
     },
     {
       title: '예체능',
       route: '/ANS',
-      SVG: Chart,
+      SVG: ans,
       black: true,
     },
     {
       title: '학습',
       route: '/study',
-      SVG: Chart,
+      SVG: study,
       black: true,
     },
     {
       title: '기술',
       route: '/skill',
-      SVG: Chart,
+      SVG: skill,
       black: true,
     },
   ],
