@@ -4,11 +4,6 @@ import { Container } from '@/components';
 import { Hexile, Vexile } from '@haechi/flexile';
 import { LaundryComponent } from '../s_component/laundry';
 
-const containerCss = {
-  display: 'flex',
-  flexDirection: 'column',
-};
-
 const ToApplyLaundryCss = {
   display: 'flex',
   flexDirection: 'column',
@@ -52,7 +47,7 @@ const Laundry: React.FC = () => {
   );
 
   useEffect(() => {
-    setToApplyLaundry([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    setToApplyLaundry([1, 2, 3, 4, 5, 6, 7, 8, 9]);
     setPrevLaundry([1]);
     setNextLaundry([1]);
     setAppliedLaundry([]);
@@ -176,7 +171,8 @@ const Wrapper = styled('div', {
 // window size에 따라서 1~3 정렬 해야함 => how?
 const LeftBox = styled(Hexile, {
   position: 'relative',
-  height: 'calc(100vh - 14.5rem)',
+  height: 'fit-content',
+  maxHeight: 'calc(100vh - 14.5rem)',
   flexWrap: 'wrap',
   overflowY: 'auto',
   gap: '2rem',

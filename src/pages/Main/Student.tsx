@@ -12,9 +12,9 @@ const Main: React.FC = () => {
   return (
     <Wrapper>
       {/* <MainPage></MainPage> */}
-      {/* <AfterSchool></AfterSchool> */}
+      <AfterSchool></AfterSchool>
       {/* <Club></Club> */}
-      <Laundry></Laundry>
+      {/* <Laundry></Laundry> */}
     </Wrapper>
   );
 };
