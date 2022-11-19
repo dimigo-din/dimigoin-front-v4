@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { styled } from '#/stitches.config';
-import { Container } from '@/components';
 import { Hexile } from '@haechi/flexile';
-import { useAfterschool } from '@/hooks/api';
 import MainPage from './route/MainPage';
 import AfterSchool from './route/AfterSchool';
 import Club from './route/Club';
 import Laundry from './route/Laundry';
+import Dets from './route/Dets';
 
 const Main: React.FC = () => {
   return (
     <Wrapper>
       {/* <MainPage></MainPage> */}
-      <AfterSchool></AfterSchool>
+      {/* <AfterSchool></AfterSchool> */}
       {/* <Club></Club> */}
       {/* <Laundry></Laundry> */}
+      {/* <Dets></Dets> */}
     </Wrapper>
   );
 };
