@@ -21,7 +21,7 @@ const Main: React.FC = () => {
       {myData?.userType === UserType.S &&
         studentComponents[path] &&
         studentComponents[path].map(({ Component }) => {
-          return <Component />;
+          return <Component key={`${path}`} />;
         })}
     </Wrapper>
   );

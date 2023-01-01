@@ -28,6 +28,7 @@ export const TopBar: React.FC = () => {
               title={`나의 현재 위치는 ? 이에요.`}
               innerTitle={title}
               SVG={SVG}
+              key={`${path}${route}`}
             ></TopBarMainItem>
           ) : (
             <TopBarItem
