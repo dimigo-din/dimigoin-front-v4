@@ -21,7 +21,7 @@ export const AfterschoolComponent: React.FC<{
   active?: boolean;
   btnVal: string;
 }> = ({ padding, css, active, btnVal }) => {
-  const afterSchool = useAfterschool();
+  // const afterSchool = useAfterschool();
   // console.log(afterSchool);
   //방과후 return 값 없음
 

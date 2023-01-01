@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container } from '@/components/Container';
 import { UserType } from '@/constants/types';
 import { useMyData } from '@/hooks/api/useMyData';
-import { studentNavitions } from './navigations';
+import { studentNavigations } from './navigations';
 import { useLocation } from 'react-router-dom';
 import { TopBarItem } from './NavigationItem';
 import { TopBarMainItem } from './MainItem';
@@ -21,8 +21,8 @@ export const TopBar: React.FC = () => {
   return (
     <TopBarCustom fillx>
       {myData?.userType === UserType.S &&
-        studentNavitions[path] &&
-        studentNavitions[path].map(({ title, SVG, stroke, black, route }) => {
+        studentNavigations[path] &&
+        studentNavigations[path].map(({ title, SVG, stroke, black, route }) => {
           return path === '/' ? (
             <TopBarMainItem
               title={`나의 현재 위치는 ? 이에요.`}

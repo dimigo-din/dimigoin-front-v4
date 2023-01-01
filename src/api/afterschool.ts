@@ -1,4 +1,4 @@
-import { AfterschoolClass, Doc } from '@/constants/types';
+import { AfterschoolClass } from '@/constants/types';
 import { api } from './api';
 
 export const getAfterschoolClassList = async (): Promise<AfterschoolClass[]> =>

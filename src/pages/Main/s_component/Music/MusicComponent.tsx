@@ -15,22 +15,17 @@ export const LikeTicket: React.FC<{
   );
 };
 
-const MusicInfo: React.FC<{
-  detailTime?: string;
-  applingPeo?: string;
-  SVG?: any;
-}> = ({ detailTime, applingPeo, SVG }) => (
-  <Info>
-    <SVG />
-    {detailTime && <InfoText>{detailTime}</InfoText>}
-    {applingPeo && <InfoText>{applingPeo}</InfoText>}
-  </Info>
-);
-
-const Info = styled(Hexile, {
-  alignItems: 'center',
-  marginTop: '.8rem',
-});
+export const MusicInfo: React.FC<{
+  thumbnail: any;
+  musicTitle: string;
+  singer: string;
+}> = ({ thumbnail, musicTitle, singer }) => {
+  return (
+    <InfoContainer>
+      <Thumbnail />
+    </InfoContainer>
+  );
+};
 
 const LikeCountContainer = styled('div', {
   margin: '2.4rem 0',
@@ -51,10 +46,14 @@ const LikeCount = styled('div', {
   lineHeight: '4.8rem',
 });
 
-const InfoText = styled('div', {
-  fontSize: '1.4rem',
-  fontWeight: 500,
-  lineHeight: '1.7rem',
-  color: '$gray3',
-  marginLeft: '.8rem',
+const InfoContainer = styled(Hexile, {
+  width: '100%',
+  height: '4rem',
+});
+
+const Thumbnail = styled(Hexile, {
+  width: '4rem',
+  height: '4rem',
+  borderRadius: '.6rem',
+  backgroundColor: 'Gray',
 });

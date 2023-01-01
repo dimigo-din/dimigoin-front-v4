@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '#/stitches.config';
 import { Container } from '@/components';
 import { Hexile } from '@haechi/flexile';
+import { useAfterschool } from '@/hooks/api';
 import { AfterschoolComponent } from '../s_component/afterschool';
 
 const containerCss = {
@@ -35,10 +36,13 @@ const AfterSchool: React.FC = () => {
   const [appliedClass, setAppliedClass] = useState<number[] | undefined | null>(
     undefined,
   );
+  // const useAfterschool_val = useAfterschool();
+  //the value is undefined
 
   useEffect(() => {
     setToApplyClass([1, 2, 3, 4, 5]);
     setAppliedClass([1, 2, 3, 4, 5]);
+    // console.log(useAfterschool_val);
   }, []);
 
   return (

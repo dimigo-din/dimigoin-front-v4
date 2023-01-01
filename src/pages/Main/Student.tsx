@@ -1,23 +1,28 @@
-import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import { useMyData } from '@/hooks/api/useMyData';
 import { styled } from '#/stitches.config';
 import { Hexile } from '@haechi/flexile';
-import MainPage from './route/MainPage';
-import AfterSchool from './route/AfterSchool';
-import Club from './route/Club';
-import Laundry from './route/Laundry';
-import Dets from './route/Dets';
-import Music from './route/Music';
+import { UserType } from '@/constants/types';
+import { studentComponents } from './StudentNavigation';
 
 const Main: React.FC = () => {
+  const [path, setPath] = useState<string>('/');
+  const { pathname } = useLocation();
+  const myData = useMyData();
+
+  useEffect(() => {
+    const p = `${pathname}/`;
+    setPath(p.substring(0, p.indexOf('/', 1)));
+  }, [pathname]);
+
   return (
     <Wrapper>
-      {/* <MainPage></MainPage> */}
-      {/* <AfterSchool></AfterSchool> */}
-      {/* <Club></Club> */}
-      {/* <Laundry></Laundry> */}
-      {/* <Dets></Dets> */}
-      <Music></Music>
+      {myData?.userType === UserType.S &&
+        studentComponents[path] &&
+        studentComponents[path].map(({ Component }) => {
+          return <Component />;
+        })}
     </Wrapper>
   );
 };

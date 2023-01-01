@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '#/stitches.config';
 import { Container } from '@/components';
 import { Hexile, Vexile } from '@haechi/flexile';
-import { LikeTicket } from '../s_component/Music/MusicComponent';
+import { LikeTicket, MusicInfo } from '../s_component/Music/MusicComponent';
 
 const ContainerCss = {
   display: 'flex',
@@ -10,7 +10,11 @@ const ContainerCss = {
 };
 
 const Music: React.FC = () => {
-  useEffect(() => {}, []);
+  const [Musics, setMusics] = useState<number[] | undefined | null>(undefined);
+
+  useEffect(() => {
+    setMusics([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  }, []);
 
   return (
     <Wrapper>
@@ -27,7 +31,16 @@ const Music: React.FC = () => {
           <SubTitle>
             {'6'}월 {'24'}일 {'금'}요일
           </SubTitle>
-          <MusicList>asdf</MusicList>
+          <MusicList>
+            {Musics &&
+              Musics.map((idx) => (
+                <MusicInfo
+                  musicTitle="asdf"
+                  thumbnail={null}
+                  singer="whguswo"
+                />
+              ))}
+          </MusicList>
         </Container>
       </LeftBox>
       <RightBox>

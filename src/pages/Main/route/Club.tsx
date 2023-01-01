@@ -3,6 +3,7 @@ import { styled } from '#/stitches.config';
 import { Container } from '@/components';
 import { Hexile, Vexile } from '@haechi/flexile';
 import { AppliedClub, ToApplyClub } from '../s_component/club';
+import { useAllCircle } from '@/hooks/api/useCircle';
 
 const containerCss = {
   display: 'flex',
@@ -45,6 +46,8 @@ const Club: React.FC = () => {
   const [appliedClub, setAppliedClub] = useState<number[] | undefined | null>(
     undefined,
   );
+  const asdf = useAllCircle();
+  console.log(asdf);
 
   useEffect(() => {
     setToApplyClub([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
