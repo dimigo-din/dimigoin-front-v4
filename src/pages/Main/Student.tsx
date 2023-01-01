@@ -7,6 +7,7 @@ import AfterSchool from './route/AfterSchool';
 import Club from './route/Club';
 import Laundry from './route/Laundry';
 import Dets from './route/Dets';
+import Music from './route/Music';
 
 const Main: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const Main: React.FC = () => {
       {/* <Club></Club> */}
       {/* <Laundry></Laundry> */}
       {/* <Dets></Dets> */}
+      <Music></Music>
     </Wrapper>
   );
 };

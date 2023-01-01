@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { globalCss, styled } from '#/stitches.config';
 import { Login, Main } from '@/pages';
+import MainPage from './pages/Main/route/MainPage';
 import { needAuth, BranchRouting } from '@/functions/auth';
 import moment from 'moment-timezone';
 

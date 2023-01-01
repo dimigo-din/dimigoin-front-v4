@@ -93,7 +93,6 @@ const Wrapper = styled('div', {
   gridTemplateColumns: '1fr 45rem',
 });
 
-// window size에 따라서 1~3 정렬 해야함 => how?
 const LeftBox = styled(Hexile, {
   position: 'relative',
   height: 'fit-content',
