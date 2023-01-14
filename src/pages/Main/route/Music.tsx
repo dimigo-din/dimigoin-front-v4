@@ -13,7 +13,8 @@ const Music: React.FC = () => {
   const [Musics, setMusics] = useState<number[] | undefined | null>(undefined);
 
   useEffect(() => {
-    setMusics([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    setMusics([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]);
+    // setMusics([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   }, []);
 
   return (
@@ -35,9 +36,12 @@ const Music: React.FC = () => {
             {Musics &&
               Musics.map((idx) => (
                 <MusicInfo
-                  musicTitle="asdf"
-                  thumbnail={null}
-                  singer="whguswo"
+                  musicTitle={'asdf'}
+                  SVG={null}
+                  singer={'whguswo'}
+                  like={false}
+                  idx={idx}
+                  key={idx}
                 />
               ))}
           </MusicList>
@@ -77,7 +81,7 @@ export default Music;
 
 const Wrapper = styled('div', {
   width: '100%',
-  height: '100%',
+  height: 'calc(100vh - 14.5rem)',
   position: 'relative',
   color: '$gray6',
   display: 'grid',
@@ -108,9 +112,12 @@ const SubTitle = styled(Hexile, {
   marginBottom: '3.2rem',
 });
 
-const MusicList = styled(Hexile, {
+const MusicList = styled(Vexile, {
   position: 'relative',
   width: '100%',
+  height: 'calc(100vh - 29rem)',
+  overflow: 'auto',
+  gap: '1rem',
 });
 
 const Warning = styled('div', {
