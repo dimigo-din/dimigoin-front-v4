@@ -7,6 +7,7 @@ import {
   LikeTicket,
   MusicInfo,
 } from '../s_component/Music/MusicComponent';
+import { ReactComponent as Search } from '@/asset/icons/search.svg';
 
 const ContainerCss = {
   display: 'flex',
@@ -37,9 +38,12 @@ const Music: React.FC = () => {
           }}
           title="기상송 차트"
         >
-          <SubTitle>
-            {'6'}월 {'24'}일 {'금'}요일
-          </SubTitle>
+          <SerchMusicContainer>
+            <SearchIcon>
+              <Search />
+            </SearchIcon>
+            <SearchMusic placeholder="신청할 곡의 노래명, 혹은 가수명을 입력해주세요"></SearchMusic>
+          </SerchMusicContainer>
           <MusicList>
             {Musics &&
               Musics.map((idx) => (
@@ -111,19 +115,43 @@ const RightBox = styled('div', {
   gap: '2rem',
 });
 
-const SubTitle = styled(Hexile, {
-  fontSize: '1.4rem',
-  fontWeight: 500,
-  lineHeight: '1.7rem',
-  color: '$gray3',
-  marginTop: '.6rem',
+const SerchMusicContainer = styled(Hexile, {
+  position: 'relative',
+  height: '4rem',
+  border: '1px solid $gray1',
+  borderRadius: '1rem',
+  paddingLeft: '1.6rem',
+  marginTop: '2.4rem',
   marginBottom: '3.2rem',
+  alignItems: 'center',
+});
+
+const SearchMusic = styled('input', {
+  width: '100%',
+  border: 'none',
+  borderRadius: '1rem',
+  fontSize: '1.2rem',
+  fontWeight: 500,
+  lineHeight: '1.4rem',
+  padding: '1.2rem',
+  paddingLeft: '.8rem',
+  '&:focus': {
+    outline: 'none',
+  },
+  '&::placeholder': {
+    color: '$gray3',
+  },
+});
+
+const SearchIcon = styled(Hexile, {
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 const MusicList = styled(Vexile, {
   position: 'relative',
   width: '100%',
-  height: 'calc(100vh - 29rem)',
+  height: 'calc(100vh - 33rem)',
   overflow: 'auto',
   gap: '1rem',
 });
@@ -143,16 +171,4 @@ const Warning = styled('div', {
   fontWeight: 500,
   lineHeight: '2.2rem',
   color: '$gray3',
-});
-
-const NO_AFTERSCHOOL_DATA = styled('div', {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '20rem',
-  fontSize: '1.8rem',
-  fontWeight: 500,
-  textAlign: 'center',
-  color: '$gray2',
 });

@@ -105,7 +105,7 @@ const InfoContainer = styled('div', {
   width: '100%',
   height: '4rem',
   alignItems: 'center',
-  gridTemplateColumns: '4rem 1fr 1fr 4rem',
+  gridTemplateColumns: '4rem 1.1fr 0.9fr 4rem',
 });
 
 const LikedInfo = styled(Vexile, {
