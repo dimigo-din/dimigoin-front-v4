@@ -21,12 +21,10 @@ export const MusicInfo: React.FC<{
   musicTitle: string;
   singer: string;
   like: boolean;
-  idx: number;
-}> = ({ SVG, musicTitle, singer, like, idx }) => {
+}> = ({ SVG, musicTitle, singer, like }) => {
   return (
     <InfoContainer>
       <Thumbnail />
-      <Num>{idx}</Num>
       <Title>{musicTitle}</Title>
       <Singer>{singer}</Singer>
       <Like>
@@ -40,30 +38,35 @@ export const LikedMusic: React.FC<{
   SVG?: any;
   musicTitle: string;
   singer: string;
-}> = ({ SVG, musicTitle, singer }) => {
+  like: boolean;
+}> = ({ SVG, musicTitle, singer, like }) => {
   return (
     <LikedContainer>
-      <Thumbnail />
+      <Thumbnail2 />
+      <LikedInfo>
+        <LikedTitle>{musicTitle}</LikedTitle>
+        <LikedSinger>{singer}</LikedSinger>
+      </LikedInfo>
+      <Like>
+        <Heart fill={like ? '#E83C77' : '#8D90A0'} />
+      </Like>
     </LikedContainer>
   );
 };
 
-const LikedContainer = styled(Hexile, {
+const LikedContainer = styled('div', {
+  display: 'grid',
   width: '100%',
   height: '5.4rem',
-});
-
-const Num = styled('div', {
-  textAlign: 'center',
-  fontWeight: 400,
-  fontSize: '1.6rem',
-  lineHeight: '1.9rem',
+  alignItems: 'center',
+  gridTemplateColumns: '5.4rem 1fr 2.4rem',
 });
 
 const Title = styled('div', {
   fontWeight: 500,
   fontSize: '1.6rem',
   lineHeight: '1.9rem',
+  marginLeft: '2.4rem',
 });
 
 const Singer = styled('div', {
@@ -102,12 +105,37 @@ const InfoContainer = styled('div', {
   width: '100%',
   height: '4rem',
   alignItems: 'center',
-  gridTemplateColumns: '4rem 5rem 1fr 1fr 4rem',
+  gridTemplateColumns: '4rem 1fr 1fr 4rem',
+});
+
+const LikedInfo = styled(Vexile, {
+  marginLeft: '1.6rem',
+});
+
+const LikedTitle = styled('div', {
+  fontWeight: 500,
+  fontSize: '1.8rem',
+  lineHeight: '2.1rem',
+});
+
+const LikedSinger = styled('div', {
+  fontWeight: 500,
+  fontSize: '1.6rem',
+  lineHeight: '1.9rem',
+  marginTop: '.7rem',
+  color: '$gray3',
 });
 
 const Thumbnail = styled(Hexile, {
   width: '4rem',
   height: '4rem',
+  borderRadius: '.6rem',
+  backgroundColor: 'Gray',
+});
+
+const Thumbnail2 = styled(Hexile, {
+  width: '5.4rem',
+  height: '5.4rem',
   borderRadius: '.6rem',
   backgroundColor: 'Gray',
 });

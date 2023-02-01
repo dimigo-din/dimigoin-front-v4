@@ -48,7 +48,6 @@ const Music: React.FC = () => {
                   SVG={null}
                   singer={'whguswo'}
                   like={false}
-                  idx={idx}
                   key={idx}
                 />
               ))}
@@ -75,6 +74,7 @@ const Music: React.FC = () => {
                 <LikedMusic
                   musicTitle={'whguswo'}
                   singer={'whguswo'}
+                  like={true}
                   key={idx}
                 />
               ))}
