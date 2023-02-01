@@ -36,6 +36,23 @@ export const MusicInfo: React.FC<{
   );
 };
 
+export const LikedMusic: React.FC<{
+  SVG?: any;
+  musicTitle: string;
+  singer: string;
+}> = ({ SVG, musicTitle, singer }) => {
+  return (
+    <LikedContainer>
+      <Thumbnail />
+    </LikedContainer>
+  );
+};
+
+const LikedContainer = styled(Hexile, {
+  width: '100%',
+  height: '5.4rem',
+});
+
 const Num = styled('div', {
   textAlign: 'center',
   fontWeight: 400,

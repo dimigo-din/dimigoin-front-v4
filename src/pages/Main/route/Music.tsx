@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '#/stitches.config';
 import { Container } from '@/components';
 import { Hexile, Vexile } from '@haechi/flexile';
-import { LikeTicket, MusicInfo } from '../s_component/Music/MusicComponent';
+import {
+  LikedMusic,
+  LikeTicket,
+  MusicInfo,
+} from '../s_component/Music/MusicComponent';
 
 const ContainerCss = {
   display: 'flex',
@@ -11,9 +15,13 @@ const ContainerCss = {
 
 const Music: React.FC = () => {
   const [Musics, setMusics] = useState<number[] | undefined | null>(undefined);
+  const [LikedMusics, setLikedMusics] = useState<number[] | undefined | null>(
+    undefined,
+  );
 
   useEffect(() => {
     setMusics([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]);
+    setLikedMusics([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     // setMusics([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   }, []);
 
@@ -25,7 +33,7 @@ const Music: React.FC = () => {
           css={{
             display: 'flex',
             flexDirection: 'column',
-            height: '100%',
+            // height: '100%',
           }}
           title="기상송 차트"
         >
@@ -60,17 +68,17 @@ const Music: React.FC = () => {
             누를 때 마다 한 개 씩 차감됩니다.
           </Warning>
         </Container>
-        <Container
-          padding="3.2rem"
-          css={{
-            display: 'flex',
-            flexDirection: 'column',
-            overflowY: 'auto',
-          }}
-        >
-          <Container padding="0" css={ContainerCss} title="좋아요 누른 노래">
-            <div></div>
-          </Container>
+        <Container padding="3.2rem" css={ContainerCss} title="좋아요 누른 노래">
+          <LikedMusicList>
+            {LikedMusics &&
+              LikedMusics.map((idx) => (
+                <LikedMusic
+                  musicTitle={'whguswo'}
+                  singer={'whguswo'}
+                  key={idx}
+                />
+              ))}
+          </LikedMusicList>
         </Container>
       </RightBox>
     </Wrapper>
@@ -97,9 +105,9 @@ const LeftBox = styled(Vexile, {
 
 const RightBox = styled('div', {
   display: 'grid',
-  gridTemplateRows: '22.9rem 1fr',
+  gridTemplateRows: '22.9rem',
   position: 'relative',
-  height: 'calc(100vh - 14.5rem)',
+  height: '100%',
   gap: '2rem',
 });
 
@@ -118,6 +126,16 @@ const MusicList = styled(Vexile, {
   height: 'calc(100vh - 29rem)',
   overflow: 'auto',
   gap: '1rem',
+});
+
+const LikedMusicList = styled(Vexile, {
+  position: 'relative',
+  marginTop: '2.4rem',
+  width: '100%',
+  height: 'calc(100vh - 51.4rem)',
+  borderRadius: '0',
+  overflow: 'auto',
+  gap: '1.6rem',
 });
 
 const Warning = styled('div', {
