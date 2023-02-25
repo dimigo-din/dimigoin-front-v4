@@ -35,8 +35,9 @@ const AppliedClubCss = {
 };
 
 const ToApplyClubCss = {
-  width: '18rem',
+  // width: '18rem',
   height: '18rem',
+  margin: 0,
 };
 
 const Club: React.FC = () => {
@@ -90,7 +91,9 @@ const Club: React.FC = () => {
               ></ToApplyClub>
             ))
           ) : (
-            <NO_APPLIEDCLUB_DATA>신청한 동아리가 없습니다</NO_APPLIEDCLUB_DATA>
+            <NO_APPLIEDCLUB_DATA>
+              신청할 수 있는 동아리가 없습니다
+            </NO_APPLIEDCLUB_DATA>
           )}
         </ToApplyBox>
       </LeftBox>
@@ -128,10 +131,12 @@ const AppliedBox = styled(Hexile, {
   gap: '2.8rem',
 });
 
-const ToApplyBox = styled(Hexile, {
+const ToApplyBox = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
   position: 'relative',
   maxHeight: 'calc(100vh - 42.9rem)',
-  flexWrap: 'wrap',
+  alignItems: 'center',
   overflowY: 'auto',
   gap: '2rem',
 });

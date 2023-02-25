@@ -38,7 +38,7 @@ export const studentNavigations: IconItem = {
     },
     {
       title: '예체능',
-      route: '/ANS',
+      route: '/act',
       SVG: ans,
       black: true,
     },
