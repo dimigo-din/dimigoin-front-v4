@@ -15,7 +15,6 @@ const afterSchoolCss = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  maxWidth: '38rem',
   flexBasis: '38rem',
   height: '22rem',
 };
@@ -96,11 +95,12 @@ const Wrapper = styled('div', {
   gridTemplateColumns: '1fr 45rem',
 });
 
-const LeftBox = styled(Hexile, {
+const LeftBox = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
   position: 'relative',
   height: 'fit-content',
   maxHeight: 'calc(100vh - 14.5rem)',
-  flexWrap: 'wrap',
   overflowY: 'auto',
   gap: '2rem',
 });

@@ -75,9 +75,7 @@ const Club: React.FC = () => {
                 ></AppliedClub>
               ))
             ) : (
-              <NO_APPLIEDCLUB_DATA>
-                신청한 동아리가 없습니다
-              </NO_APPLIEDCLUB_DATA>
+              <NO_APPLIEDCLUB_DATA>신청한 동아리가 없어요</NO_APPLIEDCLUB_DATA>
             )}
           </AppliedBox>
         </Container>
@@ -92,7 +90,7 @@ const Club: React.FC = () => {
             ))
           ) : (
             <NO_APPLIEDCLUB_DATA>
-              신청할 수 있는 동아리가 없습니다
+              신청가능한 동아리가 없어요
             </NO_APPLIEDCLUB_DATA>
           )}
         </ToApplyBox>
