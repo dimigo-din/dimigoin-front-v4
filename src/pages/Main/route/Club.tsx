@@ -29,13 +29,12 @@ const AppliedClubCss = {
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  maxWidth: '25rem',
+  maxWidth: '22rem',
   minWidth: '20rem',
   backgroundColor: '$subWhite1',
 };
 
 const ToApplyClubCss = {
-  // width: '18rem',
   height: '18rem',
   margin: 0,
 };
@@ -66,17 +65,21 @@ const Club: React.FC = () => {
           innerTitleCss={innerTitleCss}
         >
           <AppliedBox>
-            {appliedClub ? (
-              appliedClub.map((idx) => (
-                <AppliedClub
-                  padding="3.2rem"
-                  css={AppliedClubCss}
-                  key={idx}
-                ></AppliedClub>
-              ))
-            ) : (
-              <NO_APPLIEDCLUB_DATA>신청한 동아리가 없어요</NO_APPLIEDCLUB_DATA>
-            )}
+            <AppliedSubBox>
+              {appliedClub ? (
+                appliedClub.map((idx) => (
+                  <AppliedClub
+                    padding="3.2rem"
+                    css={AppliedClubCss}
+                    key={idx}
+                  ></AppliedClub>
+                ))
+              ) : (
+                <NO_APPLIEDCLUB_DATA>
+                  신청한 동아리가 없어요
+                </NO_APPLIEDCLUB_DATA>
+              )}
+            </AppliedSubBox>
           </AppliedBox>
         </Container>
         <ToApplyBox>
@@ -121,11 +124,15 @@ const LeftBox = styled(Vexile, {
 });
 
 const AppliedBox = styled(Hexile, {
-  position: 'relative',
   marginTop: '2.4rem',
-  justifyContent: 'space-evenly',
   width: '100%',
   overflowX: 'auto',
+});
+
+const AppliedSubBox = styled(Hexile, {
+  position: 'relative',
+  justifyContent: 'space-evenly',
+  width: 'max(100%, 65.6rem)',
   gap: '2.8rem',
 });
 
