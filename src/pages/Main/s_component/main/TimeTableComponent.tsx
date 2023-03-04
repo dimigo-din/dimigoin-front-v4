@@ -33,11 +33,10 @@ export const TimeTableComponent: React.FC<{
   const date: Moment = moment().add(0, 'd');
   const myData = useMyData();
   const table = useTimetable(myData?.grade, myData?.class);
-
+  console.log(table);
   const todayTimeTable = (e: number) => {
-    console.log(typeof date.format('Y-M-D'), typeof (table && table[e].date));
-    if (table && date.format('Y-M-D') === table[e].date) {
-      console.log('true!');
+    console.log(date.format('Y-M-D'), table && table[e] && table[e].date);
+    if (table && table[e] && date.format('Y-M-D') === table[e].date) {
       return true;
     }
   };
@@ -61,15 +60,16 @@ export const TimeTableComponent: React.FC<{
           {table &&
             table.map((day, idx1) => (
               <Table key={idx1}>
-                {day.sequence.map((item, idx2) => (
-                  <Text
-                    css={timeCss}
-                    active={todayTimeTable(idx1) && true}
-                    key={idx2}
-                  >
-                    {item}
-                  </Text>
-                ))}
+                {day &&
+                  day.sequence.map((item, idx2) => (
+                    <Text
+                      css={timeCss}
+                      active={todayTimeTable(idx1) && true}
+                      key={idx2}
+                    >
+                      {item}
+                    </Text>
+                  ))}
               </Table>
             ))}
         </TimeTableBox>

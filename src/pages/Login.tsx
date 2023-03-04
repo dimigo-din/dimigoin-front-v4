@@ -28,6 +28,7 @@ const TextCss = {
     transform: 'translateX(-50%)',
   },
 };
+
 const BtnCss = {
   cursor: 'pointer',
   stroke: '$gray2',

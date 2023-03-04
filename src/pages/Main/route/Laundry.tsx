@@ -8,7 +8,7 @@ const ToApplyLaundryCss = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  maxWidth: '38rem',
+  // maxWidth: '38rem',
   flexBasis: '38rem',
   height: '16.2rem',
 };
@@ -168,8 +168,9 @@ const Wrapper = styled('div', {
   gridTemplateColumns: '1fr 45rem',
 });
 
-// window size에 따라서 1~3 정렬 해야함 => how?
-const LeftBox = styled(Hexile, {
+const LeftBox = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
   position: 'relative',
   height: 'fit-content',
   maxHeight: 'calc(100vh - 14.5rem)',

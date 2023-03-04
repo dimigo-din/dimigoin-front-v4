@@ -19,6 +19,10 @@ export const ClassNum = styled('span', {
   color: '$gray3',
 });
 
+export const LogoutBtn = styled(Hexile, {
+  cursor: 'pointer',
+});
+
 export const Name = styled('span', {
   fontSize: '1.6rem',
   lineHeight: '1.9rem',

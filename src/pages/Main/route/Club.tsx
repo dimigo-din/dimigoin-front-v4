@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '#/stitches.config';
 import { Container } from '@/components';
 import { Hexile, Vexile } from '@haechi/flexile';
-import { AppliedClub, ToApplyClub } from '../s_component/club';
+import { AppliedClub, ToApplyClub, SelectedCircle } from '../s_component/club';
+import { useAllCircle } from '@/hooks/api/useCircle';
+import { Circle } from '@/constants/types';
 
 const containerCss = {
   display: 'flex',
@@ -28,28 +30,33 @@ const AppliedClubCss = {
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  maxWidth: '25rem',
+  maxWidth: '22rem',
   minWidth: '20rem',
   backgroundColor: '$subWhite1',
 };
 
-const ToApplyClubCss = {
-  width: '18rem',
-  height: '18rem',
-};
-
 const Club: React.FC = () => {
-  const [toApplyClub, setToApplyClub] = useState<number[] | undefined | null>(
+  const [toApplyClub, setToApplyClub] = useState<Circle[] | undefined | null>(
     undefined,
   );
   const [appliedClub, setAppliedClub] = useState<number[] | undefined | null>(
     undefined,
   );
+  const [circleActive, setCircleActive] = useState<number | undefined>(
+    undefined,
+  );
+
+  const circle = useAllCircle();
+
+  const SelectCircle = (e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    console.log(e?.currentTarget.id);
+    setCircleActive(Number(e?.currentTarget.id));
+  };
 
   useEffect(() => {
-    setToApplyClub([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    setToApplyClub(circle);
     setAppliedClub([1, 2, 3]);
-  }, []);
+  }, [circle]);
 
   return (
     <Wrapper>
@@ -62,37 +69,55 @@ const Club: React.FC = () => {
           innerTitleCss={innerTitleCss}
         >
           <AppliedBox>
-            {appliedClub ? (
-              appliedClub.map((idx) => (
-                <AppliedClub
-                  padding="3.2rem"
-                  css={AppliedClubCss}
-                  key={idx}
-                ></AppliedClub>
-              ))
-            ) : (
-              <NO_APPLIEDCLUB_DATA>
-                신청한 동아리가 없습니다
-              </NO_APPLIEDCLUB_DATA>
-            )}
+            <AppliedSubBox>
+              {appliedClub ? (
+                appliedClub.map((idx) => (
+                  <AppliedClub
+                    padding="3.2rem"
+                    css={AppliedClubCss}
+                    key={idx}
+                  ></AppliedClub>
+                ))
+              ) : (
+                <NO_APPLIEDCLUB_DATA>
+                  신청한 동아리가 없어요
+                </NO_APPLIEDCLUB_DATA>
+              )}
+            </AppliedSubBox>
           </AppliedBox>
         </Container>
         <ToApplyBox>
           {toApplyClub ? (
-            toApplyClub.map((idx) => (
+            toApplyClub.map(({ name, category }, idx) => (
               <ToApplyClub
-                padding="2.8rem"
-                css={ToApplyClubCss}
+                name={name}
+                category={category}
+                active={circleActive === idx ? true : false}
+                onClick={SelectCircle}
+                value={idx}
                 key={idx}
               ></ToApplyClub>
             ))
           ) : (
-            <NO_APPLIEDCLUB_DATA>신청한 동아리가 없습니다</NO_APPLIEDCLUB_DATA>
+            <NO_APPLIEDCLUB_DATA>
+              신청가능한 동아리가 없어요
+            </NO_APPLIEDCLUB_DATA>
           )}
         </ToApplyBox>
       </LeftBox>
       <Container padding="0rem" css={containerCss}>
-        <div></div>
+        <SelectedCircle
+          name={
+            circleActive !== undefined
+              ? circle && circle[circleActive].name
+              : '선택한 동아리가 없어요'
+          }
+          category={
+            circleActive !== undefined
+              ? circle && circle[circleActive].category
+              : '선택한 동아리가 없어요'
+          }
+        />
       </Container>
     </Wrapper>
   );
@@ -117,18 +142,24 @@ const LeftBox = styled(Vexile, {
 });
 
 const AppliedBox = styled(Hexile, {
-  position: 'relative',
   marginTop: '2.4rem',
-  justifyContent: 'space-evenly',
   width: '100%',
   overflowX: 'auto',
+});
+
+const AppliedSubBox = styled(Hexile, {
+  position: 'relative',
+  justifyContent: 'space-evenly',
+  width: 'max(100%, 65.6rem)',
   gap: '2.8rem',
 });
 
-const ToApplyBox = styled(Hexile, {
+const ToApplyBox = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
   position: 'relative',
   maxHeight: 'calc(100vh - 42.9rem)',
-  flexWrap: 'wrap',
+  alignItems: 'center',
   overflowY: 'auto',
   gap: '2rem',
 });

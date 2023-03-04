@@ -5,6 +5,7 @@ import { styled } from '#/stitches.config';
 import { CSS } from '@stitches/react';
 import { ReactComponent as Frame } from '@/asset/icons/Frame.svg';
 import { ReactComponent as Bath } from '@/asset/icons/bath.svg';
+import { useAllPlace, usePrimaryPlaceList } from '@/hooks/api/usePlace';
 
 export const MyLocationComponent: React.FC<{
   padding: string;
@@ -12,6 +13,10 @@ export const MyLocationComponent: React.FC<{
   title: string;
   textCss?: CSS;
 }> = ({ padding, css, title }) => {
+  const allplace = useAllPlace();
+  const priplace = usePrimaryPlaceList();
+  console.log(priplace);
+
   return (
     <Container
       padding={padding}

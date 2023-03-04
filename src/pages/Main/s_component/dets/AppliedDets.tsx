@@ -3,11 +3,10 @@ import { Container, Button } from '@/components';
 import { CSS } from '@stitches/react';
 import { styled } from '#/stitches.config';
 import { Hexile, Vexile } from '@haechi/flexile';
-import { KorDay } from '@/constants/types';
-import { ReactComponent as Calendar } from '@/asset/icons/calendar.svg';
+import { ReactComponent as PinDrop } from '@/asset/icons/pinDrop_s.svg';
 import { ReactComponent as Alarm } from '@/asset/icons/alarm.svg';
 import { ReactComponent as Groups } from '@/asset/icons/groups.svg';
-import { useAfterschool } from '@/hooks/api';
+import { Infos } from './Infos';
 
 const BtnCss = {
   fontSize: '1.4rem',
@@ -15,19 +14,17 @@ const BtnCss = {
   fontWeight: 500,
 };
 
-export const AfterschoolComponent: React.FC<{
+export const AppliedDets: React.FC<{
   padding: string;
   css?: CSS;
   active?: boolean;
   btnVal: string;
 }> = ({ padding, css, active, btnVal }) => {
-  // const afterSchool = useAfterschool();
-  // console.log(afterSchool);
   //방과후 return 값 없음
 
   //밑 변수들은 임시 변수 입니다.
   const title = '상업경제 개념잡기';
-  const teacher = '김준식';
+  const teacher = '1505 김도현';
   const week = '월';
   const time = '방과후 1,2타임';
   const remaining = 11;
@@ -36,11 +33,11 @@ export const AfterschoolComponent: React.FC<{
     <Container padding={padding} css={css}>
       <Header>
         <Title>{title}</Title>
-        <Teacher>{teacher} 선생님</Teacher>
+        <Teacher>{teacher}</Teacher>
       </Header>
       <Body>
         <InfoBox>
-          <Infos week={week} SVG={Calendar} />
+          <Infos week={week} SVG={PinDrop} />
           <Infos time={time} SVG={Alarm} />
           <Infos remaining={remaining} SVG={Groups} />
         </InfoBox>
@@ -52,20 +49,11 @@ export const AfterschoolComponent: React.FC<{
   );
 };
 
-const Infos: React.FC<{
-  week?: KorDay;
-  time?: string;
-  remaining?: number;
-  SVG?: any;
-}> = ({ week, time, remaining, SVG }) => (
-  <Info>
-    <SVG />
-    {week && <InfoText>{week}요일</InfoText>}
-    {time && <InfoText>{time}</InfoText>}
-    {remaining && <InfoText>{remaining}/20</InfoText>}
-  </Info>
-);
-
+const Banner = styled('div', {
+  width: '100%',
+  height: '17rem',
+  backgroundColor: '#000',
+});
 const Header = styled(Vexile);
 const Body = styled(Hexile, {
   justifyContent: 'space-between',
@@ -73,19 +61,6 @@ const Body = styled(Hexile, {
 const InfoBox = styled(Vexile);
 const BtnBox = styled('div', {
   marginTop: 'auto',
-});
-
-const Info = styled(Hexile, {
-  alignItems: 'center',
-  marginTop: '.8rem',
-});
-
-const InfoText = styled('div', {
-  fontSize: '1.4rem',
-  fontWeight: 500,
-  lineHeight: '1.7rem',
-  color: '$gray3',
-  marginLeft: '.8rem',
 });
 
 const Title = styled(Hexile, {

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '#/stitches.config';
 import { Container } from '@/components';
 import { Hexile } from '@haechi/flexile';
-import { useAfterschool } from '@/hooks/api';
-import { AfterschoolComponent } from '../s_component/afterschool';
+import { DetsComponent, AppliedDets } from '../s_component/dets';
 
 const containerCss = {
   display: 'flex',
@@ -11,15 +10,16 @@ const containerCss = {
   height: 'calc(100vh - 14.5rem)',
 };
 
-const afterSchoolCss = {
+const DetsCss = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
+  maxWidth: '38rem',
   flexBasis: '38rem',
-  height: '22rem',
+  height: '38rem',
 };
 
-const appliedClassCss = {
+const appliedDetsCss = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
@@ -28,54 +28,52 @@ const appliedClassCss = {
   backgroundColor: '$subWhite1',
 };
 
-const AfterSchool: React.FC = () => {
-  const [toApplyClass, setToApplyClass] = useState<number[] | undefined | null>(
+const Dets: React.FC = () => {
+  const [toApplyDets, setToApplyDets] = useState<number[] | undefined | null>(
     undefined,
   );
-  const [appliedClass, setAppliedClass] = useState<number[] | undefined | null>(
+  const [appliedDets, setAppliedDets] = useState<number[] | undefined | null>(
     undefined,
   );
-  // const useAfterschool_val = useAfterschool();
-  //the value is undefined
 
   useEffect(() => {
-    setToApplyClass([1, 2, 3, 4, 5]);
-    setAppliedClass([1, 2, 3, 4, 5]);
-    // console.log(useAfterschool_val);
+    setToApplyDets([1, 2, 3, 4, 5]);
+    setAppliedDets([1, 2, 3, 4, 5]);
   }, []);
 
   return (
     <Wrapper>
       <LeftBox>
-        {toApplyClass ? (
-          toApplyClass.map((idx) => (
-            <AfterschoolComponent
+        {toApplyDets ? (
+          toApplyDets.map((idx) => (
+            <DetsComponent
               padding="3.2rem"
-              css={afterSchoolCss}
+              css={DetsCss}
               active={true}
               btnVal={'신청'}
+              banner={1}
               key={idx}
             />
           ))
         ) : (
-          <NO_AFTERSCHOOL_DATA>신청가능한 방과후가 없어요</NO_AFTERSCHOOL_DATA>
+          <NO_DETS_DATA>신청가능한 DETS가 없어요</NO_DETS_DATA>
         )}
       </LeftBox>
       <Container padding="4rem 3.5rem" css={containerCss}>
-        <Title>내가 신청한 강좌</Title>
+        <Title>내가 신청한 DETS</Title>
         <AppliedBox>
-          {appliedClass ? (
-            appliedClass.map((idx) => (
-              <AfterschoolComponent
+          {appliedDets ? (
+            appliedDets.map((idx) => (
+              <AppliedDets
                 padding="2.8rem"
-                css={appliedClassCss}
+                css={appliedDetsCss}
                 btnVal="취소"
                 active={false}
                 key={idx}
               />
             ))
           ) : (
-            <NO_AFTERSCHOOL_DATA>신청한 방과후가 없어요</NO_AFTERSCHOOL_DATA>
+            <NO_DETS_DATA>신청한 DETS가 없어요</NO_DETS_DATA>
           )}
         </AppliedBox>
       </Container>
@@ -83,7 +81,7 @@ const AfterSchool: React.FC = () => {
   );
 };
 
-export default AfterSchool;
+export default Dets;
 
 const Wrapper = styled('div', {
   width: '100%',
@@ -95,12 +93,11 @@ const Wrapper = styled('div', {
   gridTemplateColumns: '1fr 45rem',
 });
 
-const LeftBox = styled('div', {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
+const LeftBox = styled(Hexile, {
   position: 'relative',
   height: 'fit-content',
   maxHeight: 'calc(100vh - 14.5rem)',
+  flexWrap: 'wrap',
   overflowY: 'auto',
   gap: '2rem',
 });
@@ -122,7 +119,7 @@ const AppliedBox = styled(Hexile, {
   gap: '2rem',
 });
 
-const NO_AFTERSCHOOL_DATA = styled('div', {
+const NO_DETS_DATA = styled('div', {
   position: 'absolute',
   top: '50%',
   left: '50%',

@@ -10,7 +10,7 @@ import { ReactComponent as skill } from '@/asset/icons/skill.svg';
 import { ReactComponent as study } from '@/asset/icons/study.svg';
 import { ReactComponent as ans } from '@/asset/icons/ANS.svg';
 
-export const studentNavitions: IconItem = {
+export const studentNavigations: IconItem = {
   '/': [{ title: 'NO_PLACE_DATA', route: '', SVG: pinDrop }],
   '/ingangsil': [],
   '/mentoring': [],
@@ -38,7 +38,7 @@ export const studentNavitions: IconItem = {
     },
     {
       title: '예체능',
-      route: '/ANS',
+      route: '/act',
       SVG: ans,
       black: true,
     },

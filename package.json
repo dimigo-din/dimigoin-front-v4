@@ -10,7 +10,7 @@
   "dependencies": {
     "@haechi/flexile": "^1.4.7",
     "@loadable/component": "^5.15.2",
-    "@stitches/react": "^1.2.7",
+    "@stitches/react": "^1.2.8",
     "@types/loadable__component": "^5.13.4",
     "@types/node": "^17.0.24",
     "axios": "^0.26.1",
@@ -20,6 +20,7 @@
     "react-loading-skeleton": "^3.1.0",
     "react-router-dom": "^6.3.0",
     "react-toastify": "^8.2.0",
+    "recoil": "^0.7.6",
     "universal-cookie": "^4.0.4",
     "vite-plugin-svgr": "^1.1.0"
   },

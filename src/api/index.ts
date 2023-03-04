@@ -6,3 +6,6 @@ export * from './meal';
 export * from './timetable';
 export * from './notice';
 export * from './afterschool';
+export * from './circle';
+export * from './outgo';
+export * from './place';
