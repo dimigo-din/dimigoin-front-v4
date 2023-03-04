@@ -4,7 +4,7 @@ import { useMyData } from '@/hooks/api/useMyData';
 import { styled } from '#/stitches.config';
 import { Hexile } from '@haechi/flexile';
 import { UserType } from '@/constants/types';
-import { studentComponents } from './Navigator/StudentNavigation';
+import { studentComponents } from './Navigator/Navigation';
 
 const Main: React.FC = () => {
   const [path, setPath] = useState<string>('/');

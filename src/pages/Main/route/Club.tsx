@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '#/stitches.config';
 import { Container } from '@/components';
 import { Hexile, Vexile } from '@haechi/flexile';
-import { AppliedClub, ToApplyClub } from '../s_component/club';
+import { AppliedClub, ToApplyClub, SelectedCircle } from '../s_component/club';
 import { useAllCircle } from '@/hooks/api/useCircle';
+import { Circle } from '@/constants/types';
 
 const containerCss = {
   display: 'flex',
@@ -34,25 +35,28 @@ const AppliedClubCss = {
   backgroundColor: '$subWhite1',
 };
 
-const ToApplyClubCss = {
-  height: '18rem',
-  margin: 0,
-};
-
 const Club: React.FC = () => {
-  const [toApplyClub, setToApplyClub] = useState<number[] | undefined | null>(
+  const [toApplyClub, setToApplyClub] = useState<Circle[] | undefined | null>(
     undefined,
   );
   const [appliedClub, setAppliedClub] = useState<number[] | undefined | null>(
     undefined,
   );
-  const asdf = useAllCircle();
-  console.log(asdf);
+  const [circleActive, setCircleActive] = useState<number | undefined>(
+    undefined,
+  );
+
+  const circle = useAllCircle();
+
+  const SelectCircle = (e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    console.log(e?.currentTarget.id);
+    setCircleActive(Number(e?.currentTarget.id));
+  };
 
   useEffect(() => {
-    setToApplyClub([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    setToApplyClub(circle);
     setAppliedClub([1, 2, 3]);
-  }, []);
+  }, [circle]);
 
   return (
     <Wrapper>
@@ -84,10 +88,13 @@ const Club: React.FC = () => {
         </Container>
         <ToApplyBox>
           {toApplyClub ? (
-            toApplyClub.map((idx) => (
+            toApplyClub.map(({ name, category }, idx) => (
               <ToApplyClub
-                padding="2.8rem"
-                css={ToApplyClubCss}
+                name={name}
+                category={category}
+                active={circleActive === idx ? true : false}
+                onClick={SelectCircle}
+                value={idx}
                 key={idx}
               ></ToApplyClub>
             ))
@@ -99,7 +106,18 @@ const Club: React.FC = () => {
         </ToApplyBox>
       </LeftBox>
       <Container padding="0rem" css={containerCss}>
-        <div></div>
+        <SelectedCircle
+          name={
+            circleActive !== undefined
+              ? circle && circle[circleActive].name
+              : '선택한 동아리가 없어요'
+          }
+          category={
+            circleActive !== undefined
+              ? circle && circle[circleActive].category
+              : '선택한 동아리가 없어요'
+          }
+        />
       </Container>
     </Wrapper>
   );

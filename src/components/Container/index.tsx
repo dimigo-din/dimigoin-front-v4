@@ -17,7 +17,16 @@ export const Container: React.FC<{
   column?: boolean;
   css?: CSS;
   innerTitleCss?: CSS;
-}> = ({ padding, children, title, innerTitle, subTitle, column, css, innerTitleCss }) => {
+}> = ({
+  padding,
+  children,
+  title,
+  innerTitle,
+  subTitle,
+  column,
+  css,
+  innerTitleCss,
+}) => {
   return (
     <ContainerCustom
       column={column || false}
