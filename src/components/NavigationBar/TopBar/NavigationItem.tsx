@@ -18,7 +18,15 @@ export const TopBarItem: React.FC<NavigationItem> = ({
     {SVG && (
       <SVG
         fill={selected ? (black ? '#000' : '#FF3284') : '#A6ABC0'}
-        stroke={stroke && (selected ? (black ? '#000' : '#FF3284') : '#A6ABC0')}
+        stroke={
+          stroke
+            ? selected
+              ? black
+                ? '#000'
+                : '#FF3284'
+              : '#A6ABC0'
+            : undefined
+        }
       />
     )}
     {title}

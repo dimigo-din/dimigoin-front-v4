@@ -23,7 +23,15 @@ const NavigationItem: React.FC<NavigationItem> = ({
     {SVG && (
       <SVG
         fill={selected ? (black ? '#000' : '#E83C77') : '#8D90A0'}
-        stroke={stroke && (selected ? (black ? '#000' : '#E83C77') : '#8D90A0')}
+        stroke={
+          stroke
+            ? selected
+              ? black
+                ? '#000'
+                : '#E83C77'
+              : '#8D90A0'
+            : undefined
+        }
       />
     )}
     {title}
