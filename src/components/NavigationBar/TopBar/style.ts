@@ -26,7 +26,7 @@ export const ItemBox = styled(Link, {
         color: '#000',
       },
       false: {
-        color: '$gray2',
+        color: '$grade5',
       },
     },
   },

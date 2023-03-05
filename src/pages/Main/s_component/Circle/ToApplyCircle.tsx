@@ -58,7 +58,7 @@ const CircleInfoBox = styled(Vexile, {
 const CircleThumnail = styled('div', {
   width: '4.8rem',
   height: '4.8rem',
-  backgroundColor: '$gray3',
+  backgroundColor: '$grade6',
   borderRadius: '1rem',
 });
 
@@ -72,7 +72,7 @@ const About = styled('div', {
   fontSize: '1.2rem',
   fontWeight: 500,
   lineHeight: '1.4rem',
-  color: '$gray3',
+  color: '$grade6',
 });
 
 const CircleName = styled('div', {

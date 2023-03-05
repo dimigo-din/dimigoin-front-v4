@@ -53,7 +53,7 @@ const Bookmark = styled(Hexile, {
   fontSize: '1.8rem',
   fontWeight: 600,
   lineHeight: '2.1rem',
-  color: '$black2',
+  color: '$grade8',
 });
 
 const PlacesBox = styled(Hexile, {
@@ -84,7 +84,7 @@ const Floor = styled(Hexile, {
         color: '$accent',
       },
       false: {
-        color: '$gray4',
+        color: '$grade6',
       },
     },
   },
@@ -100,7 +100,7 @@ const PlaceName = styled(Hexile, {
         color: '$accent',
       },
       false: {
-        color: '$gray4',
+        color: '$grade6',
       },
     },
   },

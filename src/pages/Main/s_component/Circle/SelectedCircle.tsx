@@ -36,7 +36,7 @@ const About = styled('p', {
   fontSize: '2rem',
   fontWeight: 500,
   lineHeight: '1.4rem',
-  color: '$gray3',
+  color: '$grade6',
 });
 
 const CircleName = styled('p', {

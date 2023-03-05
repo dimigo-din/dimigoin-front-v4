@@ -19,7 +19,7 @@ const containerCss = {
 const innerTitleCss = {
   fontWeight: '500',
   lineHeight: '2rem',
-  color: '$gray3',
+  color: '$grade6',
 };
 
 const appliedCirclesCss = {
@@ -36,7 +36,7 @@ const AppliedCircleCss = {
   width: '100%',
   maxWidth: '22rem',
   minWidth: '20rem',
-  backgroundColor: '$subWhite1',
+  backgroundColor: '$grade2',
 };
 
 export const CircleC: React.FC = () => {
@@ -131,7 +131,7 @@ const Wrapper = styled('div', {
   width: '100%',
   height: '100%',
   position: 'relative',
-  color: '$gray6',
+  color: '$grade10',
   display: 'grid',
   gridGap: '2rem',
   gridTemplateColumns: '1fr 40rem',
@@ -175,5 +175,5 @@ const NO_APPLIEDCLUB_DATA = styled('div', {
   fontSize: '1.8rem',
   fontWeight: 500,
   textAlign: 'center',
-  color: '$gray2',
+  color: '$grade5',
 });

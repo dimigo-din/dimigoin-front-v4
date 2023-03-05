@@ -21,7 +21,7 @@ export const TopBarMainItem: React.FC<{
 );
 
 const UserLocation = styled(Hexile, {
-  color: '$subBlack',
+  color: '$grade9',
   alignItems: 'center',
   gap: '1rem',
 });

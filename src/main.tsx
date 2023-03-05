@@ -22,6 +22,8 @@ globalCss({
     fontFamily: 'Pretendard',
     fontSize: '1.6rem',
     boxSizing: 'border-box',
+    textOverflow: 'clip',
+    whiteSpace: 'nowrap',
     fontWeight: 700,
     letterSpacing: '-0.01em',
   },

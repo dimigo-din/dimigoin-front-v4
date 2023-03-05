@@ -16,7 +16,7 @@ export const ClassNum = styled('span', {
   fontSize: '1.2rem',
   lineHeight: '1.4rem',
   paddingBottom: '.3rem',
-  color: '$gray3',
+  color: '$grade7',
 });
 
 export const LogoutBtn = styled(Hexile, {

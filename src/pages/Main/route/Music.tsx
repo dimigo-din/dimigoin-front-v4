@@ -111,7 +111,7 @@ const Wrapper = styled('div', {
   width: '100%',
   height: '100%',
   position: 'relative',
-  color: '$gray6',
+  color: '$grade10',
   display: 'grid',
   gridGap: '2rem',
   gridTemplateColumns: '1fr 45rem',
@@ -143,7 +143,7 @@ const Search = styled('div', {
 const SearchContainer = styled(Hexile, {
   position: 'relative',
   height: '4rem',
-  border: '1px solid $gray1',
+  border: '1px solid $grade4',
   borderRadius: '1rem',
   paddingLeft: '1.6rem',
   alignItems: 'center',
@@ -162,7 +162,7 @@ const SearchMusic = styled('input', {
     outline: 'none',
   },
   '&::placeholder': {
-    color: '$gray3',
+    color: '$grade6',
   },
 });
 
@@ -199,5 +199,5 @@ const Warning = styled('div', {
   fontSize: '1.4rem',
   fontWeight: 500,
   lineHeight: '2.2rem',
-  color: '$gray3',
+  color: '$grade6',
 });
