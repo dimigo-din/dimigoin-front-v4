@@ -28,7 +28,7 @@ const appliedDetsCss = {
   backgroundColor: '$subWhite1',
 };
 
-const Dets: React.FC = () => {
+export const Dets: React.FC = () => {
   const [toApplyDets, setToApplyDets] = useState<number[] | undefined | null>(
     undefined,
   );
@@ -80,8 +80,6 @@ const Dets: React.FC = () => {
     </Wrapper>
   );
 };
-
-export default Dets;
 
 const Wrapper = styled('div', {
   width: '100%',

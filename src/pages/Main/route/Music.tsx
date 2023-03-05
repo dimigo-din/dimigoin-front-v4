@@ -14,7 +14,7 @@ const ContainerCss = {
   flexDirection: 'column',
 };
 
-const Music: React.FC = () => {
+export const Music: React.FC = () => {
   const [Musics, setMusics] = useState<number[] | undefined | null>(undefined);
   const [LikedMusics, setLikedMusics] = useState<number[] | undefined | null>(
     undefined,
@@ -88,8 +88,6 @@ const Music: React.FC = () => {
     </Wrapper>
   );
 };
-
-export default Music;
 
 const Wrapper = styled('div', {
   width: '100%',

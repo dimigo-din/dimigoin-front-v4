@@ -28,7 +28,7 @@ const appliedClassCss = {
   backgroundColor: '$subWhite1',
 };
 
-const AfterSchool: React.FC = () => {
+export const AfterSchool: React.FC = () => {
   const [toApplyClass, setToApplyClass] = useState<number[] | undefined | null>(
     undefined,
   );
@@ -82,8 +82,6 @@ const AfterSchool: React.FC = () => {
     </Wrapper>
   );
 };
-
-export default AfterSchool;
 
 const Wrapper = styled('div', {
   width: '100%',

@@ -1,9 +1,12 @@
-import MainPage from '../route/MainPage';
-import AfterSchool from '../route/AfterSchool';
-import Club from '../route/Club';
-import Laundry from '../route/Laundry';
-import Dets from '../route/Dets';
-import Music from '../route/Music';
+import {
+  MainPage,
+  AfterSchool,
+  CircleC,
+  Laundry,
+  Dets,
+  Music,
+  Stay,
+} from '@/pages/Main/route';
 
 interface ConponentItem {
   [key: string]: Array<{ Component: React.FC<{}> }>;
@@ -15,8 +18,9 @@ export const studentComponents: ConponentItem = {
   //   '/ingangsil': { conponent: COMPONENT },
   //   '/mentoring': { conponent: COMPONENT },
   '/afterschool': [{ Component: AfterSchool }],
-  '/circle': [{ Component: Club }],
+  '/circle': [{ Component: CircleC }],
   '/music': [{ Component: Music }],
   '/dets': [{ Component: Dets }],
   '/laundry': [{ Component: Laundry }],
+  '/stay': [{ Component: Stay }],
 };

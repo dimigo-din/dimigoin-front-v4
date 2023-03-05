@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '#/stitches.config';
 import { Container } from '@/components';
 import { Hexile, Vexile } from '@haechi/flexile';
-import { LaundryComponent } from '../s_component/laundry';
+import { LaundryComponent } from '@/pages/Main/s_component/laundry';
 
 const ToApplyLaundryCss = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  // maxWidth: '38rem',
   flexBasis: '38rem',
   height: '16.2rem',
 };
@@ -32,7 +31,7 @@ const prev_next_css = {
   marginTop: '2.4rem',
 };
 
-const Laundry: React.FC = () => {
+export const Laundry: React.FC = () => {
   const [toApplyLaundry, setToApplyLaundry] = useState<
     number[] | undefined | null
   >(undefined);
@@ -155,8 +154,6 @@ const Laundry: React.FC = () => {
     </Wrapper>
   );
 };
-
-export default Laundry;
 
 const Wrapper = styled('div', {
   width: '100%',

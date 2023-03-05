@@ -30,7 +30,7 @@ const TextCss = {
 
 const containerPadding = '4rem';
 
-const MainPage: React.FC = () => {
+export const MainPage: React.FC = () => {
   return (
     <Wrapper>
       <LeftBox>
@@ -69,8 +69,6 @@ const MainPage: React.FC = () => {
     </Wrapper>
   );
 };
-
-export default MainPage;
 
 const Wrapper = styled('div', {
   width: '100%',
