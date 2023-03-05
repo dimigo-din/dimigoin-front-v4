@@ -12,7 +12,11 @@ const containerCss = {
 export const Stay: React.FC = () => {
   return (
     <Wrapper>
-      <LeftBox></LeftBox>
+      <LeftBox>
+        <Container padding="3.2rem">
+          <div>잔류신청</div>
+        </Container>
+      </LeftBox>
       <Container padding="0rem" css={containerCss}>
         <div>Stay & outing pages</div>
       </Container>
