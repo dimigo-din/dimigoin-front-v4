@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '#/stitches.config';
 import { Container } from '@/components';
 import { Hexile, Vexile } from '@haechi/flexile';
-import { LaundryComponent } from '../s_component/laundry';
+import { LaundryComponent } from '@/pages/Main/s_component/laundry';
 
 const ToApplyLaundryCss = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  // maxWidth: '38rem',
   flexBasis: '38rem',
   height: '16.2rem',
 };
@@ -19,7 +18,7 @@ const appliedLaundryCss = {
   justifyContent: 'space-between',
   width: '100%',
   height: '14.1rem',
-  backgroundColor: '$subWhite1',
+  backgroundColor: '$grade2',
 };
 
 const prev_next_css = {
@@ -28,11 +27,11 @@ const prev_next_css = {
   justifyContent: 'space-between',
   width: '100%',
   height: '15.8rem',
-  backgroundColor: '$subWhite1',
+  backgroundColor: '$grade2',
   marginTop: '2.4rem',
 };
 
-const Laundry: React.FC = () => {
+export const Laundry: React.FC = () => {
   const [toApplyLaundry, setToApplyLaundry] = useState<
     number[] | undefined | null
   >(undefined);
@@ -156,13 +155,11 @@ const Laundry: React.FC = () => {
   );
 };
 
-export default Laundry;
-
 const Wrapper = styled('div', {
   width: '100%',
   height: '100%',
   position: 'relative',
-  color: '$gray6',
+  color: '$grade10',
   display: 'grid',
   gridGap: '2rem',
   gridTemplateColumns: '1fr 45rem',
@@ -195,7 +192,7 @@ const Warning = styled('div', {
   fontSize: '1.4rem',
   fontWeight: 500,
   lineHeight: '2.2rem',
-  color: '$gray3',
+  color: '$grade6',
   textAlign: 'center',
 });
 
@@ -208,5 +205,5 @@ const NO_AFTERSCHOOL_DATA = styled('div', {
   fontSize: '1.8rem',
   fontWeight: 500,
   textAlign: 'center',
-  color: '$gray2',
+  color: '$grade5',
 });

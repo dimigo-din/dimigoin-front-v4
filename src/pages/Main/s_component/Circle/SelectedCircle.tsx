@@ -6,7 +6,7 @@ import { Hexile, Vexile } from '@haechi/flexile';
 
 export const SelectedCircle: React.FC<{
   name?: string | null;
-  category?: string;
+  category?: string | null;
 }> = ({ name, category }) => {
   const about = '정보보안';
   const clubName = '스텔스';
@@ -14,7 +14,7 @@ export const SelectedCircle: React.FC<{
   return (
     <Container>
       <About>{category ? category : about}</About>
-      <ClubName>{name ? name : clubName}</ClubName>
+      <CircleName>{name ? name : clubName}</CircleName>
     </Container>
   );
 };
@@ -36,10 +36,10 @@ const About = styled('p', {
   fontSize: '2rem',
   fontWeight: 500,
   lineHeight: '1.4rem',
-  color: '$gray3',
+  color: '$grade6',
 });
 
-const ClubName = styled('p', {
+const CircleName = styled('p', {
   fontSize: '1.6rem',
   fontWeight: 700,
   lineHeight: '1.9rem',

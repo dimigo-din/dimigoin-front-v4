@@ -31,7 +31,7 @@ const TextCss = {
 
 const BtnCss = {
   cursor: 'pointer',
-  stroke: '$gray2',
+  stroke: '$grade5',
   '&:hover': {
     stroke: '#222222',
   },
@@ -172,7 +172,7 @@ const Wrapper = styled(Hexile, {
   height: '100vh',
   background: '#F8F8F9',
   position: 'relative',
-  color: '$gray6',
+  color: '$grade10',
 });
 
 const BottomImage = styled('img', {

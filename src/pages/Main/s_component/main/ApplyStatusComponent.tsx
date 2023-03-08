@@ -79,7 +79,7 @@ const ApplyBox = styled(Hexile, {
 const TimeCheckBox = styled(Hexile, {
   width: '100%',
   height: '9rem',
-  backgroundColor: '$subWhite1',
+  backgroundColor: '$grade2',
   borderRadius: '1.5rem',
   padding: '1.5rem 2rem',
   justifyContent: 'space-between',
@@ -92,11 +92,13 @@ const WhatTime = styled(Hexile, {
   fontSize: '2rem',
   fontWeight: 700,
   lineHeight: '2.4rem',
+  color: '$grade10',
   marginBottom: '.4rem',
 });
 
 const LocationNTime = styled(Hexile, {
   fontSize: '1.6rem',
   fontWeight: 500,
+  color: '$grade6',
   lineHeight: '1.9rem',
 });

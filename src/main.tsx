@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { globalCss, styled } from '#/stitches.config';
 import { Login, Main } from '@/pages';
-import MainPage from './pages/Main/route/MainPage';
 import { needAuth, BranchRouting } from '@/functions/auth';
 import moment from 'moment-timezone';
 
@@ -23,6 +22,8 @@ globalCss({
     fontFamily: 'Pretendard',
     fontSize: '1.6rem',
     boxSizing: 'border-box',
+    textOverflow: 'clip',
+    whiteSpace: 'nowrap',
     fontWeight: 700,
     letterSpacing: '-0.01em',
   },
@@ -73,7 +74,7 @@ const Router = () => {
       <Route path="/music" element={<BranchRouting screens={Main} />}>
         <Route path=":day" element={<BranchRouting screens={Main} />} />
       </Route>
-      <Route path="/so" element={<BranchRouting screens={Main} />}>
+      <Route path="/stay" element={<BranchRouting screens={Main} />}>
         <Route path=":day" element={<BranchRouting screens={Main} />} />
       </Route>
       <Route path="/board" element={<BranchRouting screens={Main} />} />

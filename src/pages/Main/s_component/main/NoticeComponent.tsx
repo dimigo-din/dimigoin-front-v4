@@ -30,6 +30,6 @@ const NoticeContainer = styled('div', {
   marginTop: '2rem',
   minHeight: '5rem',
   lineHeight: '2.4rem',
-  color: '$black2',
+  color: '$grade9',
   fontWeight: 400,
 });

@@ -3,7 +3,7 @@ import { NavigationItem } from './NavigationItem';
 import { ReactComponent as Click } from '@/asset/icons/ingang.svg';
 import { ReactComponent as Bachelor } from '@/asset/icons/bachelor.svg';
 import { ReactComponent as Teach } from '@/asset/icons/teach.svg';
-import { ReactComponent as Club } from '@/asset/icons/club.svg';
+import { ReactComponent as Circle } from '@/asset/icons/club.svg';
 import { ReactComponent as Book } from '@/asset/icons/book.svg';
 import { ReactComponent as Laundry } from '@/asset/icons/laundry.svg';
 import { ReactComponent as Music } from '@/asset/icons/music.svg';
@@ -29,7 +29,7 @@ export const studentNavitions: NavigationItem[] = [
   {
     title: '동아리',
     route: '/circle',
-    SVG: Club,
+    SVG: Circle,
   },
   {
     title: 'DETS',
@@ -53,7 +53,7 @@ export const studentNavitions: NavigationItem[] = [
   },
   {
     title: '잔류 / 외출',
-    route: '/so',
+    route: '/stay',
     SVG: Walk,
   },
   {

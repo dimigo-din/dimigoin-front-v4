@@ -11,7 +11,7 @@ export const CustomText = styled('span', {
         fontWeight: '700 !important',
       },
       false: {
-        color: '$gray3',
+        color: '$grade5',
         fontWeight: 500,
       },
     },

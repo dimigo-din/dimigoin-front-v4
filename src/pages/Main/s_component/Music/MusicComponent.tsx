@@ -73,7 +73,7 @@ const Singer = styled('div', {
   fontWeight: 500,
   fontSize: '1.6rem',
   lineHeight: '1.9rem',
-  color: '$gray3',
+  color: '$grade6',
 });
 
 const Like = styled(Hexile, {
@@ -86,7 +86,7 @@ const LikeCountContainer = styled('div', {
 
 const Unit = styled('div', {
   display: 'inline-block',
-  color: '$gray3',
+  color: '$grade6',
   fontSize: '1.6rem',
   lineHeight: '1.9rem',
 });
@@ -123,7 +123,7 @@ const LikedSinger = styled('div', {
   fontSize: '1.6rem',
   lineHeight: '1.9rem',
   marginTop: '.7rem',
-  color: '$gray3',
+  color: '$grade6',
 });
 
 const Thumbnail = styled(Hexile, {

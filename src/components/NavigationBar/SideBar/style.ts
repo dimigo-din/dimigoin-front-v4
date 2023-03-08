@@ -32,7 +32,7 @@ export const ItemBox = styled(Link, {
         color: '$accent',
       },
       false: {
-        color: '$gray3',
+        color: '$grade6',
       },
     },
   },
@@ -43,7 +43,7 @@ export const ItemBox = styled(Link, {
 
 export const Division = styled('div', {
   width: '100%',
-  border: '.05rem solid $subWhite2',
+  border: '.05rem solid $grade1',
   borderRadius: '.1rem',
   margin: '.7rem 0',
 });

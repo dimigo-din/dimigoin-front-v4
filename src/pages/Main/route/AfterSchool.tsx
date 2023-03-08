@@ -25,10 +25,10 @@ const appliedClassCss = {
   justifyContent: 'space-between',
   width: '100%',
   height: '18.8rem',
-  backgroundColor: '$subWhite1',
+  backgroundColor: '$grade2',
 };
 
-const AfterSchool: React.FC = () => {
+export const AfterSchool: React.FC = () => {
   const [toApplyClass, setToApplyClass] = useState<number[] | undefined | null>(
     undefined,
   );
@@ -83,13 +83,11 @@ const AfterSchool: React.FC = () => {
   );
 };
 
-export default AfterSchool;
-
 const Wrapper = styled('div', {
   width: '100%',
   height: '100%',
   position: 'relative',
-  color: '$gray6',
+  color: '$grade10',
   display: 'grid',
   gridGap: '2rem',
   gridTemplateColumns: '1fr 45rem',
@@ -131,5 +129,5 @@ const NO_AFTERSCHOOL_DATA = styled('div', {
   fontSize: '1.8rem',
   fontWeight: 500,
   textAlign: 'center',
-  color: '$gray2',
+  color: '$grade5',
 });

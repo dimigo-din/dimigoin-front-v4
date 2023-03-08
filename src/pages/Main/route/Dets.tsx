@@ -14,7 +14,6 @@ const DetsCss = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  maxWidth: '38rem',
   flexBasis: '38rem',
   height: '38rem',
 };
@@ -25,10 +24,10 @@ const appliedDetsCss = {
   justifyContent: 'space-between',
   width: '100%',
   height: '18.8rem',
-  backgroundColor: '$subWhite1',
+  backgroundColor: '$grade2',
 };
 
-const Dets: React.FC = () => {
+export const Dets: React.FC = () => {
   const [toApplyDets, setToApplyDets] = useState<number[] | undefined | null>(
     undefined,
   );
@@ -81,20 +80,20 @@ const Dets: React.FC = () => {
   );
 };
 
-export default Dets;
-
 const Wrapper = styled('div', {
   width: '100%',
   height: '100%',
   position: 'relative',
-  color: '$gray6',
+  color: '$grade10',
   display: 'grid',
   gridGap: '2rem',
   gridTemplateColumns: '1fr 45rem',
 });
 
-const LeftBox = styled(Hexile, {
+const LeftBox = styled('div', {
   position: 'relative',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
   height: 'fit-content',
   maxHeight: 'calc(100vh - 14.5rem)',
   flexWrap: 'wrap',
@@ -128,5 +127,5 @@ const NO_DETS_DATA = styled('div', {
   fontSize: '1.8rem',
   fontWeight: 500,
   textAlign: 'center',
-  color: '$gray2',
+  color: '$grade5',
 });

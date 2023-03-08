@@ -11,6 +11,7 @@ const weekDayCss = {
   fontSize: '1.8rem',
   fontWeight: 500,
   lineHeight: '2.1rem',
+  color: '$grade7',
 };
 // 과목 css
 const timeCss = {
@@ -33,13 +34,16 @@ export const TimeTableComponent: React.FC<{
   const date: Moment = moment().add(0, 'd');
   const myData = useMyData();
   const table = useTimetable(myData?.grade, myData?.class);
-  console.log(table);
+  // console.log(table);
+
   const todayTimeTable = (e: number) => {
     console.log(date.format('Y-M-D'), table && table[e] && table[e].date);
     if (table && table[e] && date.format('Y-M-D') === table[e].date) {
       return true;
     }
   };
+
+  useEffect(() => {}, []);
 
   return (
     <Container padding={padding} css={css} title={title}>
@@ -82,7 +86,7 @@ const TimeTableContainer = styled(Vexile, {
   position: 'relative',
   width: '100%',
   marginTop: '2.5rem',
-  color: '$gray1',
+  color: '$grade7',
 });
 
 const Week = styled('div', {
@@ -92,14 +96,15 @@ const Week = styled('div', {
 });
 
 const Hr = styled('div', {
-  marginTop: '2.5rem',
+  marginTop: '1.6rem',
   '&::before': {
     content: '',
     width: '100%',
-    border: '1px solid $subWhite2',
-    borderRadius: '.5rem',
+    height: '.1rem',
+    backgroundColor: '$grade5',
+    borderRadius: '.05rem',
     position: 'absolute',
-    top: '4.6rem',
+    top: '3.6rem',
     left: '50%',
     transform: 'translateX(-50%)',
   },

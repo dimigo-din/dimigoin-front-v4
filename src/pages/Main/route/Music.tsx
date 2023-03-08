@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { styled } from '#/stitches.config';
+import { CSS } from '@stitches/react';
 import { Container } from '@/components';
 import { Hexile, Vexile } from '@haechi/flexile';
 import {
@@ -7,18 +9,23 @@ import {
   LikeTicket,
   MusicInfo,
 } from '../s_component/Music/MusicComponent';
-import { ReactComponent as Search } from '@/asset/icons/search.svg';
+import { ReactComponent as SearchIcon } from '@/asset/icons/search.svg';
 
 const ContainerCss = {
   display: 'flex',
   flexDirection: 'column',
 };
 
-const Music: React.FC = () => {
+export const Music: React.FC = () => {
   const [Musics, setMusics] = useState<number[] | undefined | null>(undefined);
   const [LikedMusics, setLikedMusics] = useState<number[] | undefined | null>(
     undefined,
   );
+
+  const path: string = useLocation().pathname;
+  const applyPath: string = '/music/application';
+
+  console.log(path);
 
   useEffect(() => {
     setMusics([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]);
@@ -33,28 +40,28 @@ const Music: React.FC = () => {
           padding="3.2rem"
           css={{
             display: 'flex',
+            position: 'relative',
             flexDirection: 'column',
-            // height: '100%',
+            height: '100%',
           }}
           title="기상송 차트"
         >
-          <SerchMusicContainer>
-            <SearchIcon>
-              <Search />
-            </SearchIcon>
-            <SearchMusic placeholder="신청할 곡의 노래명, 혹은 가수명을 입력해주세요"></SearchMusic>
-          </SerchMusicContainer>
+          <Search marginTop={path === applyPath ? true : undefined}>
+            {path === applyPath && <SearchMusicContainer />}
+          </Search>
           <MusicList>
-            {Musics &&
-              Musics.map((idx) => (
-                <MusicInfo
-                  musicTitle={'asdf'}
-                  SVG={null}
-                  singer={'whguswo'}
-                  like={false}
-                  key={idx}
-                />
-              ))}
+            <SubMusicList>
+              {Musics &&
+                Musics.map((idx) => (
+                  <MusicInfo
+                    musicTitle={'asdf'}
+                    SVG={null}
+                    singer={'whguswo'}
+                    like={false}
+                    key={idx}
+                  />
+                ))}
+            </SubMusicList>
           </MusicList>
         </Container>
       </LeftBox>
@@ -89,13 +96,22 @@ const Music: React.FC = () => {
   );
 };
 
-export default Music;
+const SearchMusicContainer = () => {
+  return (
+    <SearchContainer>
+      <SearchIconBox>
+        <SearchIcon />
+      </SearchIconBox>
+      <SearchMusic placeholder="신청할 곡의 노래명, 혹은 가수명을 입력해주세요"></SearchMusic>
+    </SearchContainer>
+  );
+};
 
 const Wrapper = styled('div', {
   width: '100%',
-  height: 'calc(100vh - 14.5rem)',
+  height: '100%',
   position: 'relative',
-  color: '$gray6',
+  color: '$grade10',
   display: 'grid',
   gridGap: '2rem',
   gridTemplateColumns: '1fr 45rem',
@@ -103,8 +119,7 @@ const Wrapper = styled('div', {
 
 const LeftBox = styled(Vexile, {
   position: 'relative',
-  height: '100%',
-  gap: '2rem',
+  height: 'calc(100vh - 14.5rem)',
 });
 
 const RightBox = styled('div', {
@@ -115,14 +130,22 @@ const RightBox = styled('div', {
   gap: '2rem',
 });
 
-const SerchMusicContainer = styled(Hexile, {
+const Search = styled('div', {
+  variants: {
+    marginTop: {
+      true: {
+        marginTop: '2.4rem',
+      },
+    },
+  },
+});
+
+const SearchContainer = styled(Hexile, {
   position: 'relative',
   height: '4rem',
-  border: '1px solid $gray1',
+  border: '1px solid $grade4',
   borderRadius: '1rem',
   paddingLeft: '1.6rem',
-  marginTop: '2.4rem',
-  marginBottom: '3.2rem',
   alignItems: 'center',
 });
 
@@ -139,19 +162,25 @@ const SearchMusic = styled('input', {
     outline: 'none',
   },
   '&::placeholder': {
-    color: '$gray3',
+    color: '$grade6',
   },
 });
 
-const SearchIcon = styled(Hexile, {
+const SearchIconBox = styled(Hexile, {
   alignItems: 'center',
   justifyContent: 'center',
 });
 
-const MusicList = styled(Vexile, {
+const MusicList = styled(Hexile, {
+  overflow: 'auto',
+  height: '100%',
+  marginTop: '3.2rem',
+});
+
+const SubMusicList = styled(Vexile, {
   position: 'relative',
   width: '100%',
-  height: 'calc(100vh - 33rem)',
+  height: 'max-content',
   overflow: 'auto',
   gap: '1rem',
 });
@@ -170,5 +199,5 @@ const Warning = styled('div', {
   fontSize: '1.4rem',
   fontWeight: 500,
   lineHeight: '2.2rem',
-  color: '$gray3',
+  color: '$grade6',
 });

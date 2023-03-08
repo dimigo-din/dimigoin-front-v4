@@ -18,7 +18,6 @@ const containerCss = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  maxWidth: '38rem',
   height: '21rem',
 };
 
@@ -84,6 +83,6 @@ const Teacher = styled(Hexile, {
   fontSize: '1.4rem',
   fontWeight: 500,
   lineHeight: '1.7rem',
-  color: '$gray3',
+  color: '$grade6',
   marginTop: '.6rem',
 });

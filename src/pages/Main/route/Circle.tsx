@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '#/stitches.config';
 import { Container } from '@/components';
 import { Hexile, Vexile } from '@haechi/flexile';
-import { AppliedClub, ToApplyClub, SelectedCircle } from '../s_component/club';
+import {
+  AppliedCircle,
+  ToApplyCircle,
+  SelectedCircle,
+} from '../s_component/Circle';
 import { useAllCircle } from '@/hooks/api/useCircle';
 import { Circle } from '@/constants/types';
 
@@ -15,33 +19,33 @@ const containerCss = {
 const innerTitleCss = {
   fontWeight: '500',
   lineHeight: '2rem',
-  color: '$gray3',
+  color: '$grade6',
 };
 
-const appliedClubsCss = {
+const appliedCirclesCss = {
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
   height: '26.4rem',
 };
 
-const AppliedClubCss = {
+const AppliedCircleCss = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
   maxWidth: '22rem',
   minWidth: '20rem',
-  backgroundColor: '$subWhite1',
+  backgroundColor: '$grade2',
 };
 
-const Club: React.FC = () => {
-  const [toApplyClub, setToApplyClub] = useState<Circle[] | undefined | null>(
-    undefined,
-  );
-  const [appliedClub, setAppliedClub] = useState<number[] | undefined | null>(
-    undefined,
-  );
+export const CircleC: React.FC = () => {
+  const [toApplyCircle, setToApplyCircle] = useState<
+    Circle[] | undefined | null
+  >(undefined);
+  const [appliedCircle, setAppliedCircle] = useState<
+    number[] | undefined | null
+  >(undefined);
   const [circleActive, setCircleActive] = useState<number | undefined>(
     undefined,
   );
@@ -54,8 +58,8 @@ const Club: React.FC = () => {
   };
 
   useEffect(() => {
-    setToApplyClub(circle);
-    setAppliedClub([1, 2, 3]);
+    setToApplyCircle(circle);
+    setAppliedCircle([1, 2, 3]);
   }, [circle]);
 
   return (
@@ -63,20 +67,20 @@ const Club: React.FC = () => {
       <LeftBox>
         <Container
           padding="3.2rem"
-          css={appliedClubsCss}
+          css={appliedCirclesCss}
           title="내가 지원한 동아리"
-          innerTitle={appliedClub ? '신청한 뒤에는 취소할 수 없어요' : false}
+          innerTitle={appliedCircle ? '신청한 뒤에는 취소할 수 없어요' : false}
           innerTitleCss={innerTitleCss}
         >
           <AppliedBox>
             <AppliedSubBox>
-              {appliedClub ? (
-                appliedClub.map((idx) => (
-                  <AppliedClub
+              {appliedCircle ? (
+                appliedCircle.map((idx) => (
+                  <AppliedCircle
                     padding="3.2rem"
-                    css={AppliedClubCss}
+                    css={AppliedCircleCss}
                     key={idx}
-                  ></AppliedClub>
+                  ></AppliedCircle>
                 ))
               ) : (
                 <NO_APPLIEDCLUB_DATA>
@@ -87,16 +91,16 @@ const Club: React.FC = () => {
           </AppliedBox>
         </Container>
         <ToApplyBox>
-          {toApplyClub ? (
-            toApplyClub.map(({ name, category }, idx) => (
-              <ToApplyClub
+          {toApplyCircle ? (
+            toApplyCircle.map(({ name, category }, idx) => (
+              <ToApplyCircle
                 name={name}
                 category={category}
                 active={circleActive === idx ? true : false}
                 onClick={SelectCircle}
                 value={idx}
                 key={idx}
-              ></ToApplyClub>
+              ></ToApplyCircle>
             ))
           ) : (
             <NO_APPLIEDCLUB_DATA>
@@ -123,13 +127,11 @@ const Club: React.FC = () => {
   );
 };
 
-export default Club;
-
 const Wrapper = styled('div', {
   width: '100%',
   height: '100%',
   position: 'relative',
-  color: '$gray6',
+  color: '$grade10',
   display: 'grid',
   gridGap: '2rem',
   gridTemplateColumns: '1fr 40rem',
@@ -173,5 +175,5 @@ const NO_APPLIEDCLUB_DATA = styled('div', {
   fontSize: '1.8rem',
   fontWeight: 500,
   textAlign: 'center',
-  color: '$gray2',
+  color: '$grade5',
 });

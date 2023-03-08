@@ -5,7 +5,7 @@ export const ContainerCustom = styled('div', {
   display: 'flex',
   position: 'relative',
   borderRadius: '1rem',
-  backgroundColor: '#fff',
+  backgroundColor: '$grade1',
   overflow: 'auto',
   lineHeight: 2,
   variants: {
@@ -25,21 +25,21 @@ export const Title = styled(Hexile, {
   fontSize: '2rem',
   lineHeight: '2.4rem',
   fontWeight: 700,
-  color: '$subBlack',
+  color: '$grade9',
 });
 
 export const InnerTitle = styled(Hexile, {
   fontSize: '1.6rem',
   lineHeight: '1.9rem',
   fontWeight: 600,
-  color: '$gray5',
+  color: '$grade6',
 });
 
 export const SubTitle = styled(Hexile, {
   fontSize: '1.6rem',
   lineHeight: '1.9rem',
   fontWeight: 500,
-  color: '$gray3',
+  color: '$grade6',
   marginTop: '.6rem',
   marginBottom: '2.5rem',
 });

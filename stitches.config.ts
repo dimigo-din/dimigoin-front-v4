@@ -3,16 +3,16 @@ import { createStitches } from '@stitches/react';
 export const MAIN_ACCENT = '#E83C77';
 export const COLORS = {
   accent: MAIN_ACCENT,
-  background: '#EFF0F6',
-  subWhite1: '#F6F7FA',
-  subWhite2: '#EFF0F6',
-  gray1: '#E4E6EE',
-  gray2: '#C3C6D2',
-  gray3: '#8D90A0',
-  gray4: '#6B7085',
-  gray5: '#505363',
-  gray6: '#3D404A',
-  subBlack: '#202228',
+  grade1: '#FEFEFF',
+  grade2: '#F6F7FA',
+  grade3: '#EFF0F6',
+  grade4: '#E4E6EE',
+  grade5: '#C3C6D2',
+  grade6: '#8D90A0',
+  grade7: '#6B7085',
+  grade8: '#505363',
+  grade9: '#3D404A',
+  grade10: '#202228',
   blue: '#8099FF',
 };
 

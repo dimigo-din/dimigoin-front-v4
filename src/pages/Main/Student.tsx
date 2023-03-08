@@ -33,7 +33,7 @@ const Wrapper = styled(Hexile, {
   width: '100%',
   height: '100%',
   padding: '2rem',
-  backgroundColor: '$background',
+  backgroundColor: '$grade3',
   borderTopLeftRadius: '1rem',
   position: 'relative',
 });

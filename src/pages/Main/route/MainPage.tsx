@@ -30,7 +30,7 @@ const TextCss = {
 
 const containerPadding = '4rem';
 
-const MainPage: React.FC = () => {
+export const MainPage: React.FC = () => {
   return (
     <Wrapper>
       <LeftBox>
@@ -70,13 +70,10 @@ const MainPage: React.FC = () => {
   );
 };
 
-export default MainPage;
-
 const Wrapper = styled('div', {
   width: '100%',
   height: '100%',
   position: 'relative',
-  color: '$gray6',
   display: 'grid',
   gridGap: '2rem',
   gridTemplateColumns: '5fr 4fr',
@@ -92,7 +89,7 @@ const LeftBox = styled('div', {
 const RightBox = styled('div', {
   display: 'grid',
   height: '100%',
-  minWidth: '50rem',
+  // minWidth: '50rem',
   gridGap: '2rem',
   // gridTemplateRows: '5fr 5fr',
 });

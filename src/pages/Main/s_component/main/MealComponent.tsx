@@ -18,9 +18,9 @@ const NO_MEAL_DATA = '급식 정보가 없습니다.';
 
 const BtnCss = {
   cursor: 'pointer',
-  stroke: '$gray2',
+  stroke: '$grade5',
   '&:hover': {
-    stroke: '#222222',
+    stroke: '$grade6',
   },
 };
 
@@ -137,14 +137,14 @@ const Next = styled(NextBtn, BtnCss);
 const Prev = styled(PrevBtn, BtnCss);
 
 const MealDate = styled('span', {
-  color: '$black2',
+  color: '$grade8',
   fontWeight: 600,
   fontSize: '1.6rem',
   lineHeight: 1,
 });
 
 const Meal = styled('div', {
-  color: '$black2',
+  color: '$grade9',
   fontWeight: 500,
   fontSize: '1.6rem',
   overflow: 'auto',
@@ -163,7 +163,9 @@ const MealTimeDetail = styled(Hexile, {
 const TimeDetailBox = styled('div', {
   fontSize: '1.8rem',
   lineHeight: '2.1rem',
+  color: '$grade10',
 });
+
 const TimeDetail = styled('span', {
   color: '$accent',
 });
