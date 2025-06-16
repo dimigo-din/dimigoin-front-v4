@@ -8,6 +8,7 @@ type SegmentedTabsProps = {
 };
 
 const Container = styled.div`
+    height: 54px;
     display: flex;
     background-color: ${({ theme }) => theme.colors.translucent.primary};
     border-radius: 16px;
