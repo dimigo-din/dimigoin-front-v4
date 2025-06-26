@@ -3,7 +3,7 @@ import styled from "styled-components";
 const HeaderWrapper = styled.header`
     height: 56px;
 
-    padding: 0 16px;
+    padding: 0 24px;
     display: flex;
     align-items: center;
     font-weight: bold;

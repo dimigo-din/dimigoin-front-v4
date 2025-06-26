@@ -6,11 +6,11 @@ export const Wrapper = styled.div`
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: ${({ theme }) => theme.colors.background.primary};
+    background-color: ${({ theme }) => theme.Colors.Background.Standard.Secondary};
 `;
 
 export const Content = styled.main`
     flex: 1;
-    padding: 16px;
+    padding: 24px;
     overflow-y: auto;
 `;

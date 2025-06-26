@@ -7,8 +7,8 @@ export const Button = styled.button<ButtonProps>`
     padding: 16px 20px;
     border-radius: 12px;
     border: none;
-    background-color: ${(props) => props.theme.colors.brand.primary};
-    color: ${(props) => props.theme.colors.solid.white};
+    background-color: ${(props) => props.theme.Colors.Core.Brand.Primary};
+    color: ${(props) => props.theme.Colors.Solid.White};
     width: ${(props) => props.width || "100%"};
 
     font-size: 16px;
@@ -16,15 +16,15 @@ export const Button = styled.button<ButtonProps>`
     transition: background-color 0.3s ease;
 
     &:hover {
-        background-color: ${(props) => props.theme.colors.button.primaryHover};
+        background-color: ${(props) => props.theme.Colors.Components.Fill.Inverted.Primary};
     }
 
     &:active {
-        background-color: ${(props) => props.theme.colors.button.primaryActive};
+        background-color: ${(props) => props.theme.Colors.Components.Fill.Standard.Primary};
     }
 
     &:disabled {
-        background-color: ${(props) => props.theme.colors.button.disabled};
+        background-color: ${(props) => props.theme.Colors.Components.Fill.Standard.Secondary};
         cursor: not-allowed;
     }
 `;

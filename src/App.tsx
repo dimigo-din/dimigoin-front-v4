@@ -6,18 +6,21 @@ import MobileLayout from "./layouts/MobileLayout";
 import GlobalStyle from "./styles/GlobalStyle";
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./routes/AppRouter";
+import {ping} from "./api/auth.ts";
 
 function App() {
-    return (
-        <ThemeProvider theme={theme}>
-            <BrowserRouter>
-                <GlobalStyle />
-                <MobileLayout>
-                    <AppRouter />
-                </MobileLayout>
-            </BrowserRouter>
-        </ThemeProvider>
-    );
+  ping();
+
+  return (
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <GlobalStyle />
+        <MobileLayout>
+          <AppRouter />
+        </MobileLayout>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
 }
 
 export default App;

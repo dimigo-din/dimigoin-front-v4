@@ -8,8 +8,8 @@ const SectionWrapper = styled.section`
 `;
 
 const SectionLabel = styled.p`
-    font-size: ${({ theme }) => theme.font.base.size};
-    color: ${({ theme }) => theme.colors.font.secondary};
+    font-size: ${({ theme }) => theme.Font.Paragraph_Large.size};
+    color: ${({ theme }) => theme.Colors.Content.Standard.Secondary};
     margin-bottom: 8px;
 `;
 

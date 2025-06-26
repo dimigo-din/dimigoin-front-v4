@@ -13,12 +13,11 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: "Pretendard Variable", Pretendard, -apple-system,
-        BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
-        "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-background-color: black;
-color: ${({ theme }) => theme.colors.font.primary};
-
+      BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+      "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    background-color: black;
+    color: ${({ theme }) => theme.Colors.Core.Brand.Primary};
   }
   a {
     color: inherit;

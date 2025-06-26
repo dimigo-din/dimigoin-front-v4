@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import {theme} from "../styles/theme.ts";
 
 type SegmentedTabsProps = {
     tabs: string[];
@@ -9,12 +10,12 @@ type SegmentedTabsProps = {
 
 const Container = styled.div`
     display: flex;
-    background-color: ${({ theme }) => theme.colors.translucent.primary};
+    background-color: ${({ theme }) => theme.Colors.Background.Standard.Primary};
     border-radius: 16px;
     padding: 6px;
     gap: 4px;
 
-    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.border.primary};
+    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.Colors.Line.Outline};
 `;
 
 const TabButton = styled.button<{ isActive: boolean }>`
@@ -22,11 +23,11 @@ const TabButton = styled.button<{ isActive: boolean }>`
     padding: 14px 0;
     border: none;
     border-radius: 12px;
-    background-color: ${({ isActive }) => (isActive ? "#fff" : "transparent")};
+    background-color: ${({ isActive }) => (isActive ? theme.Colors.Components.Translucent.Secondary : theme.Colors.Solid.White)};
     color: ${({ isActive, theme }) =>
-        isActive ? theme.colors.font.primary : theme.colors.font.secondary};
+        isActive ? theme.Colors.Content.Standard.Primary : theme.Colors.Content.Standard.Secondary};
 
-    font-size: ${({ theme }) => theme.font.base.size};
+    font-size: ${({ theme }) => theme.Font.Headline.size};
     cursor: pointer;
     transition: all 0.2s ease;
 `;

@@ -12,8 +12,8 @@ const FooterWrapper = styled.footer`
     justify-content: center;
     font-size: 14px;
     border-radius: 16px 16px 0 0;
-    background-color: ${({ theme }) => theme.colors.solid.white};
-    border: 1px solid ${({ theme }) => theme.colors.border.primary};
+    background-color: ${({ theme }) => theme.Colors.Solid.White};
+    border: 1px solid ${({ theme }) => theme.Colors.Line.Outline};
 
     ul {
         width: 100%;
@@ -29,7 +29,7 @@ const MenuItem = styled.li<{ active?: boolean }>`
     justify-content: center;
     text-align: center;
     color: ${({ active, theme }) =>
-        active ? theme.colors.brand.primary : theme.colors.font.secondary};
+        active ? theme.Colors.Core.Brand.Primary : theme.Colors.Core.Brand.Secondary};
     font-weight: ${({ active }) => (active ? "bold" : "normal")};
 
     svg {
