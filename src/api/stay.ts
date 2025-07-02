@@ -58,15 +58,29 @@ export async function stayApplies(): Promise<StayApply[]> {
 }
 
 /** Time foramt: YYYY-MM-DDTHH:mm */
-export async function applyStay(target: string, seat: string, ...outing: { reason: string, breakfast_cancel: boolean, lunch_cancel: boolean, dinner_cancel: boolean, from: string, to: string }[]): Promise<StayApply> {
-  return (await client.post("/stay/apply", { stay: target, stay_seat: seat, outing })).data;
+export async function applyStay(target: string, seat: string, ...outing: {
+  reason: string,
+  breakfast_cancel: boolean,
+  lunch_cancel: boolean,
+  dinner_cancel: boolean,
+  from: string,
+  to: string
+}[]): Promise<StayApply> {
+  return (await client.post("/stay/apply", {stay: target, stay_seat: seat, outing})).data;
 }
 
 /** Time foramt: YYYY-MM-DDTHH:mm */
-export async function editStayApply(target: string, seat: string, ...outing: { reason: string, breakfast_cancel: boolean, lunch_cancel: boolean, dinner_cancel: boolean, from: string, to: string }[]): Promise<StayApply> {
-  return (await client.patch("/stay/apply", { stay: target, stay_seat: seat, outing })).data;
+export async function editStayApply(target: string, seat: string, ...outing: {
+  reason: string,
+  breakfast_cancel: boolean,
+  lunch_cancel: boolean,
+  dinner_cancel: boolean,
+  from: string,
+  to: string
+}[]): Promise<StayApply> {
+  return (await client.patch("/stay/apply", {stay: target, stay_seat: seat, outing})).data;
 }
 
 export async function deleteStayApply(target: string): Promise<StayApply> {
-  return (await client.delete("/stay/apply?id="+target)).data;
+  return (await client.delete("/stay/apply?id=" + target)).data;
 }

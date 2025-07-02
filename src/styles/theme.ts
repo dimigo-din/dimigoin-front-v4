@@ -94,9 +94,9 @@ export const theme: DefaultTheme = {
         Translucent: {
           Positive: "#32cc581a",
           Warning:
-              "#f5c9051a",
+            "#f5c9051a",
           Negative:
-              "#ff40351a",
+            "#ff40351a",
         }
       },
     },
@@ -109,14 +109,14 @@ export const theme: DefaultTheme = {
     },
   },
   Font: {
-    Display: {size: "48px", lineHeight: "70px", weight: { weak: 400, regular: 500, strong: 600 }},
-    Title: {size: "24px", lineHeight: "34px", weight: { weak: 400, regular: 500, strong: 600 }},
-    Headline: {size: "20px", lineHeight: "28px", weight: { weak: 400, regular: 500, strong: 600 }},
-    Body: {size: "16px", lineHeight: "24px", weight: { weak: 400, regular: 500, strong: 600 }},
-    Callout: {size: "14px", lineHeight: "20px", weight: { weak: 400, regular: 500, strong: 600 }},
-    Footnote: {size: "12px", lineHeight: "18px", weight: { weak: 400, regular: 500, strong: 600 }},
-    Caption: {size: "10px", lineHeight: "14px", weight: { weak: 400, regular: 500, strong: 600 }},
-    Paragraph_Large: {size: "16px", lineHeight: "28.8px", weight: { weak: 400, regular: 500, strong: 600 }},
-    Paragraph_Small: {size: "14px", lineHeight: "24px", weight: { weak: 400, regular: 500, strong: 600 }},
+    Display: {size: "48px", lineHeight: "70px", weight: {weak: 400, regular: 500, strong: 600}},
+    Title: {size: "24px", lineHeight: "34px", weight: {weak: 400, regular: 500, strong: 600}},
+    Headline: {size: "20px", lineHeight: "28px", weight: {weak: 400, regular: 500, strong: 600}},
+    Body: {size: "16px", lineHeight: "24px", weight: {weak: 400, regular: 500, strong: 600}},
+    Callout: {size: "14px", lineHeight: "20px", weight: {weak: 400, regular: 500, strong: 600}},
+    Footnote: {size: "12px", lineHeight: "18px", weight: {weak: 400, regular: 500, strong: 600}},
+    Caption: {size: "10px", lineHeight: "14px", weight: {weak: 400, regular: 500, strong: 600}},
+    Paragraph_Large: {size: "16px", lineHeight: "28.8px", weight: {weak: 400, regular: 500, strong: 600}},
+    Paragraph_Small: {size: "14px", lineHeight: "24px", weight: {weak: 400, regular: 500, strong: 600}},
   },
 };

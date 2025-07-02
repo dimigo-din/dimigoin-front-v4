@@ -5,15 +5,16 @@ import GoogleLogo from "../../assets/icons/google.svg?react";
 import {getRedirectUri, googleLogin} from "../../api/auth.ts";
 import {useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
+import {useNotification} from "../../providers/MobileNotifiCationProvider.tsx";
 
 const Wrapper = styled.div`
   height: 100vh;
   width: 100%;
-  
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+
   .scenery {
     height: fit-content;
   }
@@ -27,11 +28,11 @@ const Brand = styled.div`
 const Title = styled.div`
   display: flex;
   flex-direction: row;
-  
+
   justify-content: center;
-  
+
   gap: 8px;
-  
+
   font-size: ${(props) => props.theme.Font.Title.size};
   font-weight: ${(props) => props.theme.Font.Title.weight.strong};
 `;
@@ -39,19 +40,19 @@ const Title = styled.div`
 const LoginButton = styled.button`
   display: flex;
   flex-direction: row;
-  
+
   justify-content: center;
   align-content: center;
-  
+
   gap: 10px;
-  
+
   width: 80%;
   margin: auto;
-  
+
   background-color: ${(props) => props.theme.Colors.Components.Translucent.Secondary};
   padding: 16px 12px;
   border-radius: 16px;
-  
+
   p {
     margin: auto 0;
   }
@@ -67,16 +68,22 @@ const LoginButton = styled.button`
 `;
 
 function LoginPage() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const {showToast} = useNotification();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     const code = searchParams.get("code") as string;
-    console.log(code);
-
-    googleLogin(code).then((res) => {
-      console.log(res.data);
-      location.href = "/"
-    })
+    if (code) {
+      googleLogin(code).then(() => {
+        showToast("로그인에 성공하였습니다.", "info");
+        setTimeout(() => {
+          location.href = "/"
+        }, 1000);
+      }).catch((e) => {
+        console.error(e);
+        showToast("로그인에 실패하였습니다.", "danger");
+      });
+    }
   }, []);
 
   return (
@@ -84,7 +91,7 @@ function LoginPage() {
       <div></div>
       <Brand>
         <Title>
-          <Logo />
+          <Logo/>
           <p>디미고인</p>
         </Title>
         <br/>
@@ -93,7 +100,7 @@ function LoginPage() {
           <p>디미고 구글 계정으로 로그인</p>
         </LoginButton>
       </Brand>
-      <SchoolScenery className={"scenery"} />
+      <SchoolScenery className={"scenery"}/>
     </Wrapper>
   );
 }

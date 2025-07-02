@@ -11,11 +11,12 @@ export function getInstance(): AxiosInstance {
     });
 
     instance.interceptors.response.use((res) => {
-      return {...res, data: res.data.data};
+      return {...res, data: res.data.data, status: res.data.status};
     }, (err) => {
+      console.log(err);
       if (err.response.status === 401 && err.config.url !== "/auth/refresh") {
         return new Promise((resolve, reject) => {
-          instance.post("/auth/refresh").then((res) => {
+          instance.post("/auth/refresh").then(() => {
             resolve(instance(err.config));
           }).catch(() => {
             location.href = "/login"

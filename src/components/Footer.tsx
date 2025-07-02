@@ -32,13 +32,13 @@ const MenuItem = styled.li<{ active?: boolean }>`
   justify-content: center;
   text-align: center;
   color: ${({active, theme}) =>
-    active ? theme.Colors.Core.Brand.Primary : theme.Colors.Core.Brand.Secondary};
+  active ? theme.Colors.Core.Brand.Primary : theme.Colors.Core.Brand.Secondary};
   font-weight: ${({active}) => (active ? "bold" : "normal")};
 
   svg {
     color: inherit;
     fill: ${({active, theme}) =>
-      active ? theme.Colors.Core.Brand.Primary : theme.Colors.Core.Brand.Secondary};;
+  active ? theme.Colors.Core.Brand.Primary : theme.Colors.Core.Brand.Secondary};;
     
     margin: auto;
   }

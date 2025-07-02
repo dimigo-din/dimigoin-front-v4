@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 interface ButtonProps {
-    width?: string;
+  width?: string;
 }
+
 export const Button = styled.button<ButtonProps>`
     padding: 16px 20px;
     border-radius: 12px;

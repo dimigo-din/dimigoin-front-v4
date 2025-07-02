@@ -6,8 +6,8 @@ const Wrapper = styled.div`
     gap: 24px;
 `;
 
-function ContentWrapper({ children }: { children: React.ReactNode }) {
-    return <Wrapper>{children}</Wrapper>;
+function ContentWrapper({children}: { children: React.ReactNode }) {
+  return <Wrapper>{children}</Wrapper>;
 }
 
 export default ContentWrapper;

@@ -8,24 +8,24 @@ const SectionWrapper = styled.section`
 `;
 
 const SectionLabel = styled.p`
-    font-size: ${({ theme }) => theme.Font.Paragraph_Large.size};
-    color: ${({ theme }) => theme.Colors.Content.Standard.Secondary};
+    font-size: ${({theme}) => theme.Font.Paragraph_Large.size};
+    color: ${({theme}) => theme.Colors.Content.Standard.Secondary};
     margin-bottom: 8px;
 `;
 
 function Section({
-    children,
-    label,
-}: {
-    children: React.ReactNode;
-    label: string;
+                   children,
+                   label,
+                 }: {
+  children: React.ReactNode;
+  label: string;
 }) {
-    return (
-        <SectionWrapper>
-            <SectionLabel>{label}</SectionLabel>
-            {children}
-        </SectionWrapper>
-    );
+  return (
+    <SectionWrapper>
+      <SectionLabel>{label}</SectionLabel>
+      {children}
+    </SectionWrapper>
+  );
 }
 
 export default Section;

@@ -110,14 +110,14 @@ declare module "styled-components" {
     };
     Font: {
       [key in | "Display"
-          | "Title"
-          | "Headline"
-          | "Body"
-          | "Callout"
-          | "Footnote"
-          | "Caption"
-          | "Paragraph_Large"
-          | "Paragraph_Small"]: {
+        | "Title"
+        | "Headline"
+        | "Body"
+        | "Callout"
+        | "Footnote"
+        | "Caption"
+        | "Paragraph_Large"
+        | "Paragraph_Small"]: {
         size: string;
         lineHeight: string;
         weight: { [key: string]: number };

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Section from "../../../components/Section";
-import { Button } from "../../../styles/components/button";
-import { Input } from "../../../styles/components/input";
+import {Button} from "../../../styles/components/button";
+import {Input} from "../../../styles/components/input";
 
 const SeatSelect = styled.div`
     width: 100%;
@@ -10,9 +10,9 @@ const SeatSelect = styled.div`
 
     p {
       align-items: center;
-      font-size: ${({ theme }) => theme.Font.Title.size};
-      color: ${({ theme }) => theme.Colors.Core.Brand.Primary};
-      font-weight: ${({ theme }) => theme.Font.Title.weight.strong};
+      font-size: ${({theme}) => theme.Font.Title.size};
+      color: ${({theme}) => theme.Colors.Core.Brand.Primary};
+      font-weight: ${({theme}) => theme.Font.Title.weight.strong};
     }
 `;
 
@@ -26,7 +26,7 @@ function StaySection() {
         </SeatSelect>
       </Section>
       <Section label="좌석 미선택 사유">
-        <Input placeholder="좌석 미선택 사유 입력" />
+        <Input placeholder="좌석 미선택 사유 입력"/>
       </Section>
 
       <Button>잔류 신청</Button>

@@ -1,5 +1,5 @@
-import SegmentedTabs from "../../../components/SegmentedTabs.tsx";
-import {useState} from "react";
+// import SegmentedTabs from "../../../components/SegmentedTabs.tsx";
+// import {useState} from "react";
 
 // function Outing() {
 //   const tabs = ["", "외출", "금귀"];
