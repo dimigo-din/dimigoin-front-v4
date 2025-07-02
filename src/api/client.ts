@@ -1,5 +1,4 @@
 import axios, {type AxiosInstance} from "axios";
-import {getRedirectUri} from "./auth.ts";
 
 let instance: AxiosInstance;
 
@@ -12,14 +11,14 @@ export function getInstance(): AxiosInstance {
     });
 
     instance.interceptors.response.use((res) => {
-      return res;
+      return {...res, data: res.data.data};
     }, (err) => {
       if (err.response.status === 401 && err.config.url !== "/auth/refresh") {
         return new Promise((resolve, reject) => {
           instance.post("/auth/refresh").then((res) => {
             resolve(instance(err.config));
           }).catch(() => {
-            location.href = getRedirectUri();
+            location.href = "/login"
             reject(err);
           });
         });

@@ -16,8 +16,6 @@ const GlobalStyle = createGlobalStyle`
       BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
       "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
       "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    background-color: black;
-    color: ${({ theme }) => theme.Colors.Core.Brand.Primary};
   }
   a {
     color: inherit;

@@ -11,6 +11,6 @@ export const Wrapper = styled.div`
 
 export const Content = styled.main`
     flex: 1;
-    padding: 24px;
+    padding: ${({ noPadding }) => (noPadding ? '0' : '24px')};
     overflow-y: auto;
 `;

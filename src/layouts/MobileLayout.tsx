@@ -6,7 +6,7 @@ const MobileLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <Wrapper>
             <Header />
-            <Content>{children}</Content>
+            <Content noPadding={location.pathname.startsWith("/login")}>{children}</Content>
             <Footer />
         </Wrapper>
     );
