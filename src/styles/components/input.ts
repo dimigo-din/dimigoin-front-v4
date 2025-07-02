@@ -4,22 +4,22 @@ export const Input = styled.input`
     width: 100%;
     padding: 16px 16px;
     border-radius: 12px;
-    background-color: ${({ theme }) => theme.colors.solid.white};
-    border: 1px solid ${({ theme }) => theme.colors.border.primary};
-    color: ${({ theme }) => theme.colors.font.primary};
-    font-size: ${({ theme }) => theme.font.base.size};
-    line-height: ${({ theme }) => theme.font.base.lineHeight};
-    font-weight: ${({ theme }) => theme.font.base.weight};
+    background-color: ${({ theme }) => theme.Colors.Solid.White};
+    border: 1px solid ${({ theme }) => theme.Colors.Line.Outline};
+    color: ${({ theme }) => theme.Colors.Content.Standard.Primary};
+    font-size: ${({ theme }) => theme.Font.Paragraph_Large.size};
+    line-height: ${({ theme }) => theme.Font.Paragraph_Large.lineHeight};
+    font-weight: ${({ theme }) => theme.Font.Paragraph_Large.weight.regular};
     transition: border-color 0.3s ease;
 
     &::placeholder {
-        color: ${({ theme }) => theme.colors.font.secondary};
-        font-size: ${({ theme }) => theme.font.sm.size};
-        line-height: ${({ theme }) => theme.font.sm.lineHeight};
-        font-weight: ${({ theme }) => theme.font.sm.weight};
+        color: ${({ theme }) => theme.Colors.Content.Standard.Secondary};
+        font-size: ${({ theme }) => theme.Font.Paragraph_Large.size};
+        line-height: ${({ theme }) => theme.Font.Paragraph_Large.lineHeight};
+        font-weight: ${({ theme }) => theme.Font.Paragraph_Large.weight.regular};
     }
     &:focus {
-        border-color: ${({ theme }) => theme.colors.border.primaryFocus};
+        border-color: ${({ theme }) => theme.Colors.Line.Outline};
         outline: none;
     }
 `;

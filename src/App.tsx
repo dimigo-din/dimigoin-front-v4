@@ -8,16 +8,16 @@ import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./routes/AppRouter";
 
 function App() {
-    return (
-        <ThemeProvider theme={theme}>
-            <BrowserRouter>
-                <GlobalStyle />
-                <MobileLayout>
-                    <AppRouter />
-                </MobileLayout>
-            </BrowserRouter>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <GlobalStyle />
+        <MobileLayout>
+          <AppRouter />
+        </MobileLayout>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
 }
 
 export default App;

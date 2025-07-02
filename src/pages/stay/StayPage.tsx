@@ -19,6 +19,7 @@ function StayPage() {
                 onChange={(_, label) => handleTabChange(label)}
             />
             {activeTab === "잔류" && <StaySection />}
+            {/*{activeTab === "잔류" && <StaySection />}*/}
         </ContentWrapper>
     );
 }

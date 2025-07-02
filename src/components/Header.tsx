@@ -1,27 +1,27 @@
 import styled from "styled-components";
 
 const HeaderWrapper = styled.header`
-    height: 56px;
+  height: 56px;
 
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    font-size: 18px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
 `;
 
 import LogoIcon from "../assets/icons/dimigoin.svg?react";
 
 const Header = () => {
-    return (
-        <HeaderWrapper>
-            <LogoIcon
-                style={{
-                    height: "32px",
-                    marginRight: "8px",
-                }}
-            />
-        </HeaderWrapper>
-    );
+  return location.pathname.startsWith("/login") ? null : (
+    <HeaderWrapper>
+      <LogoIcon
+        style={{
+          height: "32px",
+          marginRight: "8px",
+        }}
+      />
+    </HeaderWrapper>
+  );
 };
 export default Header;
