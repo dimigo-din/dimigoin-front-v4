@@ -66,13 +66,16 @@ const Notification = styled.div<{ leaving?: boolean }>`
   flex-direction: row;
   gap: 8px;
 
-  width: fit-content();
+  width: fit-content;
   margin: 0 auto;
   background-color: ${(props) => props.theme.Colors.Background.Standard.Primary};
 
   border: 1px solid ${(props) => props.theme.Colors.Line.Outline};
   border-radius: 32px;
   padding: 12px 16px;
+  overflow: hidden;
+  max-height: 200px; /* enough to fit one‑line or multi‑line toast */
+  transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease, padding 0.3s ease;
   font-size: ${(props) => props.theme.Font.Callout.size};
 
   animation: ${slideDown} 0.3s ease;
@@ -81,6 +84,9 @@ const Notification = styled.div<{ leaving?: boolean }>`
     props.leaving &&
     css`
       animation: ${slideUpFadeOut} 0.3s ease forwards;
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
     `}
 `;
 

@@ -95,7 +95,7 @@ function LoginPage() {
           <p>디미고인</p>
         </Title>
         <br/>
-        <LoginButton onClick={() => getRedirectUri().then(url => location.href = url)}>
+        <LoginButton onClick={() => getRedirectUri().then(url => location.href = url).catch(() => showToast("서버에 연결할 수 없습니다", "danger"))}>
           <GoogleLogo/>
           <p>디미고 구글 계정으로 로그인</p>
         </LoginButton>

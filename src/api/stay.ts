@@ -2,7 +2,7 @@ import {getInstance} from "./client.ts";
 
 const client = getInstance();
 
-type Stay = {
+export type Stay = {
   id: string,
   name: string,
   stay_from: string,
@@ -26,7 +26,7 @@ type Stay = {
   }
 }
 
-type StayApply = {
+export type StayApply = {
   id: string,
   stay_seat: string,
   stay: Stay,
@@ -49,7 +49,7 @@ type StayApply = {
   }
 }
 
-export async function getStayList(): Promise<Stay[]> {
+export async function getStays(): Promise<Stay[]> {
   return (await client.get("/stay")).data;
 }
 

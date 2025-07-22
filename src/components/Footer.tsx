@@ -81,7 +81,7 @@ const Footer = () => {
               height: "32px",
             }}
           />
-          <p>잔류</p>
+          <p>잔류·금귀</p>
         </MenuItem>
         <MenuItem
           active={location.pathname === "/wake-up"}

@@ -14,18 +14,14 @@ export const Button = styled.button<ButtonProps>`
 
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-        background-color: ${(props) => props.theme.Colors.Components.Fill.Inverted.Primary};
-    }
+    transition: background-color 0.1s ease;
 
     &:active {
-        background-color: ${(props) => props.theme.Colors.Components.Fill.Standard.Primary};
+        background-color: ${(props) => props.theme.Colors.Core.Brand.Secondary};
     }
 
     &:disabled {
-        background-color: ${(props) => props.theme.Colors.Components.Fill.Standard.Secondary};
+        background-color: ${(props) => props.theme.Colors.Components.Translucent.Secondary};
         cursor: not-allowed;
     }
 `;
