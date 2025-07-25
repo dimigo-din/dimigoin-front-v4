@@ -91,7 +91,7 @@ const ChildrenWrapper = styled.div`
   width: 100%;
 `;
 
-function SelectionDialog({ isOpen, closeAction = () => {}, children }: { isOpen: boolean, closeAction: () => void, children: React.ReactNode }) {
+function SelectionDialog({ isOpen, closeAction = () => {}, onOpen = () => {}, children }: { isOpen: boolean, closeAction: () => void | undefined, onOpen: () => void | undefined, children: React.ReactNode }) {
   const [isClosing, setIsClosing] = React.useState(false);
 
   const isFirstRender = React.useRef(true);
@@ -120,7 +120,7 @@ function SelectionDialog({ isOpen, closeAction = () => {}, children }: { isOpen:
     <DialogBox isclosing={isClosing.toString()}
                      onClick={() => closeAction()}
                      onAnimationEnd={handleAnimationEnd}>
-      <Dialog isclosing={isClosing.toString()}>
+      <Dialog isclosing={isClosing.toString()} onAnimationEnd={() => { if (isOpen) onOpen() }}>
         <Handle><span>&nbsp;</span></Handle>
         <ChildrenWrapper>
           {children}

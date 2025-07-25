@@ -65,6 +65,7 @@ const Notification = styled.div<{ leaving?: boolean }>`
   display: flex;
   flex-direction: row;
   gap: 8px;
+  align-items: center;
 
   width: fit-content;
   margin: 0 auto;
@@ -77,6 +78,8 @@ const Notification = styled.div<{ leaving?: boolean }>`
   max-height: 200px; /* enough to fit one‑line or multi‑line toast */
   transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease, padding 0.3s ease;
   font-size: ${(props) => props.theme.Font.Callout.size};
+  white-space: pre-line;
+  text-align: center;
 
   animation: ${slideDown} 0.3s ease;
 

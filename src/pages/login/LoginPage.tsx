@@ -74,8 +74,15 @@ function LoginPage() {
   useEffect(() => {
     const code = searchParams.get("code") as string;
     if (code) {
-      googleLogin(code).then(() => {
+      googleLogin(code).then(({ accessToken }) => {
+        const payload = JSON.parse(atob(accessToken.split(".")[1]));
+        localStorage.setItem("id", payload.id);
+        localStorage.setItem("grade", payload.grade);
+        localStorage.setItem("class", payload.class);
+        localStorage.setItem("number", payload.number);
+        localStorage.setItem("gender", payload.gender);
         showToast("로그인에 성공하였습니다.", "info");
+
         setTimeout(() => {
           location.href = "/"
         }, 1000);

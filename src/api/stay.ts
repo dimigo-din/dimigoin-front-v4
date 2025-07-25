@@ -24,6 +24,14 @@ export type Stay = {
       range: string,
     }[];
   }
+  stay_apply: {
+    id?: string,
+    stay_seat: string,
+    user: {
+      id: string,
+      name: string,
+    }
+  }[]
 }
 
 export type StayApply = {

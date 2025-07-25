@@ -3,12 +3,12 @@ import Section from "../../../components/Section";
 import {Button} from "../../../styles/components/button";
 import {Input} from "../../../styles/components/input";
 import {useEffect, useState} from "react";
-import {getStays, type Stay} from "../../../api/stay.ts";
+import {applyStay, deleteStayApply, getStays, type Stay} from "../../../api/stay.ts";
 import SelectionDialog from "../../../components/SelectionDialog.tsx";
 import Loading from "../../../components/Loading.tsx";
 
-import ArrowDown from "../../../assets/icons/arrow_down.svg?react";
-import {genTable} from "../../../utils/staySeatUtil.ts";
+import {genTable, isInRange} from "../../../utils/staySeatUtil.ts";
+import {useNotification} from "../../../providers/MobileNotifiCationProvider.tsx";
 
 const StayKind = styled.div`
   font-size: ${(props) => props.theme.Font.Body.size};
@@ -65,7 +65,7 @@ const SeatBox = styled.div`
   overflow: scroll;
 `;
 
-const SeatRow = styled.div<{seat: string}>`
+const SeatRow = styled.div<{seat: string | null}>`
   width: fit-content;
   
   white-space: nowrap;
@@ -84,28 +84,82 @@ const SeatRow = styled.div<{seat: string}>`
     text-align: center;
   }
   
+  > span.inactive {
+    filter: blur(1.2px) brightness(90%);
+  }
+  
   > span:active {
     background-color: ${(props) => props.theme.Colors.Components.Interaction.Pressed};
   }
   
   > span#${(props) => props.seat} {
-    background-color: ${(props) => props.theme.Colors.Components.Translucent.Primary};
+    color: white;
+    
+    background-color: ${(props) => props.theme.Colors.Core.Brand.Primary};
   }
 `;
 
 function StaySection() {
-  const [seat, setSeat] = useState<string | null>(null);
+  const {showToast} = useNotification();
+
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  const [targetSeat, setTargetSeat] = useState<string | null>(null);
   const [seatSelectOpen, setSeatSelectOpen] = useState<boolean>(false);
+  const [noSeatReason, setNoSeatReason] = useState<string | null>(null);
 
   const [stay, setStay] = useState<Stay | null>(null);
   const [stayList, setStayList] = useState<Stay[] | null>(null);
+  const [myApply, setMyApply] = useState<string | null>(null);
 
-  useEffect(() => {
+  const updateScreen = () => {
     getStays().then((data) => {
       setStayList(data);
       setStay(data[0]);
+
+      const my = data[0].stay_apply.find((sapply) => sapply.user.id === localStorage.getItem("id"));
+      if (my) {
+        setMyApply(my.id!);
+        setTargetSeat(my.stay_seat);
+      }else {
+        setMyApply(null);
+        setTargetSeat(null);
+      }
     });
+  }
+
+  useEffect(() => {
+    updateScreen();
   }, []);
+
+  const submit = () => {
+    if (myApply) {
+      if (isSubmitting) return showToast("이미 신청 취소중입니다. 잠시만 기다려주세요.", "warning");
+
+      setIsSubmitting(true);
+      deleteStayApply(myApply).then(() => {
+        setIsSubmitting(false);
+        showToast("잔류가 신청이 취소되었습니다.", "info");
+        updateScreen();
+      }).catch((e) => {
+        setIsSubmitting(false);
+        showToast(e.response.data.error.message || e.response.data.error, "danger");
+      });
+    }else {
+      if (isSubmitting) return showToast("이미 신청중입니다. 잠시만 기다려주세요.", "warning");
+      if (!targetSeat && !noSeatReason) return showToast("좌석 미선택 사유를 입력해주세요.", "warning");
+
+      setIsSubmitting(true);
+      applyStay(stay!.id, targetSeat || noSeatReason!).then(() => {
+        setIsSubmitting(false);
+        showToast("잔류가 신청되었습니다.", "info");
+        updateScreen();
+      }).catch((e) => {
+        setIsSubmitting(false);
+        showToast(e.response.data.error.message || e.response.data.error, "danger");
+      });
+    }
+  }
 
   if (stayList === null) return Loading();
   if (stayList.length === 0) return (<NoStay>활성화된 잔류가 없습니다.</NoStay>);
@@ -115,25 +169,32 @@ function StaySection() {
       <StayKind>잔류 종류: <span>{stay?.name}</span></StayKind>
       <Section label="내가 선택한 좌석">
         <SeatSelect>
-          <p>{seat ? seat : "미선택"}</p>
+          <p>{targetSeat ? targetSeat : "미선택"}</p>
           <Button width="120px" onClick={() => setSeatSelectOpen(true)}>좌석 선택</Button>
         </SeatSelect>
       </Section>
-      {seat ? null : (
+      {targetSeat ? null : (
         <Section label="좌석 미선택 사유">
-          <Input placeholder="좌석 미선택 사유 입력"/>
+          <Input placeholder="좌석 미선택 사유 입력" onKeyUp={(e) => setNoSeatReason((e.target as HTMLInputElement).value)}/>
         </Section>
       )}
 
-      <Button>잔류 신청</Button>
+      <Button onClick={() => submit()}>{myApply ? "잔류 신청 취소" : "잔류 신청"}</Button>
 
       <SelectionDialog isOpen={seatSelectOpen} closeAction={() => setSeatSelectOpen(false)}>
-        <Button style={{ margin: "8px", width: "calc(100% - 16px)" }} onClick={() => setSeat(null)}>미선택</Button>
+        <Button style={{ margin: "8px", width: "calc(100% - 16px)" }} onClick={() => setTargetSeat(null)}>미선택</Button>
         <Divider>&nbsp;</Divider>
         <SeatBox>
           {genTable().map((row) => (
-            <SeatRow seat={seat}>
-              {row.map((seat) => (<span id={seat} onClick={() => setSeat(seat)}>{seat}</span>))}
+            <SeatRow seat={targetSeat}>
+              {row.map((seat) => { const isActive = stay?.stay_seat_preset.stay_seat.some((target) => isInRange(target.range.split(":"), seat) && target.target === `${localStorage.getItem("grade")}_${localStorage.getItem("gender")}`); return (
+                <span
+                  id={seat}
+                  className={[isActive ? "active" : "inactive", stay?.stay_apply.some((sapply) => sapply.stay_seat === seat) ? "taken" : "notTaken"].join(" ")}
+                  onClick={isActive ? () => setTargetSeat(seat) : (e) => {e.preventDefault();e.stopPropagation()}}>
+                  {seat}
+                </span>)}
+              )}
             </SeatRow>
           ))}
         </SeatBox>
