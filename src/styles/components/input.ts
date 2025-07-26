@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Input = styled.input`
-    padding: 16px 16px;
+    padding: 12px 16px;
     border-radius: 12px;
     background-color: ${({theme}) => theme.Colors.Solid.White};
     border: 1px solid ${({theme}) => theme.Colors.Line.Outline};

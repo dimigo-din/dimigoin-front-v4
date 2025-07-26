@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {theme} from "../styles/theme.ts";
 
@@ -21,7 +21,7 @@ const Container = styled.div`
 
 const TabButton = styled.button<{ isActive: boolean, fontSize: "Display" | "Title" | "Headline" | "Body" | "Callout" | "Footnote" | "Caption" | "Paragraph_Large" | "Paragraph_Small" }>`
   flex: 1;
-  padding: 14px 0;
+  padding: 12px 0;
   border: none;
   border-radius: 10px;
   background-color: ${({isActive}) => (isActive ? theme.Colors.Components.Translucent.Secondary : theme.Colors.Solid.White)};
@@ -33,13 +33,18 @@ const TabButton = styled.button<{ isActive: boolean, fontSize: "Display" | "Titl
   transition: all 0.2s ease;
 `;
 
-const SegmentedTabs: React.FC<SegmentedTabsProps> = ({ tabs, defaultIndex = 0, onChange, fontSize = "Headline"}) => {
+const SegmentedTabs: React.FC<SegmentedTabsProps> = ({ tabs, defaultIndex = 0, onChange, fontSize = "Headline", force = null }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(defaultIndex);
 
   const handleClick = (index: number) => {
     setSelectedIndex(index);
     onChange?.(index, tabs[index]);
   };
+
+  useEffect(() => {
+    if (force)
+      setSelectedIndex(force)
+  }, [force]);
 
   return (
     <Container>
