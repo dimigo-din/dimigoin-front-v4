@@ -4,6 +4,7 @@ import ContentWrapper from "../../components/Content";
 import SegmentedTabs from "../../components/SegmentedTabs";
 
 import StaySection from "./section/Stay";
+import OutingSection from "./section/Outing.tsx";
 
 function StayPage() {
   const tabs = ["잔류", "외출", "금귀"];
@@ -19,7 +20,7 @@ function StayPage() {
         onChange={(_, label) => handleTabChange(label)}
       />
       {activeTab === "잔류" && <StaySection/>}
-      {/*{activeTab === "잔류" && <StaySection />}*/}
+      {activeTab === "외출" && <OutingSection />}
     </ContentWrapper>
   );
 }

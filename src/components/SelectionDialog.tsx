@@ -57,7 +57,7 @@ const slideDown = keyframes`
 
 const Dialog = styled.div<{ isclosing: string }>`
   height: fit-content;
-  background-color: ${(props) => props.theme.Colors.Background.Standard.Primary};
+  background-color: ${({theme}) => theme.Colors.Background.Standard.Primary};
   border-radius: 32px 32px 0 0;
 
   display: flex;
@@ -79,7 +79,7 @@ const Handle = styled.div`
     height: 100%;
     width: 40%;
 
-    background-color: ${(props) => props.theme.Colors.Components.Translucent.Primary};
+    background-color: ${({theme}) => theme.Colors.Components.Translucent.Primary};
     border-radius: 32px;
 
     margin: auto;
@@ -91,7 +91,7 @@ const ChildrenWrapper = styled.div`
   width: 100%;
 `;
 
-function SelectionDialog({ isOpen, closeAction = () => {}, onOpen = () => {}, children }: { isOpen: boolean, closeAction: () => void | undefined, onOpen: () => void | undefined, children: React.ReactNode }) {
+function SelectionDialog({ isOpen, closeAction = () => {}, onOpen = () => {}, children }: { isOpen: boolean, closeAction: () => void | undefined, onOpen?: () => void | undefined, children: React.ReactNode }) {
   const [isClosing, setIsClosing] = React.useState(false);
 
   const isFirstRender = React.useRef(true);
@@ -120,7 +120,7 @@ function SelectionDialog({ isOpen, closeAction = () => {}, onOpen = () => {}, ch
     <DialogBox isclosing={isClosing.toString()}
                      onClick={() => closeAction()}
                      onAnimationEnd={handleAnimationEnd}>
-      <Dialog isclosing={isClosing.toString()} onAnimationEnd={() => { if (isOpen) onOpen() }}>
+      <Dialog isclosing={isClosing.toString()} onAnimationEnd={() => { if (isOpen) onOpen() }} onClick={(e) => {e.preventDefault(); e.stopPropagation();}}>
         <Handle><span>&nbsp;</span></Handle>
         <ChildrenWrapper>
           {children}

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Input = styled.input`
-    width: 100%;
     padding: 16px 16px;
     border-radius: 12px;
     background-color: ${({theme}) => theme.Colors.Solid.White};
@@ -19,7 +18,7 @@ export const Input = styled.input`
         font-weight: ${({theme}) => theme.Font.Paragraph_Large.weight.regular};
     }
     &:focus {
-        border-color: ${({theme}) => theme.Colors.Line.Outline};
+        border-color: ${({theme}) => theme.Colors.Core.Brand.Primary};
         outline: none;
     }
 `;

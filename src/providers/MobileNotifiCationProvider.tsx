@@ -69,22 +69,22 @@ const Notification = styled.div<{ leaving?: boolean }>`
 
   width: fit-content;
   margin: 0 auto;
-  background-color: ${(props) => props.theme.Colors.Background.Standard.Primary};
+  background-color: ${({theme}) => theme.Colors.Background.Standard.Primary};
 
-  border: 1px solid ${(props) => props.theme.Colors.Line.Outline};
+  border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
   border-radius: 32px;
   padding: 12px 16px;
   overflow: hidden;
   max-height: 200px; /* enough to fit one‑line or multi‑line toast */
   transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease, padding 0.3s ease;
-  font-size: ${(props) => props.theme.Font.Callout.size};
+  font-size: ${({theme}) => theme.Font.Callout.size};
   white-space: pre-line;
   text-align: center;
 
   animation: ${slideDown} 0.3s ease;
 
-  ${(props) =>
-    props.leaving &&
+  ${({leaving}) =>
+    leaving &&
     css`
       animation: ${slideUpFadeOut} 0.3s ease forwards;
       max-height: 0;

@@ -9,10 +9,11 @@ import Loading from "../../../components/Loading.tsx";
 
 import {genTable, isInRange} from "../../../utils/staySeatUtil.ts";
 import {useNotification} from "../../../providers/MobileNotifiCationProvider.tsx";
+import Divider from "../../../components/Divider.tsx";
 
 const StayKind = styled.div`
-  font-size: ${(props) => props.theme.Font.Body.size};
-  color: ${(props) => props.theme.Colors.Content.Standard.Secondary};
+  font-size: ${({theme}) => theme.Font.Body.size};
+  color: ${({theme}) => theme.Colors.Content.Standard.Secondary};
   
   > span {
     color: ${({theme}) => theme.Colors.Core.Brand.Primary};
@@ -27,17 +28,7 @@ const NoStay = styled.div`
   justify-content: space-around;
   align-items: center;
   
-  font-size: ${(props) => props.theme.Font.Headline.size};
-`;
-
-const Divider = styled.div`
-  height: 4px;
-  width: calc(100% - 16px);
-  margin: 8px;
-  
-  border-radius: 2px;
-  
-  background-color: ${(props) => props.theme.Colors.Line.Divider};
+  font-size: ${({theme}) => theme.Font.Headline.size};
 `;
 
 const SeatSelect = styled.div`
@@ -75,10 +66,10 @@ const SeatRow = styled.div<{seat: string | null}>`
     
     width: 7vh;
     
-    padding: 12px 18px;
+    padding: 12px 0;
     margin: 8px;
     
-    background-color: ${(props) => props.theme.Colors.Background.Standard.Secondary};
+    background-color: ${({theme}) => theme.Colors.Background.Standard.Secondary};
     border-radius: 8px;
     
     text-align: center;
@@ -88,14 +79,19 @@ const SeatRow = styled.div<{seat: string | null}>`
     filter: blur(1.2px) brightness(90%);
   }
   
-  > span:active {
-    background-color: ${(props) => props.theme.Colors.Components.Interaction.Pressed};
+  > span.taken {
+    color: white;
+    background-color: ${({theme}) => theme.Colors.Solid.Black};
   }
   
-  > span#${(props) => props.seat} {
+  > span:active {
+    background-color: ${({theme}) => theme.Colors.Components.Interaction.Pressed};
+  }
+  
+  > span#${({seat}) => seat} {
     color: white;
     
-    background-color: ${(props) => props.theme.Colors.Core.Brand.Primary};
+    background-color: ${({theme}) => theme.Colors.Core.Brand.Primary};
   }
 `;
 
@@ -124,6 +120,7 @@ function StaySection() {
       }else {
         setMyApply(null);
         setTargetSeat(null);
+        setNoSeatReason(null);
       }
     });
   }
@@ -175,26 +172,30 @@ function StaySection() {
       </Section>
       {targetSeat ? null : (
         <Section label="좌석 미선택 사유">
-          <Input placeholder="좌석 미선택 사유 입력" onKeyUp={(e) => setNoSeatReason((e.target as HTMLInputElement).value)}/>
+          <Input placeholder="좌석 미선택 사유 입력" onInput={(e) => setNoSeatReason((e.target as HTMLInputElement).value)}/>
         </Section>
       )}
 
       <Button onClick={() => submit()}>{myApply ? "잔류 신청 취소" : "잔류 신청"}</Button>
 
       <SelectionDialog isOpen={seatSelectOpen} closeAction={() => setSeatSelectOpen(false)}>
-        <Button style={{ margin: "8px", width: "calc(100% - 16px)" }} onClick={() => setTargetSeat(null)}>미선택</Button>
-        <Divider>&nbsp;</Divider>
+        <Button style={{ margin: "8px", width: "calc(100% - 16px)" }} onClick={() => {setTargetSeat(null);setSeatSelectOpen(false);}}>미선택</Button>
+        <Divider />
         <SeatBox>
           {genTable().map((row) => (
             <SeatRow seat={targetSeat}>
-              {row.map((seat) => { const isActive = stay?.stay_seat_preset.stay_seat.some((target) => isInRange(target.range.split(":"), seat) && target.target === `${localStorage.getItem("grade")}_${localStorage.getItem("gender")}`); return (
-                <span
-                  id={seat}
-                  className={[isActive ? "active" : "inactive", stay?.stay_apply.some((sapply) => sapply.stay_seat === seat) ? "taken" : "notTaken"].join(" ")}
-                  onClick={isActive ? () => setTargetSeat(seat) : (e) => {e.preventDefault();e.stopPropagation()}}>
-                  {seat}
-                </span>)}
-              )}
+              {row.map((seat) => {
+                const isActive = stay?.stay_seat_preset.stay_seat.some((target) => isInRange(target.range.split(":"), seat) && target.target === `${localStorage.getItem("grade")}_${localStorage.getItem("gender")}`);
+                const taken = stay?.stay_apply.find((sapply) => sapply.stay_seat === seat);
+                return (
+                  <span
+                    id={seat}
+                    className={[isActive ? "active" : "inactive", taken && taken.user.id !== localStorage.getItem("id") ? "taken" : "notTaken"].join(" ")}
+                    onClick={isActive ? () => {setTargetSeat(seat);setSeatSelectOpen(false);} : (e) => {e.preventDefault();e.stopPropagation()}}>
+                    {taken && taken.user.id !== localStorage.getItem("id") ? taken.user.name.replace(/[0-9]/g, "") : seat}
+                  </span>
+                )
+              })}
             </SeatRow>
           ))}
         </SeatBox>

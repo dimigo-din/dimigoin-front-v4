@@ -38,23 +38,25 @@ export type StayApply = {
   id: string,
   stay_seat: string,
   stay: Stay,
-  outing: {
-    id: string,
-    reason: string,
-    breakfast_cancel: boolean,
-    lunch_cancel: boolean,
-    dinner_cancel: boolean,
-    from: string,
-    to: string,
-    approved: boolean,
-    audit_reason: string,
-  }[],
+  outing: Outing[],
   user: {
     id: string,
     email: string,
     name: string,
     permission: string,
   }
+}
+
+export type Outing = {
+  id: string,
+  reason: string,
+  breakfast_cancel: boolean,
+  lunch_cancel: boolean,
+  dinner_cancel: boolean,
+  from: string,
+  to: string,
+  approved: boolean,
+  audit_reason: string,
 }
 
 export async function getStays(): Promise<Stay[]> {
@@ -91,4 +93,19 @@ export async function editStayApply(target: string, seat: string, ...outing: {
 
 export async function deleteStayApply(target: string): Promise<StayApply> {
   return (await client.delete("/stay/apply?id=" + target)).data;
+}
+
+export async function getStayOuting(stay_id: string): Promise<Outing[]> {
+  return (await client.get("/stay/outing?id=" + stay_id)).data;
+}
+
+export async function addStayOuting(apply_id: string, reason: string, from: string, to: string, breakfast_cancel: boolean, lunch_cancel: boolean, dinner_cancel: boolean): Promise<Outing> {
+  return (await client.post("/stay/outing", {apply_id: apply_id, outing: { reason: reason, from: from, to: to, breakfast_cancel: breakfast_cancel, lunch_cancel: lunch_cancel, dinner_cancel: dinner_cancel }})).data;
+}
+export async function editStayOuting(outing_id: string, reason: string, from: string, to: string, breakfast_cancel: boolean, lunch_cancel: boolean, dinner_cancel: boolean): Promise<Outing> {
+  return (await client.patch("/stay/outing", {outing_id: outing_id, outing: { reason: reason, from: from, to: to, breakfast_cancel: breakfast_cancel, lunch_cancel: lunch_cancel, dinner_cancel: dinner_cancel }})).data;
+}
+
+export async function deleteStayOuting(outing_id: string) {
+  return (await client.delete("/stay/outing?id=" + outing_id)).data;
 }

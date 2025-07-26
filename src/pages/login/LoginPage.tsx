@@ -33,8 +33,8 @@ const Title = styled.div`
 
   gap: 8px;
 
-  font-size: ${(props) => props.theme.Font.Title.size};
-  font-weight: ${(props) => props.theme.Font.Title.weight.strong};
+  font-size: ${({theme}) => theme.Font.Title.size};
+  font-weight: ${({theme}) => theme.Font.Title.weight.strong};
 `;
 
 const LoginButton = styled.button`
@@ -49,7 +49,7 @@ const LoginButton = styled.button`
   width: 80%;
   margin: auto;
 
-  background-color: ${(props) => props.theme.Colors.Components.Translucent.Secondary};
+  background-color: ${({theme}) => theme.Colors.Components.Translucent.Secondary};
   padding: 16px 12px;
   border-radius: 16px;
 
@@ -58,11 +58,11 @@ const LoginButton = styled.button`
   }
 
   &:active {
-    background-color: ${(props) => props.theme.Colors.Components.Translucent.Tertiary};
+    background-color: ${({theme}) => theme.Colors.Components.Translucent.Tertiary};
   }
 
   &:disabled {
-    background-color: ${(props) => props.theme.Colors.Components.Translucent.Tertiary};
+    background-color: ${({theme}) => theme.Colors.Components.Translucent.Tertiary};
     cursor: not-allowed;
   }
 `;
