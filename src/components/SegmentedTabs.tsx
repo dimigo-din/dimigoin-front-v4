@@ -33,7 +33,7 @@ const TabButton = styled.button<{ isActive: boolean, fontSize: "Display" | "Titl
   transition: all 0.2s ease;
 `;
 
-const SegmentedTabs: React.FC<SegmentedTabsProps> = ({ tabs, defaultIndex = 0, onChange, fontSize = "Headline", force = null }) => {
+const SegmentedTabs: React.FC<SegmentedTabsProps & { force?: number | null }> = ({ tabs, defaultIndex = 0, onChange, fontSize = "Headline", force = null}) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(defaultIndex);
 
   const handleClick = (index: number) => {

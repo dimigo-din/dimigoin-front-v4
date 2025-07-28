@@ -45,6 +45,7 @@ function FrigoSection() {
       if (isSubmitting) return showToast("이미 신청중입니다. 잠시만 기다려주세요.", "warning");
       if (!reason) return showToast("금요귀가 신청 사유를 입력해주세요.", "warning");
       setIsSubmitting(true);
+      // @ts-ignore
       applyFrigo(frigoTiming[selectedFrigoTimeing], reason).then(() => {
         showToast("금요귀가가 신청되었습니다.", "info");
         updateScreen();

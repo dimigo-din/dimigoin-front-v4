@@ -15,7 +15,7 @@ import {Button, LightButton} from "../../../styles/components/button.ts";
 import Section from "../../../components/Section.tsx";
 import {Input} from "../../../styles/components/input.ts";
 
-import CheckBoxOn from "../../../assets/icons/check_box_checked.svg?react"
+import CheckBoxOn from "../../../assets/icons/checkbox/check_box_checked.svg?react"
 import {generateDateList} from "../../../utils/extarctBetweenDay.ts";
 
 const OutingWrapper = styled.div`
@@ -273,7 +273,7 @@ function OutingSection() {
     }
   }
 
-  const deleteOuting = (target) => {
+  const deleteOuting = (target: string) => {
     if (isSubmitting) return showToast("이미 신청중입니다. 잠시만 기다려주세요.", "warning");
     setIsSubmitting(true);
 
@@ -373,7 +373,7 @@ function OutingSection() {
                 </CheckBox>
               </InputRow>
             </Section>
-            {currentApply?.stay.outing_day.includes(activeOutingDay) ? (
+            {currentApply?.stay.outing_day.includes(activeOutingDay as string) ? (
               <Button type={"normal"} onClick={() => {
                 setOutingStart("10:20");
                 setOutingEnd("14:00");
@@ -390,7 +390,7 @@ function OutingSection() {
         <SelectionDialog isOpen={openIsEditOrDeleteAddDialog} closeAction={() => setOpenIsEditOrDeleteAddDialog(false)}>
           <InputRow style={{ padding: "12px" }}>
             <Button type={"normal"}  width={"49%"} onClick={() => { setEditTarget(editOrDeleteTarget); setEditOrDeleteTarget(null); setOpenOutingAddDialog(true); setOpenIsEditOrDeleteAddDialog(false);}}>수정하기</Button>
-            <LightButton type={"danger"}  width={"49%"} onClick={() => { deleteOuting(editOrDeleteTarget); setEditOrDeleteTarget(null); setOpenIsEditOrDeleteAddDialog(false); }}>삭제하기</LightButton>
+            <LightButton type={"danger"}  width={"49%"} onClick={() => { deleteOuting(editOrDeleteTarget!); setEditOrDeleteTarget(null); setOpenIsEditOrDeleteAddDialog(false); }}>삭제하기</LightButton>
           </InputRow>
         </SelectionDialog>
       </>

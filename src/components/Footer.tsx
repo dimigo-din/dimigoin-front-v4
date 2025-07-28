@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import {useLocation, useNavigate} from "react-router-dom";
 
-import Home from "../assets/icons/home.svg?react";
-import Office from "../assets/icons/office.svg?react";
-import Music from "../assets/icons/music.svg?react";
-import Washer from "../assets/icons/washer.svg?react";
-import Others from "../assets/icons/others.svg?react";
+import Home from "../assets/icons/menu/home.svg?react";
+import Office from "../assets/icons/menu/office.svg?react";
+import Music from "../assets/icons/menu/music.svg?react";
+import Washer from "../assets/icons/menu/washer.svg?react";
+import Others from "../assets/icons/menu/others.svg?react";
 
 const FooterWrapper = styled.footer`
   height: 84px;
