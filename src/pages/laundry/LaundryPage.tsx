@@ -94,7 +94,7 @@ function LaundryPage() {
     });
   }
 
-  const addApply = (time_id) => {
+  const addApply = (time_id: string) => {
     if (isSubmitting) return showToast("이미 신청중입니다. 잠시만 기다려주세요.", "warning");
     setIsSubmitting(true);
 
