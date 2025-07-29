@@ -32,7 +32,8 @@ const DialogBox = styled.div<{ isclosing: string }>`
   display: flex;
   flex-direction: column;
   justify-content: end;
-
+  
+  backdrop-filter: ${({isclosing}) => isclosing === "true" ? "brightness(90%)" : "brightness(100%)"};
   ${({ isclosing }) => css`
     animation: ${isclosing === "true" ? brighten : darken} 0.3s ease forwards;
   `}

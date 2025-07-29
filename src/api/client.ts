@@ -5,7 +5,8 @@ let instance: AxiosInstance;
 export function getInstance(): AxiosInstance {
   if (!instance) {
     instance = axios.create({
-      baseURL: 'https://api.dimigo.site',
+      baseURL: 'http://localhost:3000',
+      // baseURL: 'https://api.dimigo.site',
       timeout: 5000,
       withCredentials: true,
     });

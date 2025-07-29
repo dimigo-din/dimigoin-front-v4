@@ -5,7 +5,7 @@ const client = getInstance();
 export type Frigo = {
   id: string;
   week: string;
-  timing: string;
+  timing: "afterschool" | "dinner" | "after_1st_study" | "after_2nd_study";
   reason: string;
   audit_reason: string;
   approved: boolean;

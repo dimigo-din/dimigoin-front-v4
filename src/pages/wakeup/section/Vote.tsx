@@ -100,7 +100,7 @@ function VoteSection() {
   const [musics, setMusics] = useState<WakeupApplicationWithVote[] | null>(null);
   const [myVote, setMyVote] = useState<WakeupApplicationVotes[] | null>(null);
 
-  const [isSubmiting, setIsSubmiting] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const updateScreen = () => {
     getWakeupApplications().then((data) => {
@@ -121,8 +121,8 @@ function VoteSection() {
   }, []);
 
   const vote = (id: string, upVote: boolean) => {
-    if (isSubmiting) return showToast("이미 투표중입니다. 잠시만 기다려주세요.", "warning");
-    setIsSubmiting(true);
+    if (isSubmitting) return showToast("이미 투표중입니다. 잠시만 기다려주세요.", "warning");
+    setIsSubmitting(true);
 
     voteWakeupApplication(id, upVote).then(() => {
       showToast("투표에 성공하였습니다.", "info");
@@ -130,13 +130,13 @@ function VoteSection() {
     }).catch((e) => {
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     }).finally(() => {
-      setIsSubmiting(false);
+      setIsSubmitting(false);
     });
   }
 
   const unVote = (id: string) => {
-    if (isSubmiting) return showToast("이미 삭제중입니다. 잠시만 기다려주세요.", "warning");
-    setIsSubmiting(true);
+    if (isSubmitting) return showToast("이미 삭제중입니다. 잠시만 기다려주세요.", "warning");
+    setIsSubmitting(true);
 
     unVoteWakeupApplication(id).then(() => {
       showToast("투표 취소에 성공하였습니다.", "info");
@@ -144,11 +144,11 @@ function VoteSection() {
     }).catch((e) => {
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     }).finally(() => {
-      setIsSubmiting(false);
+      setIsSubmitting(false);
     });
   }
 
-  if (musics === null || myVote === null || isSubmiting) return Loading();
+  if (musics === null || myVote === null || isSubmitting) return Loading();
 
   return (
     <>

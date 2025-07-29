@@ -63,7 +63,7 @@ function ApplySection() {
   const [searchResults, setSearchResults] = useState<YoutubeSearchResult>();
 
   const [isSearching, setIsSearching] = useState<boolean>(false);
-  const [isSubmiting, setIsSubmiting] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const [openAreYouSure, setOpenAreYouSure] = useState<boolean>(false);
 
@@ -82,19 +82,19 @@ function ApplySection() {
   }
 
   const apply = (videoId: string) => {
-    if (isSubmiting) return showToast("이미 신청중입니다. 잠시만 기다려주세요.", "warning");
-    setIsSubmiting(true);
+    if (isSubmitting) return showToast("이미 신청중입니다. 잠시만 기다려주세요.", "warning");
+    setIsSubmitting(true);
 
     applyWakeupSong(videoId).then(() => {
       showToast("신청되었습니다.", "info")
     }).catch((e) => {
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     }).finally(() => {
-      setIsSubmiting(false);
+      setIsSubmitting(false);
     });
   }
 
-  if (isSubmiting || isSearching) return Loading();
+  if (isSubmitting || isSearching) return Loading();
 
   return (
     <>
