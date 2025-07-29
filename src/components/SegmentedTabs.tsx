@@ -12,7 +12,7 @@ type SegmentedTabsProps = {
 const Container = styled.div`
   display: flex;
   background-color: ${({theme}) => theme.Colors.Background.Standard.Primary};
-  border-radius: 12px;
+  border-radius: 24px;
   padding: 6px;
   gap: 4px;
 
@@ -21,9 +21,9 @@ const Container = styled.div`
 
 const TabButton = styled.button<{ isActive: boolean, fontSize: "Display" | "Title" | "Headline" | "Body" | "Callout" | "Footnote" | "Caption" | "Paragraph_Large" | "Paragraph_Small" }>`
   flex: 1;
-  padding: 12px 0;
+  padding: 8px 0;
   border: none;
-  border-radius: 10px;
+  border-radius: 22px;
   background-color: ${({isActive}) => (isActive ? theme.Colors.Components.Translucent.Secondary : theme.Colors.Solid.White)};
   color: ${({isActive, theme}) =>
     isActive ? theme.Colors.Content.Standard.Primary : theme.Colors.Content.Standard.Secondary};
@@ -33,7 +33,7 @@ const TabButton = styled.button<{ isActive: boolean, fontSize: "Display" | "Titl
   transition: all 0.2s ease;
 `;
 
-const SegmentedTabs: React.FC<SegmentedTabsProps & { force?: number | null }> = ({ tabs, defaultIndex = 0, onChange, fontSize = "Headline", force = null}) => {
+const SegmentedTabs: React.FC<SegmentedTabsProps & { force?: number | null, second?: boolean }> = ({ tabs, defaultIndex = 0, onChange, fontSize = "Body", force = null, second = false}) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(defaultIndex);
 
   const handleClick = (index: number) => {
@@ -47,7 +47,7 @@ const SegmentedTabs: React.FC<SegmentedTabsProps & { force?: number | null }> = 
   }, [force]);
 
   return (
-    <Container>
+    <Container style={{marginTop: second ? "-16px" : "0px"}}>
       {tabs.map((label, index) => (
         <TabButton
           key={label}

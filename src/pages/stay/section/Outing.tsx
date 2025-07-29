@@ -296,6 +296,7 @@ function OutingSection() {
             tabs={outingDays}
             onChange={(_, label) => handleTabChange(label)}
             fontSize={"Body"}
+            second={true}
         />
 
         <OutingWrapper>
