@@ -110,7 +110,15 @@ function HomePage() {
   const [applies, setApplies] = useState<Applies | null>(null);
   const [outing, setOuting] = useState<Outing>();
 
-  const [timetable, setTimetable] = useState<{content: string, temp: boolean}[][]>();
+  const [timetable, setTimetable] = useState<{content: string, temp: boolean}[][]>([
+    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}],
+    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}],
+    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}],
+    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}],
+    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}],
+    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}],
+    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}]
+  ]);
 
   const updateScreen = () => {
     getApplies().then((data) => {
