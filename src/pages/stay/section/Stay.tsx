@@ -158,7 +158,7 @@ function StaySection() {
     }
   }
 
-  if (stayList!.length === 0) return (<NoStay>활성화된 잔류가 없습니다.</NoStay>);
+  if (stayList && stayList.length === 0) return (<NoStay>활성화된 잔류가 없습니다.</NoStay>);
 
   return (
     <>
