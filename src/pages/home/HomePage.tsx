@@ -180,7 +180,7 @@ function HomePage() {
               const classes = ["1", "2", "3", "4", "5", "6","7"];
               return (
                 <tr className={[i === 6 ? "end" : ""].join(" ")}>
-                  {[classes[i], ...times].map((time, j) => {
+                  {[classes[i], ...times].map((time) => {
                     return typeof time === "string" ? (
                       <td className={"indicator"}>{time}</td>
                       ) : (
