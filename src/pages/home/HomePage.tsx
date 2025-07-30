@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {type Applies, getApplies} from "../../api/user.ts";
+import {type Applies, getApplies, getTimetables} from "../../api/user.ts";
 import {useEffect, useState} from "react";
 import {useNotification} from "../../providers/MobileNotifiCationProvider.tsx";
 import type {Outing} from "../../api/stay.ts";
@@ -62,16 +62,73 @@ const ApplyContent = styled.div`
   }
 `;
 
+const TimelineWrapper = styled.table`
+  background-color: ${({theme}) => theme.Colors.Background.Standard.Tertiary};
+  
+  border-collapse: collapse;
+  border-radius: 12px;
+  
+  padding: 6px;
+  margin-top: 4%;
+
+  tr {
+    border-bottom: 1px solid ${({theme}) => theme.Colors.Line.Divider};
+    > td {
+      text-align: center;
+    }
+  }
+  tr.end {
+    border: none !important;
+  }
+  thead > tr > td { height: 4svh }
+  tbody {
+    tr {
+      height: 5svh;
+      > td.target {
+        height: 100%;
+        width: calc(88% / 5);
+
+        text-align: center;
+      }
+    }
+  }
+  td.indicator {
+    color: ${({theme}) => theme.Colors.Content.Standard.Tertiary};
+    border-right: 1px solid ${({theme}) => theme.Colors.Line.Divider};
+  }
+  td.days {
+    color: ${({theme}) => theme.Colors.Core.Brand.Primary}
+  }
+  td.temp {
+    background-color: ${({theme}) => theme.Colors.Solid.Translucent.Yellow};
+  }
+`;
+
 function HomePage() {
   const {showToast} = useNotification();
 
   const [applies, setApplies] = useState<Applies | null>(null);
   const [outing, setOuting] = useState<Outing>();
 
+  const [timetable, setTimetable] = useState<{content: string, temp: boolean}[][]>();
+
   const updateScreen = () => {
     getApplies().then((data) => {
       setApplies(data);
       setOuting(data.stayApply.outing.sort((a, b) => (new Date(a.from)).getTime() - (new Date(b.from)).getTime())[0])
+    }).catch((e) => {
+      showToast(e.response.data.error.message || e.response.data.error, "danger");
+    });
+
+    getTimetables(localStorage.getItem("grade")!, localStorage.getItem("class")!).then((data) => {
+      const col: {content: string, temp: boolean}[][] = [];
+      data.forEach((d) => {
+        d.forEach((d2, i) => {
+          if (col.length === i) col.push([]);
+          col[i].push(d2);
+        });
+      });
+      setTimetable(col);
     }).catch((e) => {
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     });
@@ -103,6 +160,38 @@ function HomePage() {
             <p>{applies?.laundryApply ? applies?.laundryApply.laundryTime.time : "없음"}</p>
           </ApplyContent>
         </ApplyWrapper>
+      </CardBox>
+      <CardBox>
+        <div className="label">시간표 &nbsp; {localStorage.getItem("grade")!}학년 {localStorage.getItem("class")!}반</div>
+        <TimelineWrapper>
+          <thead>
+            <tr>
+              {["", "월", "화", "수", "목", "금"].map((d) => {
+                return (
+                  <td className={[d === "" ? "indicator" : "", "days"].join(" ")}>{d}</td>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {timetable?.map((times, i) => {
+              if (i === 7) return;
+
+              const classes = ["1", "2", "3", "4", "5", "6","7"];
+              return (
+                <tr className={[i === 6 ? "end" : ""].join(" ")}>
+                  {[classes[i], ...times].map((time, j) => {
+                    return typeof time === "string" ? (
+                      <td className={"indicator"}>{time}</td>
+                      ) : (
+                      <td className={[time.temp ? "temp" : "", "target"].join(" ")}>{time.content.split("\n")[0]}</td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </TimelineWrapper>
       </CardBox>
     </CardBoxWrapper>
   );
