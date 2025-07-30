@@ -38,6 +38,7 @@ const MusicCard = styled.div`
     gap: 8px;
     
     > img {
+      height: 8dvh;
       width: 20vw;
       border-radius: 8px;
     }
