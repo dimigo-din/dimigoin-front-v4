@@ -8,7 +8,7 @@ import {useSearchParams} from "react-router-dom";
 import {useNotification} from "../../providers/MobileNotifiCationProvider.tsx";
 
 const Wrapper = styled.div`
-  height: 100svh;
+  height: 100dvh;
   width: 100%;
 
   display: flex;

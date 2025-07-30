@@ -80,10 +80,10 @@ const TimelineWrapper = styled.table`
   tr.end {
     border: none !important;
   }
-  thead > tr > td { height: 4svh }
+  thead > tr > td { height: 4dvh }
   tbody {
     tr {
-      height: 5svh;
+      height: 5dvh;
       > td.target {
         height: 100%;
         width: calc(88% / 5);
