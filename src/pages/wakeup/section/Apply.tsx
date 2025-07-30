@@ -27,7 +27,7 @@ const MusicCard = styled.div`
   padding: 8px 8px;
 
   > img {
-    width: 20vw;
+    height: 8dvh;
     border-radius: 8px;
   }
 
