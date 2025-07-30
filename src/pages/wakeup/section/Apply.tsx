@@ -94,8 +94,6 @@ function ApplySection() {
     });
   }
 
-  if (isSubmitting || isSearching) return Loading();
-
   return (
     <>
       <form style={{width: "100%"}} onSubmit={(e) => {e.preventDefault();search();}}>
@@ -126,6 +124,7 @@ function ApplySection() {
         </MusicCard>
         <Button type={"danger"} style={{margin: "12px"}} width={"calc(100% - 24px)"} onClick={() => {apply((target && target.id.videoId) || "");setOpenAreYouSure(false);}}>신청하기</Button>
       </SelectionDialog>
+      {(isSubmitting || isSearching) && Loading()}
     </>
   );
 }

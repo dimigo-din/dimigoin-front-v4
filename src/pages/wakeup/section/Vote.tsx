@@ -148,13 +148,11 @@ function VoteSection() {
     });
   }
 
-  if (musics === null || myVote === null || isSubmitting) return Loading();
-
   return (
     <>
       <MusicBox>
-        {musics.sort((a, b) => (b.up - b.down) - (a.up - a.down)).map((music) => {
-          const curVote = myVote.find((vote) => vote.wakeupSongApplication.id === music.id);
+        {musics && musics.sort((a, b) => (b.up - b.down) - (a.up - a.down)).map((music) => {
+          const curVote = myVote ? myVote.find((vote) => vote.wakeupSongApplication.id === music.id) : undefined;
           return (
             <MusicCard>
               <div className="left">
@@ -178,6 +176,7 @@ function VoteSection() {
           );
         })}
       </MusicBox>
+      {(musics === null || myVote === null || isSubmitting) && Loading()}
     </>
   );
 }

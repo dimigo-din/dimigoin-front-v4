@@ -287,7 +287,6 @@ function OutingSection() {
     });
   }
 
-  if (applies === null || outings === null) return Loading();
   if (outingDays.length === 0) return (<NoOuting>외출을 신청할 수 없습니다.</NoOuting>);
 
   return (
@@ -333,7 +332,7 @@ function OutingSection() {
         <SelectionDialog isOpen={openOutingAddDialog} closeAction={() => {setOpenOutingAddDialog(false);setEditTarget(null)}}
                          onOpen={() => {
                            if (editTarget) {
-                             const target: Outing = outings.find((o) => o.id === editTarget)!;
+                             const target: Outing = outings!.find((o) => o.id === editTarget)!;
                              const from = new Date(target.from);
                              const to = new Date(target.to);
                              setOutingStart(`${("0"+from.getHours()).slice(-2)}:${("0"+from.getMinutes()).slice(-2)}`);
@@ -394,6 +393,8 @@ function OutingSection() {
             <LightButton type={"danger"}  width={"49%"} onClick={() => { deleteOuting(editOrDeleteTarget!); setEditOrDeleteTarget(null); setOpenIsEditOrDeleteAddDialog(false); }}>삭제하기</LightButton>
           </InputRow>
         </SelectionDialog>
+
+        {(applies === null || outings === null) && Loading()}
       </>
   )
 }

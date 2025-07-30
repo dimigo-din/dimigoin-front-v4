@@ -158,8 +158,7 @@ function StaySection() {
     }
   }
 
-  if (stayList === null) return Loading();
-  if (stayList.length === 0) return (<NoStay>활성화된 잔류가 없습니다.</NoStay>);
+  if (stayList!.length === 0) return (<NoStay>활성화된 잔류가 없습니다.</NoStay>);
 
   return (
     <>
@@ -200,6 +199,7 @@ function StaySection() {
           ))}
         </SeatBox>
       </SelectionDialog>
+      {stayList === null && Loading()}
     </>
   );
 }
