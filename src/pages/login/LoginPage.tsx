@@ -75,9 +75,15 @@ function LoginPage() {
     const code = searchParams.get("code") as string;
     if (code) {
       showToast("로그인중입니다...", "info");
-      googleLogin(code).then(() => {
+      googleLogin(code).then(({accessToken}) => {
+        const payload = JSON.parse(atob(accessToken.split(".")[1]));
+        localStorage.setItem("id", payload.id);
         getPersonalInformation(prompt("개인정보를 등록할때 입력한 인증번호를 입력해주세요.")!).then((data) => {
           console.log(data);
+          localStorage.setItem("grade", data.grade.toString());
+          localStorage.setItem("class", data.class.toString());
+          localStorage.setItem("number", data.number.toString());
+          localStorage.setItem("gender", data.gender);
 
           showToast("로그인에 성공하였습니다.", "info");
 

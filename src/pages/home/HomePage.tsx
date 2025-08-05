@@ -50,14 +50,14 @@ const ApplyContent = styled.div`
   gap: 6px;
   
   > span {
-    font-size: ${({theme}) => theme.Font.Footnote.size};
-    font-weight: ${({theme}) => theme.Font.Footnote.weight.strong};
+    font-size: ${({theme}) => theme.Font.Callout.size};
+    font-weight: ${({theme}) => theme.Font.Callout.weight.strong};
     color: ${({theme}) => theme.Colors.Content.Standard.Secondary}
   }
   
   > p {
-    font-size: ${({theme}) => theme.Font.Body.size};
-    font-weight: ${({theme}) => theme.Font.Body.weight.regular};
+    font-size: ${({theme}) => theme.Font.Headline.size};
+    font-weight: ${({theme}) => theme.Font.Headline.weight.regular};
     color: ${({theme}) => theme.Colors.Core.Brand.Primary}
   }
 `;
