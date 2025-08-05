@@ -60,7 +60,7 @@ export type Outing = {
 }
 
 export async function getStays(): Promise<Stay[]> {
-  return (await client.get("/stay")).data;
+  return (await client.get("/stay?grade="+localStorage.getItem("grade"))).data;
 }
 
 export async function stayApplies(): Promise<StayApply[]> {
@@ -76,7 +76,7 @@ export async function applyStay(target: string, seat: string, ...outing: {
   from: string,
   to: string
 }[]): Promise<StayApply> {
-  return (await client.post("/stay/apply", {stay: target, stay_seat: seat, outing})).data;
+  return (await client.post("/stay/apply", { stay: target, stay_seat: seat, outing, grade: localStorage.getItem("grade"), gender: localStorage.getItem("gender") })).data;
 }
 
 /** Time foramt: YYYY-MM-DDTHH:mm */
@@ -88,7 +88,7 @@ export async function editStayApply(target: string, seat: string, ...outing: {
   from: string,
   to: string
 }[]): Promise<StayApply> {
-  return (await client.patch("/stay/apply", {stay: target, stay_seat: seat, outing})).data;
+  return (await client.patch("/stay/apply", { stay: target, stay_seat: seat, outing, grade: localStorage.getItem("grade"), gender: localStorage.getItem("gender") })).data;
 }
 
 export async function deleteStayApply(target: string): Promise<StayApply> {

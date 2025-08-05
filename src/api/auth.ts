@@ -1,3 +1,4 @@
+import axios from "axios";
 import {getInstance} from "./client.ts";
 
 const client = getInstance();
@@ -23,4 +24,14 @@ export async function googleLogin(code: string): Promise<{ accessToken: string, 
 
 export async function logout(): Promise<void> {
   await client.get("/logout");
+}
+
+export async function getPersonalInformationVerifyToken() {
+  return (await client.get("/auth/personalInformationVerifyToken")).data;
+}
+
+export async function getPersonalInformation(passcode: string) {
+  const token = await getPersonalInformationVerifyToken();
+  const personalInformation = (await axios.get("https://dimiauth.findflag.kr/personalInformation/my", { headers: { "Authorization": `Bearer ${token}$${passcode}` } }));
+  return personalInformation;
 }

@@ -2,7 +2,7 @@ import SchoolScenery from "../../assets/img/schoolscenery.svg?react";
 import Logo from "../../assets/icons/dimigoin.svg?react";
 import styled from "styled-components";
 import GoogleLogo from "../../assets/icons/google.svg?react";
-import {getRedirectUri, googleLogin} from "../../api/auth.ts";
+import {getPersonalInformation, getRedirectUri, googleLogin} from "../../api/auth.ts";
 import {useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 import {useNotification} from "../../providers/MobileNotifiCationProvider.tsx";
@@ -74,21 +74,28 @@ function LoginPage() {
   useEffect(() => {
     const code = searchParams.get("code") as string;
     if (code) {
-      googleLogin(code).then(({ accessToken }) => {
-        const payload = JSON.parse(atob(accessToken.split(".")[1]));
-        localStorage.setItem("id", payload.id);
-        localStorage.setItem("grade", payload.grade);
-        localStorage.setItem("class", payload.class);
-        localStorage.setItem("number", payload.number);
-        localStorage.setItem("gender", payload.gender);
-        showToast("로그인에 성공하였습니다.", "info");
+      showToast("로그인중입니다...", "info");
+      googleLogin(code).then(() => {
+        getPersonalInformation(prompt("개인정보를 등록할때 입력한 인증번호를 입력해주세요.")!).then((data) => {
+          console.log(data);
 
-        setTimeout(() => {
-          location.href = "/"
-        }, 1000);
+          showToast("로그인에 성공하였습니다.", "info");
+
+          setTimeout(() => {
+            location.href = "/"
+          }, 1000);
+        }).catch((e) => {
+          console.error(e);
+          showToast(e.response.data.error, "danger");
+        });
       }).catch((e) => {
         console.error(e);
-        showToast("로그인에 실패하였습니다.", "danger");
+        showToast(e.response.data.error, "danger");
+
+        if (e.response.data.code === "PersonalInformation_NotRegistered") {
+          showToast("5초후에 개인정보 등록 페이지로 이동합니다.", "info")
+          setTimeout(() => location.href = "https://dimiauth.findflag.kr", 5000);
+        }
       });
     }
   }, []);

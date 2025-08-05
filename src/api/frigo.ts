@@ -21,7 +21,7 @@ export const getFrigo = async (): Promise<Frigo> => {
 }
 
 export const applyFrigo = async (timing: string, reason: string): Promise<Frigo> => {
-  return (await client.post("/frigo", { timing: timing, reason: reason })).data;
+  return (await client.post("/frigo", { timing: timing, reason: reason, grade: localStorage.getItem("grade") })).data;
 }
 
 export const deleteFrigo = async (): Promise<Frigo> => {
