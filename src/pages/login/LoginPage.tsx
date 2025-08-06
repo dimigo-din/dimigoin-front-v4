@@ -92,10 +92,12 @@ function LoginPage() {
           }, 1000);
         }).catch((e) => {
           console.error(e);
+          showToast("로그인에 실패했습니다.", "danger");
           showToast(e.response.data.error, "danger");
         });
       }).catch((e) => {
         console.error(e);
+        showToast("로그인에 실패했습니다.", "danger");
         showToast(e.response.data.error, "danger");
 
         if (e.response.data.code === "PersonalInformation_NotRegistered") {
