@@ -3,9 +3,6 @@ import {createGlobalStyle} from "styled-components";
 const GlobalStyle = createGlobalStyle`
   @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
-  :root {
-    color-scheme: light !important;
-  }
   *, *::before, *::after {
     box-sizing: border-box;
     list-style: none;
