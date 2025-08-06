@@ -122,6 +122,8 @@ function StaySection() {
         setTargetSeat(null);
         setNoSeatReason(null);
       }
+    }).catch((e) => {
+      showToast(e.response.data.error, "danger");
     });
   }
 
