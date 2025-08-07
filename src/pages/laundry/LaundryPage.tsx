@@ -46,7 +46,7 @@ const TargetCard = styled.div<{apply?: "me" | "other"}>`
   font-size: ${({theme}) => theme.Font.Callout.size};
   
   
-  color: ${({theme, apply}) => apply ? theme.Colors.Solid.White : theme.Colors.Solid.Black};
+  color: ${({theme, apply}) => apply ? theme.Colors.Solid.White : theme.Colors.Content.Primary};
   background-color: ${({theme, apply}) => 
     apply === "me" ? theme.Colors.Core.Brand.Primary :
     apply === "other" ? theme.Colors.Solid.Black :
