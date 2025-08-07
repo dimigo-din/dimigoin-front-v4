@@ -69,7 +69,7 @@ const Notification = styled.div<{ leaving?: boolean }>`
 
   width: fit-content;
   margin: 0 auto;
-  background-color: ${({theme}) => theme.Colors.Background.Standard.Primary};
+  background-color: ${({theme}) => theme.Colors.Background.Primary};
 
   border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
   border-radius: 32px;

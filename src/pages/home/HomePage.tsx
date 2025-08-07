@@ -20,7 +20,7 @@ const CardBox = styled.div`
   
   width: 100%;
   
-  background-color: ${({theme}) => theme.Colors.Background.Standard.Primary};
+  background-color: ${({theme}) => theme.Colors.Background.Primary};
   border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
   border-radius: 16px;
   
@@ -28,7 +28,7 @@ const CardBox = styled.div`
   
   > div.label {
     font-size: ${({theme}) => theme.Font.Footnote.size};
-    color: ${({theme}) => theme.Colors.Content.Standard.Secondary}
+    color: ${({theme}) => theme.Colors.Content.Secondary}
   }
 `;
 
@@ -52,7 +52,7 @@ const ApplyContent = styled.div`
   > span {
     font-size: ${({theme}) => theme.Font.Callout.size};
     font-weight: ${({theme}) => theme.Font.Callout.weight.strong};
-    color: ${({theme}) => theme.Colors.Content.Standard.Secondary}
+    color: ${({theme}) => theme.Colors.Content.Secondary}
   }
   
   > p {
@@ -63,7 +63,7 @@ const ApplyContent = styled.div`
 `;
 
 const TimelineWrapper = styled.table`
-  background-color: ${({theme}) => theme.Colors.Background.Standard.Tertiary};
+  background-color: ${({theme}) => theme.Colors.Background.Tertiary};
   
   border-collapse: collapse;
   border-radius: 12px;
@@ -93,7 +93,7 @@ const TimelineWrapper = styled.table`
     }
   }
   td.indicator {
-    color: ${({theme}) => theme.Colors.Content.Standard.Tertiary};
+    color: ${({theme}) => theme.Colors.Content.Tertiary};
     border-right: 1px solid ${({theme}) => theme.Colors.Line.Divider};
   }
   td.days {

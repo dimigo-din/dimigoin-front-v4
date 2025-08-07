@@ -58,7 +58,7 @@ const slideDown = keyframes`
 
 const Dialog = styled.div<{ isclosing: string }>`
   height: fit-content;
-  background-color: ${({theme}) => theme.Colors.Background.Standard.Primary};
+  background-color: ${({theme}) => theme.Colors.Background.Primary};
   border-radius: 32px 32px 0 0;
 
   display: flex;

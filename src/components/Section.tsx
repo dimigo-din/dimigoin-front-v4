@@ -9,7 +9,7 @@ const SectionWrapper = styled.section`
 
 const SectionLabel = styled.p`
     font-size: ${({theme}) => theme.Font.Paragraph_Large.size};
-    color: ${({theme}) => theme.Colors.Content.Standard.Secondary};
+    color: ${({theme}) => theme.Colors.Content.Secondary};
     margin-bottom: 8px;
 `;
 

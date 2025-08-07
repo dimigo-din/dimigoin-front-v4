@@ -61,7 +61,7 @@ const OneLittleOuting = styled.div`
   
   border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
   border-radius: 12px;
-  background-color: ${({theme}) => theme.Colors.Background.Standard.Primary};
+  background-color: ${({theme}) => theme.Colors.Background.Primary};
   
   padding: 16px 16px;
   
@@ -74,12 +74,12 @@ const OneLittleOuting = styled.div`
   > .left {
     > .reason {
       font-size: ${({theme}) => theme.Font.Body.size};
-      color: ${({theme}) => theme.Colors.Content.Standard.Primary};
+      color: ${({theme}) => theme.Colors.Content.Primary};
     }
     
     > time {
       font-size: ${({theme}) => theme.Font.Callout.size};
-      color: ${({theme}) => theme.Colors.Content.Standard.Secondary};
+      color: ${({theme}) => theme.Colors.Content.Secondary};
     }
   }
   
@@ -93,7 +93,7 @@ const OneLittleOuting = styled.div`
     align-items: center;
 
     font-size: ${({theme}) => theme.Font.Footnote.size};
-    color: ${({theme}) => theme.Colors.Content.Standard.Secondary};
+    color: ${({theme}) => theme.Colors.Content.Secondary};
   }
 `;
 
@@ -111,7 +111,7 @@ const OutingAddWrapper = styled.div`
     height: 7vh;
 
     font-size: ${({theme}) => theme.Font.Body.size};
-    color: ${({theme}) => theme.Colors.Content.Standard.Secondary};
+    color: ${({theme}) => theme.Colors.Content.Primary};
   }
 `;
 
@@ -124,7 +124,7 @@ const InputRow = styled.div`
   
   > p {
     font-size: ${({theme}) => theme.Font.Headline.size};
-    color: ${({theme}) => theme.Colors.Content.Standard.Secondary};
+    color: ${({theme}) => theme.Colors.Content.Secondary};
     align-content: center;
   }
 `;
@@ -134,9 +134,8 @@ const CheckBox = styled.div<{ canceled: boolean }>`
   width: 32%;
   
   border-radius: 12px;
-  background-color: ${({theme}) => theme.Colors.Solid.White};
-  border: 1px solid ${({theme, canceled}) => canceled ? theme.Colors.Core.Brand.Primary : theme.Colors.Line.Outline};
-  color: ${({theme}) => theme.Colors.Content.Standard.Primary};
+  border: 1px solid ${({theme, canceled}) => canceled ? theme.Colors.Core.Brand.Primary : theme.Colors.Content.Quaternary};
+  color: ${({theme}) => theme.Colors.Content.Primary};
   font-size: ${({theme}) => theme.Font.Paragraph_Large.size};
   line-height: ${({theme}) => theme.Font.Paragraph_Large.lineHeight};
   font-weight: ${({theme, canceled}) => canceled ? theme.Font.Paragraph_Large.weight.regular : theme.Font.Paragraph_Large.weight.weak};
@@ -148,7 +147,7 @@ const CheckBox = styled.div<{ canceled: boolean }>`
   justify-content: center;
   
   path {
-    fill: ${({theme, canceled}) => canceled ? theme.Colors.Core.Brand.Primary : theme.Colors.Line.Outline};
+    fill: ${({theme, canceled}) => canceled ? theme.Colors.Core.Brand.Primary : theme.Colors.Content.Quaternary};
     transition: fill 0.3s ease;
   }
 `;
@@ -352,7 +351,7 @@ function OutingSection() {
               </InputRow>
             </Section>
             <Section label={"신청 사유"}>
-              <Input onInput={(e) => setOutingReason((e.target as HTMLInputElement).value)} value={outingReason} />
+              <Input onInput={(e) => setOutingReason((e.target as HTMLInputElement).value)} value={outingReason} placeholder={"신청사유를 입력해주세요"} />
             </Section>
             <Section label={"급식 취소"}>
               <InputRow>

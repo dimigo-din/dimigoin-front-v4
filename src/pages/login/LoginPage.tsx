@@ -55,6 +55,7 @@ const LoginButton = styled.button`
 
   p {
     margin: auto 0;
+    color: ${({theme}) => theme.Colors.Content.Primary};
   }
 
   &:active {

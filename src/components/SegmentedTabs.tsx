@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import {theme} from "../styles/theme.ts";
 
 type SegmentedTabsProps = {
   tabs: string[];
@@ -11,7 +10,7 @@ type SegmentedTabsProps = {
 
 const Container = styled.div`
   display: flex;
-  background-color: ${({theme}) => theme.Colors.Background.Standard.Primary};
+  background-color: ${({theme}) => theme.Colors.Background.Primary};
   border-radius: 24px;
   padding: 6px;
   gap: 4px;
@@ -24,9 +23,9 @@ const TabButton = styled.button<{ isActive: boolean, fontSize: "Display" | "Titl
   padding: 8px 0;
   border: none;
   border-radius: 22px;
-  background-color: ${({isActive}) => (isActive ? theme.Colors.Components.Translucent.Secondary : theme.Colors.Solid.White)};
+  background-color: ${({theme, isActive}) => (isActive ? theme.Colors.Background.Secondary : theme.Colors.Background.Primary)};
   color: ${({isActive, theme}) =>
-    isActive ? theme.Colors.Content.Standard.Primary : theme.Colors.Content.Standard.Secondary};
+    isActive ? theme.Colors.Content.Primary : theme.Colors.Content.Secondary};
 
   font-size: ${({theme, fontSize}) => theme.Font[fontSize].size};
   cursor: pointer;

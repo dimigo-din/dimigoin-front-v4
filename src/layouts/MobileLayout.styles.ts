@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  background-color: ${({theme}) => theme.Colors.Background.Standard.Secondary};
+  background-color: ${({theme}) => theme.Colors.Background.Secondary};
 `;
 
 export const Content = styled.main<{ noPadding: boolean }>`

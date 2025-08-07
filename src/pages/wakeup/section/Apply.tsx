@@ -22,7 +22,7 @@ const MusicCard = styled.div`
   border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
   border-radius: 12px;
   
-  background-color: ${({theme}) => theme.Colors.Background.Standard.Primary};
+  background-color: ${({theme}) => theme.Colors.Background.Primary};
   
   padding: 8px 8px;
 
@@ -41,7 +41,7 @@ const MusicCard = styled.div`
     
     > .author {
       font-size: ${({theme}) => theme.Font.Footnote.size};
-      color: ${({theme}) => theme.Colors.Content.Standard.Secondary};
+      color: ${({theme}) => theme.Colors.Content.Secondary};
     }
   }
 `;

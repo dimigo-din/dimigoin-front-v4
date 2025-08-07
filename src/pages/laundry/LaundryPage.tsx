@@ -15,7 +15,7 @@ import SelectionDialog from "../../components/SelectionDialog.tsx";
 
 const MachineKind = styled.div`
   font-size: ${({theme}) => theme.Font.Body.size};
-  color: ${({theme}) => theme.Colors.Content.Standard.Secondary};
+  color: ${({theme}) => theme.Colors.Content.Secondary};
   
   > span {
     color: ${({theme}) => theme.Colors.Core.Brand.Primary};
@@ -50,7 +50,7 @@ const TargetCard = styled.div<{apply?: "me" | "other"}>`
   background-color: ${({theme, apply}) => 
     apply === "me" ? theme.Colors.Core.Brand.Primary :
     apply === "other" ? theme.Colors.Solid.Black :
-      theme.Colors.Background.Standard.Primary
+      theme.Colors.Background.Primary
   };
 `;
 

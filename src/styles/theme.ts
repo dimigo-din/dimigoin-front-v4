@@ -1,6 +1,6 @@
 import type {DefaultTheme} from "styled-components";
 
-export const theme: DefaultTheme = {
+const base = {
   Colors: {
     Background: {
       Standard: {
@@ -10,8 +10,8 @@ export const theme: DefaultTheme = {
       },
       Inverted: {
         Primary: "#000000",
-        Secondary: "#09090a",
-        Tertiary: "#0e0e0f",
+        Secondary: "#0e0e0f",
+        Tertiary: "#131314",
       },
     },
     Content: {
@@ -42,7 +42,7 @@ export const theme: DefaultTheme = {
         Inverted: {
           Primary: "#131314",
           Secondary: "#161617",
-          Teritary: "#1b1b1d",
+          Tertiary: "#1b1b1d",
         },
       },
       Translucent: {
@@ -84,7 +84,7 @@ export const theme: DefaultTheme = {
     Core: {
       Brand: {
         Primary: "#e83c77",
-        Teritary: "#e83c771a",
+        Tertiary: "#e83c771a",
         Secondary: "#e83c7780",
       },
       Status: {
@@ -118,5 +118,39 @@ export const theme: DefaultTheme = {
     Caption: {size: "0.625rem", lineHeight: "14px", weight: {weak: 400, regular: 500, strong: 600}},
     Paragraph_Large: {size: "1rem", lineHeight: "28.8px", weight: {weak: 400, regular: 500, strong: 600}},
     Paragraph_Small: {size: "0.875rem", lineHeight: "24px", weight: {weak: 400, regular: 500, strong: 600}},
+  },
+};
+
+export const lightTheme: DefaultTheme = {
+  ...base,
+  Colors: {
+    Background: base.Colors.Background.Standard,
+    Content:    base.Colors.Content.Standard,
+    Line:       base.Colors.Line,
+    Components: {
+      Fill:        base.Colors.Components.Fill.Standard,
+      Translucent: base.Colors.Components.Translucent,
+      Interaction: base.Colors.Components.Interaction,
+    },
+    Solid:    base.Colors.Solid,
+    Core:     base.Colors.Core,
+    Calendar: base.Colors.Calendar,
+  },
+};
+
+export const darkTheme: DefaultTheme = {
+  ...base,
+  Colors: {
+    Background: base.Colors.Background.Inverted,
+    Content:    base.Colors.Content.Inverted,
+    Line:       base.Colors.Line,
+    Components: {
+      Fill:        base.Colors.Components.Fill.Inverted,
+      Translucent: base.Colors.Components.Translucent,
+      Interaction: base.Colors.Components.Interaction,
+    },
+    Solid:    base.Colors.Solid,
+    Core:     base.Colors.Core,
+    Calendar: base.Colors.Calendar,
   },
 };

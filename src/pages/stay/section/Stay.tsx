@@ -13,7 +13,7 @@ import Divider from "../../../components/Divider.tsx";
 
 const StayKind = styled.div`
   font-size: ${({theme}) => theme.Font.Body.size};
-  color: ${({theme}) => theme.Colors.Content.Standard.Secondary};
+  color: ${({theme}) => theme.Colors.Content.Secondary};
   
   > span {
     color: ${({theme}) => theme.Colors.Core.Brand.Primary};
@@ -69,7 +69,7 @@ const SeatRow = styled.div<{seat: string | null}>`
     padding: 12px 0;
     margin: 8px;
     
-    background-color: ${({theme}) => theme.Colors.Background.Standard.Secondary};
+    background-color: ${({theme}) => theme.Colors.Background.Secondary};
     border-radius: 8px;
     
     text-align: center;

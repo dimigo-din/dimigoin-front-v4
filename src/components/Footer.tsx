@@ -15,7 +15,7 @@ const FooterWrapper = styled.footer`
   justify-content: center;
   font-size: 14px;
   border-radius: 16px 16px 0 0;
-  background-color: ${({theme}) => theme.Colors.Solid.White};
+  background-color: ${({theme}) => theme.Colors.Background.Primary};
   border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
 
   ul {

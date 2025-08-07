@@ -5,30 +5,15 @@ declare module "styled-components" {
   export interface DefaultTheme {
     Colors: {
       Background: {
-        Standard: {
-          Primary: string;
-          Secondary: string;
-          Tertiary: string;
-        };
-        Inverted: {
-          Primary: string;
-          Secondary: string;
-          Tertiary: string;
-        };
+        Primary: string;
+        Secondary: string;
+        Tertiary: string;
       };
       Content: {
-        Standard: {
-          Primary: string;
-          Secondary: string;
-          Tertiary: string;
-          Quaternary: string;
-        };
-        Inverted: {
-          Primary: string;
-          Secondary: string;
-          Tertiary: string;
-          Quaternary: string;
-        };
+        Primary: string;
+        Secondary: string;
+        Tertiary: string;
+        Quaternary: string;
       };
       Line: {
         Divider: string;
@@ -36,16 +21,9 @@ declare module "styled-components" {
       };
       Components: {
         Fill: {
-          Standard: {
-            Primary: string;
-            Secondary: string;
-            Tertiary: string;
-          };
-          Inverted: {
-            Primary: string;
-            Secondary: string;
-            Teritary: string;
-          };
+          Primary: string;
+          Secondary: string;
+          Tertiary: string;
         };
         Translucent: {
           Primary: string;
@@ -87,7 +65,7 @@ declare module "styled-components" {
         Brand: {
           Primary: string;
           Secondary: string;
-          Teritary: string;
+          Tertiary: string;
         };
         Status: {
           Positive: string;

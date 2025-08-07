@@ -30,6 +30,9 @@ const GlobalStyle = createGlobalStyle`
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 
     font-size: clamp(0.5rem, 1.5vh, 1rem);
+    
+    color: ${({theme}) => theme.Colors.Content.Primary};
+    background-color: ${({theme}) => theme.Colors.Background.Tertiary};
   }
 
   a {
