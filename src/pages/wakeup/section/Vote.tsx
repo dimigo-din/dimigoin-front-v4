@@ -73,7 +73,7 @@ const MusicCard = styled.div`
         height: 90%;
 
         path {
-          fill: ${({theme}) => theme.Colors.Components.Translucent.Primary};
+          fill: ${({theme}) => theme.Colors.Content.Tertiary};
         }
       }
       
