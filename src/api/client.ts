@@ -6,7 +6,7 @@ export function getInstance(): AxiosInstance {
   if (!instance) {
     instance = axios.create({
       baseURL: location.host === "dimigoin.io" ? 'https://api.dimigoin.io' : "http://localhost:3000",
-      timeout: 5000,
+      timeout: 30000,
       withCredentials: true,
     });
 
