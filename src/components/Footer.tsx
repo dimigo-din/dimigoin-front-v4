@@ -40,7 +40,7 @@ const MenuItem = styled.li<{ active?: boolean }>`
     fill: ${({active, theme}) =>
       active ? theme.Colors.Core.Brand.Primary : theme.Colors.Core.Brand.Secondary};
     
-    transition: fill 300ms ease;
+    transition: fill 200ms ease;
     
     margin: auto;
   }
