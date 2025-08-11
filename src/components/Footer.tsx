@@ -38,7 +38,9 @@ const MenuItem = styled.li<{ active?: boolean }>`
   svg {
     color: inherit;
     fill: ${({active, theme}) =>
-  active ? theme.Colors.Core.Brand.Primary : theme.Colors.Core.Brand.Secondary};;
+      active ? theme.Colors.Core.Brand.Primary : theme.Colors.Core.Brand.Secondary};
+    
+    transition: fill 300ms ease;
     
     margin: auto;
   }
