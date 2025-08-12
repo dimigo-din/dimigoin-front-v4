@@ -107,7 +107,7 @@ export function MobileNotificationProvider({children}: { children: React.ReactNo
       setTimeout(() => {
         setMessages(prev => prev.filter(m => m.id !== id));
       }, 300);
-    }, 2000);
+    }, 4000);
   };
 
   return (
