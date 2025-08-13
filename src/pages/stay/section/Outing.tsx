@@ -345,9 +345,15 @@ function OutingSection() {
           <OutingAddWrapper>
             <Section label="신청 시간">
               <InputRow>
-                <Input type={"time"} onInput={(e) => setOutingStart((e.target as HTMLInputElement).value)} value={outingStart} />
+                <Input type={"time"}
+                       onInput={(e) => setOutingStart((e.target as HTMLInputElement).value)}
+                       onFocus={(e) => (e.target as HTMLInputElement).showPicker?.()}
+                       value={outingStart} />
                 <p>~</p>
-                <Input type={"time"} onInput={(e) => setOutingEnd((e.target as HTMLInputElement).value)} value={outingEnd} />
+                <Input type={"time"}
+                       onInput={(e) => setOutingEnd((e.target as HTMLInputElement).value)}
+                       onFocus={(e) => (e.target as HTMLInputElement).showPicker?.()}
+                       value={outingEnd} />
               </InputRow>
             </Section>
             <Section label={"신청 사유"}>
