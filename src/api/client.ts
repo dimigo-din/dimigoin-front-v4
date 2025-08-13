@@ -19,7 +19,7 @@ export function getInstance(): AxiosInstance {
           instance.post("/auth/refresh").then(() => {
             resolve(instance(err.config));
           }).catch((e) => {
-            if (e.response.status === 401) {
+            if (e.response.status === 401 || e.response.status === 404) {
               location.href = "/login"
             }
             reject(err);
