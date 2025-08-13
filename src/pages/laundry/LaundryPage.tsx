@@ -68,31 +68,38 @@ function LaundryPage() {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const updateScreen = () => {
-    getLaundryTimeline().then((data) => {
-      setTimeline(data);
+    getLaundryTimeline()
+      .then((data) => {
+        setTimeline(data);
 
-      setMachines([]);
-      data.times.forEach((time) => {
-        const newMachines = time.assigns.filter((m) => time.grade.toString() === localStorage.getItem("grade") && machines.find((m2) => m2.id !== m.id));
-        setMachines(machines.concat(newMachines));
-      });
-      if (data.times.length > 0 && data.times[0].assigns.length > 0 && !currentMachine) {
-        setCurrentMachine(machines[0]);
-      }
+        const myGrade = localStorage.getItem("grade");
+        const map = new Map<string, LaundryMachine>();
+        data.times.forEach((time) => {
+          if (String(time.grade) === myGrade) {
+            time.assigns.forEach((m) => {
+              if (!map.has(m.id)) map.set(m.id, m);
+            });
+          }
+        });
 
-      getLaundryApplies().then((data) => {
+        const list = Array.from(map.values());
+        setMachines(list);
+
+        if (!currentMachine && list.length > 0) {
+          setCurrentMachine(list[0]);
+        }
+
+        return getLaundryApplies();
+      })
+      .then((data) => {
         setApplies(data);
         const my = data.find((d) => d.user.id === localStorage.getItem("id"));
-        if (my) {
-          setCurrentMachine(my.laundryMachine);
-        }
-      }).catch((e) => {
-        showToast(e.response.data.error.message || e.response.data.error, "danger");
+        if (my) setCurrentMachine(my.laundryMachine);
+      })
+      .catch((e) => {
+        showToast(e.response?.data?.error?.message || e.response?.data?.error || String(e), "danger");
       });
-    }).catch((e) => {
-      showToast(e.response.data.error.message || e.response.data.error, "danger");
-    });
-  }
+  };
 
   const addApply = (time_id: string) => {
     if (isSubmitting) return showToast("이미 신청중입니다. 잠시만 기다려주세요.", "warning");
