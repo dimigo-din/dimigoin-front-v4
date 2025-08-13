@@ -77,7 +77,7 @@ function LaundryPage() {
         setMachines(machines.concat(newMachines));
       });
       if (data.times.length > 0 && data.times[0].assigns.length > 0 && !currentMachine) {
-        setCurrentMachine(data.times[0].assigns[0]);
+        setCurrentMachine(machines[0]);
       }
 
       getLaundryApplies().then((data) => {
