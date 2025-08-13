@@ -106,7 +106,7 @@ function LaundryPage() {
     setIsSubmitting(true);
 
     addLaundryApply(time_id, currentMachine!.id).then(() => {
-      showToast("신청되었습니다..", "info");
+      showToast("신청되었습니다.", "info");
       updateScreen();
     }).catch((e) => {
       showToast(e.response.data.error.message || e.response.data.error, "danger");
@@ -120,7 +120,7 @@ function LaundryPage() {
     setIsSubmitting(true);
 
     deleteLaundryApply().then(() => {
-      showToast("신청 취소되었습니다..", "info");
+      showToast("신청 취소되었습니다.", "info");
       updateScreen();
     }).catch((e) => {
       showToast(e.response.data.error.message || e.response.data.error, "danger");
