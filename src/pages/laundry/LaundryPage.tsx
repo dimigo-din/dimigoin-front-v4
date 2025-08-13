@@ -12,6 +12,7 @@ import {
 import Loading from "../../components/Loading.tsx";
 import {useNotification} from "../../providers/MobileNotifiCationProvider.tsx";
 import SelectionDialog from "../../components/SelectionDialog.tsx";
+import SegmentedTabs from "../../components/SegmentedTabs.tsx";
 
 const MachineKind = styled.div`
   font-size: ${({theme}) => theme.Font.Body.size};
@@ -61,6 +62,7 @@ function LaundryPage() {
   const [applies, setApplies] = useState<LaundryApply[] | null>(null);
   const [machines, setMachines] = useState<LaundryMachine[]>([]);
 
+  const [currentType, setCurrentType] = useState<"washer" | "dryer">("washer");
   const [currentMachine, setCurrentMachine] = useState<LaundryMachine>();
 
   const [openMachineSelection, setOpenMachineSelection] = useState<boolean>(false);
@@ -133,8 +135,16 @@ function LaundryPage() {
     updateScreen();
   }, []);
 
+  useEffect(() => {
+    setCurrentMachine(machines.find((m) => m.type === currentType));
+  }, [currentType])
+
   return (
     <ContentWrapper>
+      <SegmentedTabs
+        tabs={["세탁기", "건조기"]}
+        onChange={(_, label) => setCurrentType(label === "세탁기" ? "washer" : "dryer")}
+      />
       <MachineKind onClick={() => setOpenMachineSelection(true)}>세탁/건조기: <span>{currentMachine?.name} {currentMachine?.type === "washer" ? "세탁기" : "건조기"}</span></MachineKind>
       <TargetCardWrapper>
         {timeline && timeline.times.filter((time) => time.assigns.find((a) => a.id === currentMachine?.id) && time.grade == parseInt(localStorage.getItem("grade")!)).map((time) => {
@@ -160,7 +170,7 @@ function LaundryPage() {
 
       <SelectionDialog isOpen={openMachineSelection} closeAction={() => setOpenMachineSelection(false)}>
         <MachineSelectionWrapper>
-          {machines.map((machine) => {
+          {machines.filter((m) => m.type === currentType).map((machine) => {
             return (
               <TargetCard onClick={() => {setCurrentMachine(machine);setOpenMachineSelection(false);}}>
                 {machine.name} {machine.type === "washer" ? "세탁기" : "건조기"}
