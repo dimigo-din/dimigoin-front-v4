@@ -8,10 +8,9 @@ import {
 import {useNotification} from "../../../providers/MobileNotifiCationProvider.tsx";
 import Loading from "../../../components/Loading.tsx";
 
-import ThumbUpOn from "../../../assets/icons/thumbs/thumbup_on.svg?react";
-import ThumbUp from "../../../assets/icons/thumbs/thumb_up.svg?react";
-import ThumbDownOn from "../../../assets/icons/thumbs/thumb_down_on.svg?react";
-import ThumbDown from "../../../assets/icons/thumbs/thumb_down.svg?react";
+
+import Up from "../../../assets/icons/updown/up.svg?react";
+import Down from "../../../assets/icons/updown/down.svg?react";
 
 const MusicBox = styled.div`
   display: flex;
@@ -62,6 +61,8 @@ const MusicCard = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     
+    align-items: end;
+    
     padding: 0 6px;
     
     > div {
@@ -70,8 +71,6 @@ const MusicCard = styled.div`
       gap: 2px;
       
       svg {
-        height: 90%;
-
         path {
           fill: ${({theme}) => theme.Colors.Content.Tertiary};
         }
@@ -169,12 +168,12 @@ function VoteSection() {
               </div>
               <div className="right">
                 <div className="up" onClick={() => curVote ? unVote(curVote.id) : vote(music.id, true)}>
-                  {curVote && curVote.upvote ? <ThumbUpOn className={"filled"} /> : <ThumbUp /> }
                   <p>{music.up}</p>
+                  <Up className={curVote && curVote.upvote ? "filled" : "notfilled"} />
                 </div>
                 <div className="down" onClick={() => curVote ? unVote(curVote.id) : vote(music.id, false)}>
-                  {curVote && !curVote.upvote ? <ThumbDownOn className={"filled"} /> : <ThumbDown /> }
                   <p>{music.down}</p>
+                  <Down className={curVote && !curVote.upvote ? "filled" : "notfilled"} />
                 </div>
               </div>
             </MusicCard>
