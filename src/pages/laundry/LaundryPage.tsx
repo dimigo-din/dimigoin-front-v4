@@ -73,7 +73,7 @@ function LaundryPage() {
 
       setMachines([]);
       data.times.forEach((time) => {
-        const newMachines = time.assigns.filter(({ id }) => !machines.find((m) => m.id === id));
+        const newMachines = time.assigns.filter((m) => time.grade.toString() === localStorage.getItem("grade") && machines.find((m2) => m2.id !== m.id));
         setMachines(machines.concat(newMachines));
       });
       if (data.times.length > 0 && data.times[0].assigns.length > 0 && !currentMachine) {
