@@ -100,16 +100,19 @@ function VoteSection() {
   const [musics, setMusics] = useState<WakeupApplicationWithVote[] | null>(null);
   const [myVote, setMyVote] = useState<WakeupApplicationVotes[] | null>(null);
 
+  const [loading, setLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const updateScreen = () => {
+    setLoading(true);
     getWakeupApplications().then((data) => {
-      setMusics(data);
-
       getMyWakeupApplicationVotes().then((votes) => {
+        setMusics(data);
         setMyVote(votes);
       }).catch((e) => {
         showToast(e.response.data.error.message || e.response.data.error, "danger");
+      }).finally(() => {
+        setLoading(false);
       });
     }).catch((e) => {
       showToast(e.response.data.error.message || e.response.data.error, "danger");
@@ -148,6 +151,8 @@ function VoteSection() {
     });
   }
 
+  if (musics === null || myVote === null) return Loading();
+
   return (
     <>
       <MusicBox>
@@ -176,7 +181,7 @@ function VoteSection() {
           );
         })}
       </MusicBox>
-      {(musics === null || myVote === null || isSubmitting) && Loading()}
+      {(isSubmitting || loading) && Loading()}
     </>
   );
 }

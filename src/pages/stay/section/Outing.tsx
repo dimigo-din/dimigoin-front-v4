@@ -160,7 +160,7 @@ function OutingSection() {
   const [applies, setApplies] = useState<StayApply[] | null>(null);
   const [currentApply, setCurrentApply] = useState<StayApply | null>(null);
 
-  const [outingDays, setOutingDays] = useState<string[]>([]);
+  const [outingDays, setOutingDays] = useState<string[] | null>(null);
   const [activeOutingDay, setActiveOutingDay] = useState<string>();
   const [outings, setOutings] = useState<Outing[] | null>(null);
 
@@ -286,6 +286,7 @@ function OutingSection() {
     });
   }
 
+  if (outingDays === null) return Loading();
   if (outingDays.length === 0) return (<NoOuting>외출을 신청할 수 없습니다.</NoOuting>);
 
   return (

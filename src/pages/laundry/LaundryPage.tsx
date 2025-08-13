@@ -145,28 +145,32 @@ function LaundryPage() {
         tabs={["세탁기", "건조기"]}
         onChange={(_, label) => setCurrentType(label === "세탁기" ? "washer" : "dryer")}
       />
-      <MachineKind onClick={() => setOpenMachineSelection(true)}>세탁/건조기: <span>{currentMachine?.name} {currentMachine?.type === "washer" ? "세탁기" : "건조기"}</span></MachineKind>
-      <TargetCardWrapper>
-        {timeline && timeline.times.filter((time) => time.assigns.find((a) => a.id === currentMachine?.id) && time.grade == parseInt(localStorage.getItem("grade")!)).map((time) => {
-          const [hour, minute] = time.time.split(":").map((t) => parseInt(t));
-          const isAfternoon = hour / 12 >= 1;
+      {(timeline === null || applies === null) ? Loading() : (
+        <>
+          <MachineKind
+            onClick={() => setOpenMachineSelection(true)}>세탁/건조기: <span>{currentMachine?.name} {currentMachine?.type === "washer" ? "세탁기" : "건조기"}</span></MachineKind><TargetCardWrapper>
+            {timeline && timeline.times.filter((time) => time.assigns.find((a) => a.id === currentMachine?.id) && time.grade == parseInt(localStorage.getItem("grade")!)).map((time) => {
+              const [hour, minute] = time.time.split(":").map((t) => parseInt(t));
+              const isAfternoon = hour / 12 >= 1;
 
-          const apply = applies && applies.find((a) => a.laundryMachine.id === currentMachine?.id && a.laundryTime.id === time.id);
-          if (apply) {
-            const target = apply.user.id === localStorage.getItem("id") ? "me" : "other";
-            return (
-              <TargetCard apply={target} onClick={() => deleteApply()}>
-                {isAfternoon ? "오후" : "오전"} {hour % 12}시 {minute}분
-              </TargetCard>
-            );
-          }
-          return (
-            <TargetCard onClick={() => addApply(time.id)}>
-              {isAfternoon ? "오후" : "오전"} {hour % 12}시 {minute}분
-            </TargetCard>
-          );
-        })}
-      </TargetCardWrapper>
+              const apply = applies && applies.find((a) => a.laundryMachine.id === currentMachine?.id && a.laundryTime.id === time.id);
+              if (apply) {
+                const target = apply.user.id === localStorage.getItem("id") ? "me" : "other";
+                return (
+                  <TargetCard apply={target} onClick={() => deleteApply()}>
+                    {isAfternoon ? "오후" : "오전"} {hour % 12}시 {minute}분
+                  </TargetCard>
+                );
+              }
+              return (
+                <TargetCard onClick={() => addApply(time.id)}>
+                  {isAfternoon ? "오후" : "오전"} {hour % 12}시 {minute}분
+                </TargetCard>
+              );
+            })}
+          </TargetCardWrapper>
+        </>
+      )}
 
       <SelectionDialog isOpen={openMachineSelection} closeAction={() => setOpenMachineSelection(false)}>
         <MachineSelectionWrapper>
@@ -179,7 +183,6 @@ function LaundryPage() {
           })}
         </MachineSelectionWrapper>
       </SelectionDialog>
-      {(timeline === null || applies === null) && Loading()}
     </ContentWrapper>
   );
 }
