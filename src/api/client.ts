@@ -18,8 +18,10 @@ export function getInstance(): AxiosInstance {
         return new Promise((resolve, reject) => {
           instance.post("/auth/refresh").then(() => {
             resolve(instance(err.config));
-          }).catch(() => {
-            location.href = "/login"
+          }).catch((e) => {
+            if (e.response.status === 401) {
+              location.href = "/login"
+            }
             reject(err);
           });
         });
