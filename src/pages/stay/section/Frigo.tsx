@@ -5,6 +5,7 @@ import SegmentedTabs from "../../../components/SegmentedTabs.tsx";
 import {useEffect, useState} from "react";
 import {Button} from "../../../styles/components/button.ts";
 import {applyFrigo, deleteFrigo, type Frigo, getFrigo} from "../../../api/frigo.ts";
+import Skeleton from "../../../components/Skeleton.tsx";
 
 function FrigoSection() {
   const {showToast} = useNotification();
@@ -12,7 +13,7 @@ function FrigoSection() {
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  const [appliedFrigo, setAppliedFrigo] = useState<Frigo | null>(null);
+  const [appliedFrigo, setAppliedFrigo] = useState<Frigo | null | undefined>(undefined);
   const [selectedFrigoTimeing, setSelectedFrigoTiming] = useState<string>("종례 후");
 
   const [reason, setReason] = useState<string | undefined>(undefined);
@@ -64,16 +65,20 @@ function FrigoSection() {
   return (
     <>
       <Section label={"금요귀가 신청 사유"}>
-        <Input placeholder={"금요귀가 신청 사유를 입력하세요."} onInput={(e) => setReason((e.target as HTMLInputElement).value)} value={reason} />
+        <Skeleton done={appliedFrigo !== undefined} height={"5dvh"}>
+          <Input placeholder={"금요귀가 신청 사유를 입력하세요."} onInput={(e) => setReason((e.target as HTMLInputElement).value)} value={reason} />
+        </Skeleton>
       </Section>
       <Section label={"귀가 시간 선택"}>
-        <SegmentedTabs
-          tabs={Object.keys(frigoTiming)}
-          onChange={(_, label) => setSelectedFrigoTiming(label)}
-          fontSize={"Body"}
-          defaultIndex={0}
-          force={appliedFrigo ? Object.values(frigoTiming).indexOf(appliedFrigo.timing) : null}
-        />
+        <Skeleton done={appliedFrigo !== undefined} height={"4dvh"}>
+          <SegmentedTabs
+            tabs={Object.keys(frigoTiming)}
+            onChange={(_, label) => setSelectedFrigoTiming(label)}
+            fontSize={"Body"}
+            defaultIndex={0}
+            force={appliedFrigo ? Object.values(frigoTiming).indexOf(appliedFrigo.timing) : null}
+          />
+        </Skeleton>
       </Section>
       <Button onClick={() => apply()}>{appliedFrigo ? "취소하기" : "신청하기"}</Button>
     </>

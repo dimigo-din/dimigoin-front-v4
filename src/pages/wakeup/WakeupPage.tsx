@@ -3,6 +3,14 @@ import SegmentedTabs from "../../components/SegmentedTabs.tsx";
 import ContentWrapper from "../../components/Content.tsx";
 import ApplySection from "./section/Apply.tsx";
 import VoteSection from "./section/Vote.tsx";
+import styled from "styled-components";
+
+const InnerWrapper = styled.div`
+  flex: 1;
+  min-height: 0;
+  
+  overflow-y: scroll;
+`;
 
 function WakeupPage() {
   const tabs = ["투표", "신청"];
@@ -17,8 +25,10 @@ function WakeupPage() {
         tabs={tabs}
         onChange={(_, label) => handleTabChange(label)}
       />
-      { activeTab === "투표" && <VoteSection />}
-      { activeTab === "신청" && <ApplySection /> }
+      <InnerWrapper>
+        { activeTab === "투표" && <VoteSection />}
+        { activeTab === "신청" && <ApplySection /> }
+      </InnerWrapper>
     </ContentWrapper>
   );
 }

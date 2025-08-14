@@ -6,11 +6,10 @@ import {
   type WakeupApplicationWithVote
 } from "../../../api/wakeup.ts";
 import {useNotification} from "../../../providers/MobileNotifiCationProvider.tsx";
-import Loading from "../../../components/Loading.tsx";
-
 
 import Up from "../../../assets/icons/updown/up.svg?react";
 import Down from "../../../assets/icons/updown/down.svg?react";
+import Skeleton from "../../../components/Skeleton.tsx";
 
 const MusicBox = styled.div`
   display: flex;
@@ -70,9 +69,11 @@ const MusicCard = styled.div`
       flex-direction: row;
       gap: 2px;
       
-      svg {
+      svg 
         path {
           fill: ${({theme}) => theme.Colors.Content.Tertiary};
+          transform: scale(1.4);
+          transform-origin: center;
         }
       }
       
@@ -86,8 +87,9 @@ const MusicCard = styled.div`
         }
       }
       
-      > p {
+      p {
         align-content: center;
+        color: ${({theme}) => theme.Colors.Content.Secondary}
       }
     }
   }
@@ -99,11 +101,11 @@ function VoteSection() {
   const [musics, setMusics] = useState<WakeupApplicationWithVote[] | null>(null);
   const [myVote, setMyVote] = useState<WakeupApplicationVotes[] | null>(null);
 
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const updateScreen = () => {
-    setLoading(true);
+    setIsLoading(true);
     getWakeupApplications().then((data) => {
       getMyWakeupApplicationVotes().then((votes) => {
         setMusics(data);
@@ -111,7 +113,7 @@ function VoteSection() {
       }).catch((e) => {
         showToast(e.response.data.error.message || e.response.data.error, "danger");
       }).finally(() => {
-        setLoading(false);
+        setIsLoading(false);
       });
     }).catch((e) => {
       showToast(e.response.data.error.message || e.response.data.error, "danger");
@@ -150,9 +152,17 @@ function VoteSection() {
     });
   }
 
-  if (musics === null || myVote === null) return Loading();
-
-  return (
+  return musics === null || myVote === null || isSubmitting || isLoading ? (
+      <>
+        <Skeleton done={false} height={"9dvh"}>&nbsp;</Skeleton>
+        <br/>
+        <Skeleton done={false} height={"9dvh"}>&nbsp;</Skeleton>
+        <br/>
+        <Skeleton done={false} height={"9dvh"}>&nbsp;</Skeleton>
+        <br/>
+        <Skeleton done={false} height={"9dvh"}>&nbsp;</Skeleton>
+      </>
+    ) : (
     <>
       <MusicBox>
         {musics && musics.sort((a, b) => (b.up - b.down) - (a.up - a.down)).map((music) => {
@@ -180,7 +190,6 @@ function VoteSection() {
           );
         })}
       </MusicBox>
-      {(isSubmitting || loading) && Loading()}
     </>
   );
 }

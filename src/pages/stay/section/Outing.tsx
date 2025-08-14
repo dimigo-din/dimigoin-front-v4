@@ -17,6 +17,7 @@ import {Input} from "../../../styles/components/input.ts";
 
 import CheckBoxOn from "../../../assets/icons/checkbox/check_box_checked.svg?react"
 import {generateDateList} from "../../../utils/extarctBetweenDay.ts";
+import Skeleton from "../../../components/Skeleton.tsx";
 
 const OutingWrapper = styled.div`
   flex: 1;
@@ -155,6 +156,7 @@ const CheckBox = styled.div<{ canceled: boolean }>`
 function OutingSection() {
   const {showToast} = useNotification();
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const [applies, setApplies] = useState<StayApply[] | null>(null);
@@ -179,6 +181,7 @@ function OutingSection() {
   const [outingMealCancel_Dinner, setOutingMealCancel_Dinner] = useState<boolean>(false);
 
   const updateScreen = () => {
+    setIsLoading(true);
     stayApplies().then((stayApplyList) => {
       if (stayApplyList.length > 0) {
 
@@ -188,12 +191,13 @@ function OutingSection() {
         const days = generateDateList(stayApplyList[0].stay.stay_from, stayApplyList[0].stay.stay_to);
         setOutingDays(days);
         setActiveOutingDay(activeOutingDay || days[0]);
-        console.log(activeOutingDay)
 
         getStayOuting(stayApplyList[0].id).then((data) => {
           setOutings(data);
         }).catch((e) => {
           showToast(e.response.data.error.message || e.response.data.error, "danger");
+        }).finally(() => {
+          setIsLoading(false);
         });
       }else {
         setApplies([]);
@@ -240,7 +244,6 @@ function OutingSection() {
     const fromDate = new Date(from);
     const to = `${activeOutingDay}T${outingEnd}:00+09:00`;
     const toDate = new Date(to);
-    console.log(fromDate)
     if (fromDate.getTime() > toDate.getTime())
       toDate.setTime(toDate.getTime() + 24 * 60 * 60 * 1000);
 
@@ -262,7 +265,6 @@ function OutingSection() {
 
         setOpenOutingAddDialog(false);
 
-        updateScreen();
         updateScreen();
       }).catch((e) => {
         showToast(e.response.data.error.message || e.response.data.error, "danger");
@@ -286,10 +288,15 @@ function OutingSection() {
     });
   }
 
-  if (outingDays === null) return Loading();
-  if (outingDays.length === 0) return (<NoOuting>외출을 신청할 수 없습니다.</NoOuting>);
+  if (outingDays !== null && outingDays.length === 0) return (<NoOuting>외출을 신청할 수 없습니다.</NoOuting>);
 
-  return (
+  return outingDays === null || outings === null ? (
+      <>
+        <Skeleton done={false} height={"4dvh"} borderRadius={"24px"}>&nbsp;</Skeleton>
+        <Skeleton done={false} height={"6dvh"} borderRadius={"8px"}>&nbsp;</Skeleton>
+        <Skeleton done={false} height={"6dvh"} borderRadius={"8px"}>&nbsp;</Skeleton>
+      </>
+    ) : (
       <>
         <SegmentedTabs
             tabs={outingDays}
@@ -300,7 +307,12 @@ function OutingSection() {
 
         <OutingWrapper>
           <OutingBox>
-            {(outings ? outings : []).map((out) => {
+            {isLoading ? (
+              <>
+                <Skeleton done={false} height={"6dvh"} borderRadius={"8px"}>&nbsp;</Skeleton>
+                <Skeleton done={false} height={"6dvh"} borderRadius={"8px"}>&nbsp;</Skeleton>
+              </>
+            ) : (outings ? outings : []).map((out) => {
               const timeFrom = new Date(out.from);
               const timeTo = new Date(out.to);
 

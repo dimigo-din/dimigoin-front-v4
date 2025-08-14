@@ -3,6 +3,7 @@ import {type Applies, getApplies, getTimetables} from "../../api/user.ts";
 import {useEffect, useState} from "react";
 import {useNotification} from "../../providers/MobileNotifiCationProvider.tsx";
 import type {Outing} from "../../api/stay.ts";
+import Skeleton from "../../components/Skeleton.tsx";
 
 
 const CardBoxWrapper = styled.div`
@@ -110,15 +111,7 @@ function HomePage() {
   const [applies, setApplies] = useState<Applies | null>(null);
   const [outing, setOuting] = useState<Outing>();
 
-  const [timetable, setTimetable] = useState<{content: string, temp: boolean}[][]>([
-    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}],
-    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}],
-    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}],
-    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}],
-    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}],
-    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}],
-    [{content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}, {content: "", temp: false}]
-  ]);
+  const [timetable, setTimetable] = useState<{content: string, temp: boolean}[][] | null>(null);
 
   const updateScreen = () => {
     getApplies().then((data) => {
@@ -148,59 +141,67 @@ function HomePage() {
 
   return (
     <CardBoxWrapper>
-      <CardBox>
-        <div className="label">내 신청</div>
-        <ApplyWrapper>
-          <ApplyContent>
-            <span>내 좌석</span>
-            <p>{applies?.stayApply ? applies?.stayApply.stay_seat : "없음"}</p>
-          </ApplyContent>
-          <ApplyContent>
-            <span>외출시간</span>
-            <p>
-              {applies?.stayApply && applies.stayApply.outing.length > 0 ?
-              `${(new Date(outing!.from)).getHours()}:${("0"+(new Date(outing!.from)).getMinutes()).slice(-2)}~${(new Date(outing!.to)).getHours()}:${("0"+(new Date(outing!.to)).getMinutes()).slice(-2)}`
-              : "없음"}
-            </p>
-          </ApplyContent>
-          <ApplyContent>
-            <span>세탁</span>
-            <p>{applies?.laundryApply ? applies?.laundryApply.laundryTime.time : "없음"}</p>
-          </ApplyContent>
-        </ApplyWrapper>
-      </CardBox>
-      <CardBox>
-        <div className="label">시간표 &nbsp; {localStorage.getItem("grade")!}학년 {localStorage.getItem("class")!}반</div>
-        <TimelineWrapper>
-          <thead>
-            <tr>
-              {["", "월", "화", "수", "목", "금"].map((d) => {
+      {applies === null || timetable === null ? (
+        <>
+          <Skeleton done={false} borderRadius={"16px"} height={"calc(10dvh)"}>&nbsp;</Skeleton>
+          <Skeleton done={false} borderRadius={"16px"} height={"calc(16px + 16px + 39dvh)"}>&nbsp;</Skeleton>
+        </>
+      ) : (
+        <>
+          <CardBox>
+            <div className="label">내 신청</div>
+            <ApplyWrapper>
+              <ApplyContent>
+                <span>내 좌석</span>
+                <p>{applies?.stayApply ? applies?.stayApply.stay_seat : "없음"}</p>
+              </ApplyContent>
+              <ApplyContent>
+                <span>외출시간</span>
+                <p>
+                  {applies?.stayApply && applies.stayApply.outing.length > 0 ?
+                    `${(new Date(outing!.from)).getHours()}:${("0" + (new Date(outing!.from)).getMinutes()).slice(-2)}~${(new Date(outing!.to)).getHours()}:${("0" + (new Date(outing!.to)).getMinutes()).slice(-2)}`
+                    : "없음"}
+                </p>
+              </ApplyContent>
+              <ApplyContent>
+                <span>세탁</span>
+                <p>{applies?.laundryApply ? applies?.laundryApply.laundryTime.time : "없음"}</p>
+              </ApplyContent>
+            </ApplyWrapper>
+          </CardBox><CardBox>
+            <div className="label">시간표&nbsp;&nbsp;{localStorage.getItem("grade")!}학년 {localStorage.getItem("class")!}반</div>
+            <TimelineWrapper>
+              <thead>
+              <tr>
+                {["", "월", "화", "수", "목", "금"].map((d) => {
+                  return (
+                    <td className={[d === "" ? "indicator" : "", "days"].join(" ")}>{d}</td>
+                  );
+                })}
+              </tr>
+              </thead>
+              <tbody>
+              {timetable?.map((times, i) => {
+                if (i === 7) return;
+
+                const classes = ["1", "2", "3", "4", "5", "6", "7"];
                 return (
-                  <td className={[d === "" ? "indicator" : "", "days"].join(" ")}>{d}</td>
+                  <tr className={[i === 6 ? "end" : ""].join(" ")}>
+                    {[classes[i], ...times].map((time) => {
+                      return typeof time === "string" ? (
+                        <td className={"indicator"}>{time}</td>
+                      ) : (
+                        <td className={[time.temp ? "temp" : "", "target"].join(" ")}>{time.content.split("\n")[0]}</td>
+                      );
+                    })}
+                  </tr>
                 );
               })}
-            </tr>
-          </thead>
-          <tbody>
-            {timetable?.map((times, i) => {
-              if (i === 7) return;
-
-              const classes = ["1", "2", "3", "4", "5", "6","7"];
-              return (
-                <tr className={[i === 6 ? "end" : ""].join(" ")}>
-                  {[classes[i], ...times].map((time) => {
-                    return typeof time === "string" ? (
-                      <td className={"indicator"}>{time}</td>
-                      ) : (
-                      <td className={[time.temp ? "temp" : "", "target"].join(" ")}>{time.content.split("\n")[0]}</td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </TimelineWrapper>
-      </CardBox>
+              </tbody>
+            </TimelineWrapper>
+          </CardBox>
+        </>
+      )}
     </CardBoxWrapper>
   );
 }

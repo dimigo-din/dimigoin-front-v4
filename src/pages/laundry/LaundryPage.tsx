@@ -9,10 +9,10 @@ import {
   type LaundryMachine,
   type LaundryTimeline
 } from "../../api/laundry.ts";
-import Loading from "../../components/Loading.tsx";
 import {useNotification} from "../../providers/MobileNotifiCationProvider.tsx";
 import SelectionDialog from "../../components/SelectionDialog.tsx";
 import SegmentedTabs from "../../components/SegmentedTabs.tsx";
+import Skeleton from "../../components/Skeleton.tsx";
 
 const MachineKind = styled.div`
   font-size: ${({theme}) => theme.Font.Body.size};
@@ -58,6 +58,8 @@ const TargetCard = styled.div<{apply?: "me" | "other"}>`
 function LaundryPage() {
   const {showToast} = useNotification();
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const [timeline, setTimeline] = useState<LaundryTimeline | null>(null);
   const [applies, setApplies] = useState<LaundryApply[] | null>(null);
   const [machines, setMachines] = useState<LaundryMachine[]>([]);
@@ -70,6 +72,7 @@ function LaundryPage() {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const updateScreen = () => {
+    setIsLoading(true);
     getLaundryTimeline()
       .then((data) => {
         setTimeline(data);
@@ -100,7 +103,9 @@ function LaundryPage() {
       })
       .catch((e) => {
         showToast(e.response?.data?.error?.message || e.response?.data?.error || String(e), "danger");
-      });
+      }).finally(() => {
+        setIsLoading(false)
+    });
   };
 
   const addApply = (time_id: string) => {
@@ -145,7 +150,15 @@ function LaundryPage() {
         tabs={["세탁기", "건조기"]}
         onChange={(_, label) => setCurrentType(label === "세탁기" ? "washer" : "dryer")}
       />
-      {(timeline === null || applies === null) ? Loading() : (
+      {(timeline === null || applies === null || isLoading) ? (
+          <>
+            <Skeleton done={false} height={"2dvh"}>&nbsp;</Skeleton>
+            <Skeleton done={false} height={"6dvh"}>&nbsp;</Skeleton>
+            <Skeleton done={false} height={"6dvh"}>&nbsp;</Skeleton>
+            <Skeleton done={false} height={"6dvh"}>&nbsp;</Skeleton>
+            <Skeleton done={false} height={"6dvh"}>&nbsp;</Skeleton>
+          </>
+        ) : (
         <>
           <MachineKind
             onClick={() => setOpenMachineSelection(true)}>세탁/건조기: <span>{currentMachine?.name} {currentMachine?.type === "washer" ? "세탁기" : "건조기"}</span></MachineKind><TargetCardWrapper>

@@ -6,12 +6,24 @@ import {useNotification} from "../../../providers/MobileNotifiCationProvider.tsx
 import {applyWakeupSong, searchMusic, type YoutubeItem, type YoutubeSearchResult} from "../../../api/wakeup.ts";
 import SelectionDialog from "../../../components/SelectionDialog.tsx";
 import Loading from "../../../components/Loading.tsx";
+import Skeleton from "../../../components/Skeleton.tsx";
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
 
 const MusicBox = styled.div`
+  flex: 1;
+  min-height: 0;
+  
   display: flex;
   flex-direction: column;
   
   gap: 8px;
+  
+  overflow-y: scroll;
 `;
 
 const MusicCard = styled.div`
@@ -95,12 +107,22 @@ function ApplySection() {
   }
 
   return (
-    <>
+    <Wrapper>
       <form style={{width: "100%"}} onSubmit={(e) => {e.preventDefault();search();}}>
         <Input style={{width: "100%"}} placeholder={"검색어를 입력해주세요."} onInput={(e) => setQuery((e.target as HTMLInputElement).value)} value={query} />
       </form>
+      <br/>
       <MusicBox>
-        {searchResults && searchResults.items.map((item) => {
+        {isSearching ? (
+          <>
+            <Skeleton done={false}>&nbsp;</Skeleton>
+            <Skeleton done={false}>&nbsp;</Skeleton>
+            <Skeleton done={false}>&nbsp;</Skeleton>
+            <Skeleton done={false}>&nbsp;</Skeleton>
+            <Skeleton done={false}>&nbsp;</Skeleton>
+            <Skeleton done={false}>&nbsp;</Skeleton>
+          </>
+        ) : searchResults && searchResults.items.map((item) => {
           return (
             <MusicCard onClick={() => {setTarget(item);setOpenAreYouSure(true)}}>
               <img src={item.snippet.thumbnails.high.url} alt=""/>
@@ -124,8 +146,8 @@ function ApplySection() {
         </MusicCard>
         <Button type={"danger"} style={{margin: "12px"}} width={"calc(100% - 24px)"} onClick={() => {apply((target && target.id.videoId) || "");setOpenAreYouSure(false);}}>신청하기</Button>
       </SelectionDialog>
-      {(isSubmitting || isSearching) && Loading()}
-    </>
+      {(isSubmitting) && Loading()}
+    </Wrapper>
   );
 }
 

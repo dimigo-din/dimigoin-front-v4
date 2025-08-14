@@ -5,11 +5,11 @@ import {Input} from "../../../styles/components/input";
 import {useEffect, useState} from "react";
 import {applyStay, deleteStayApply, getStays, type Stay} from "../../../api/stay.ts";
 import SelectionDialog from "../../../components/SelectionDialog.tsx";
-import Loading from "../../../components/Loading.tsx";
 
 import {genTable, isInRange} from "../../../utils/staySeatUtil.ts";
 import {useNotification} from "../../../providers/MobileNotifiCationProvider.tsx";
 import Divider from "../../../components/Divider.tsx";
+import Skeleton from "../../../components/Skeleton.tsx";
 
 const StayKind = styled.div`
   font-size: ${({theme}) => theme.Font.Body.size};
@@ -160,10 +160,15 @@ function StaySection() {
     }
   }
 
-  if (stayList === null) return Loading();
   if (stayList && stayList.length === 0) return (<NoStay>활성화된 잔류가 없습니다.</NoStay>);
 
-  return (
+  return stayList === null ? (
+    <>
+      <Skeleton done={false} height={"inherit"}>&nbsp;</Skeleton>
+      <Skeleton done={false} height={"inherit"}>&nbsp;</Skeleton>
+      <Skeleton done={false} height={"12dvh"}>&nbsp;</Skeleton>
+    </>
+  ) : (
     <>
       <StayKind>잔류 종류: <span>{stay?.name}</span></StayKind>
       <Section label="내가 선택한 좌석">
@@ -202,7 +207,6 @@ function StaySection() {
           ))}
         </SeatBox>
       </SelectionDialog>
-      {stayList === null && Loading()}
     </>
   );
 }
