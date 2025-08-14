@@ -4,6 +4,7 @@ import StayPage from "../pages/stay/StayPage";
 import LoginPage from "../pages/login/LoginPage.tsx";
 import WakeupPage from "../pages/wakeup/WakeupPage.tsx";
 import LaundryPage from "../pages/laundry/LaundryPage.tsx";
+import MorePage from "../pages/more/MorePage.tsx";
 
 const AppRouter = () => {
 
@@ -15,6 +16,7 @@ const AppRouter = () => {
       <Route path="/login" element={<LoginPage/>}/>
       <Route path="/wake-up" element={<WakeupPage/>}/>
       <Route path="/laundry" element={<LaundryPage/>}/>
+      <Route path="/more" element={<MorePage/>}/>
     </Routes>
   );
 };
