@@ -1,7 +1,7 @@
 {
   "name": "dimigoin-frontend-mobile",
   "private": true,
-  "version": "4.0.0-alpha11",
+  "version": "4.0.0-alpha12",
   "type": "module",
   "scripts": {
     "dev": "vite",
