@@ -195,6 +195,7 @@ function OutingSection() {
         getStayOuting(stayApplyList[0].id).then((data) => {
           setOutings(data);
         }).catch((e) => {
+          console.log(e);
           showToast(e.response.data.error.message || e.response.data.error, "danger");
         }).finally(() => {
           setIsLoading(false);
@@ -204,6 +205,7 @@ function OutingSection() {
         setOutings([]);
       }
     }).catch((e) => {
+      console.log(e);
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     });
   }
