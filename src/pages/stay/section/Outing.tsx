@@ -203,6 +203,7 @@ function OutingSection() {
       }else {
         setApplies([]);
         setOutings([]);
+        setOutingDays([]);
       }
     }).catch((e) => {
       console.log(e);
