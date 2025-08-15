@@ -85,6 +85,7 @@ function LoginPage() {
           localStorage.setItem("class", data.class.toString());
           localStorage.setItem("number", data.number.toString());
           localStorage.setItem("gender", data.gender);
+          localStorage.setItem("name", data.name);
 
           showToast("로그인에 성공하였습니다.", "info");
 
