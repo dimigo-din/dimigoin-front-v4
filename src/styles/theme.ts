@@ -107,6 +107,16 @@ const base = {
       Event: "#f5c905",
       Stay: "#ff4035",
     },
+    Skeleton: {
+      Standard: {
+        first: "#f0f0f0",
+        second: "#fdfdfd",
+      },
+      Inverted: {
+        first: "#1f1f1f",
+        second: "#020202",
+      }
+    }
   },
   Font: {
     Display: {size: "3rem", lineHeight: "70px", weight: {weak: 400, regular: 500, strong: 600}},
@@ -135,6 +145,7 @@ export const lightTheme: DefaultTheme = {
     Solid:    base.Colors.Solid,
     Core:     base.Colors.Core,
     Calendar: base.Colors.Calendar,
+    Skeleton: base.Colors.Skeleton.Standard,
   },
 };
 
@@ -152,5 +163,6 @@ export const darkTheme: DefaultTheme = {
     Solid:    base.Colors.Solid,
     Core:     base.Colors.Core,
     Calendar: base.Colors.Calendar,
+    Skeleton: base.Colors.Skeleton.Inverted,
   },
 };

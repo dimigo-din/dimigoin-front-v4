@@ -248,7 +248,7 @@ function OutingSection() {
       toDate.setTime(toDate.getTime() + 24 * 60 * 60 * 1000);
 
     if (editTarget) {
-      editStayOuting(editTarget, outingReason, fromDate.toISOString(), toDate.toISOString(), outingMealCancel_Breakfast, outingMealCancel_Lunch, outingMealCancel_Dinner).then(() => {
+      editStayOuting(editTarget, outingReason, from, to, outingMealCancel_Breakfast, outingMealCancel_Lunch, outingMealCancel_Dinner).then(() => {
         showToast("수정되었습니다.", "info");
 
         setOpenOutingAddDialog(false);

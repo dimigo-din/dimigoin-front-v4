@@ -3,7 +3,7 @@ import styled from "styled-components";
 const SkeletonBox = styled.div`
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #f0f0f0 25%, #fdfdfd 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, ${({theme}) => theme.Colors.Skeleton.first} 25%, ${({theme}) => theme.Colors.Skeleton.second} 50%, ${({theme}) => theme.Colors.Skeleton.first} 75%);
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
 

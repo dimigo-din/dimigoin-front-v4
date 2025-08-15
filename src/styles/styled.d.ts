@@ -85,6 +85,10 @@ declare module "styled-components" {
         Event: string;
         Stay: string;
       };
+      Skeleton: {
+        first: string;
+        second: string;
+      }
     };
     Font: {
       [key in | "Display"
