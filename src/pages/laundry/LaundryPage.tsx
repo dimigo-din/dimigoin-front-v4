@@ -116,6 +116,7 @@ function LaundryPage() {
       showToast("신청되었습니다.", "info");
       updateScreen();
     }).catch((e) => {
+      console.log(e);
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     }).finally(() => {
       setIsSubmitting(false);
@@ -130,6 +131,7 @@ function LaundryPage() {
       showToast("신청 취소되었습니다.", "info");
       updateScreen();
     }).catch((e) => {
+      console.log(e);
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     }).finally(() => {
       setIsSubmitting(false);

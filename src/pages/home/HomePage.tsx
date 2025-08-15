@@ -118,6 +118,7 @@ function HomePage() {
       setApplies(data);
       setOuting(data.stayApply.outing.sort((a, b) => (new Date(a.from)).getTime() - (new Date(b.from)).getTime())[0])
     }).catch((e) => {
+      console.log(e);
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     });
 
@@ -131,6 +132,7 @@ function HomePage() {
       });
       setTimetable(col);
     }).catch((e) => {
+      console.log(e);
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     });
   }

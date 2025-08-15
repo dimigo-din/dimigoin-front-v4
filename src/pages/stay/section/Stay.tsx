@@ -123,6 +123,7 @@ function StaySection() {
         setNoSeatReason(null);
       }
     }).catch((e) => {
+      console.log(e);
       showToast(e.response.data.error, "danger");
     });
   }
@@ -142,6 +143,7 @@ function StaySection() {
         updateScreen();
       }).catch((e) => {
         setIsSubmitting(false);
+        console.log(e);
         showToast(e.response.data.error.message || e.response.data.error, "danger");
       });
     }else {
@@ -155,6 +157,7 @@ function StaySection() {
         updateScreen();
       }).catch((e) => {
         setIsSubmitting(false);
+        console.log(e);
         showToast(e.response.data.error.message || e.response.data.error, "danger");
       });
     }

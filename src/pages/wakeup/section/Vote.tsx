@@ -111,11 +111,13 @@ function VoteSection() {
         setMusics(data);
         setMyVote(votes);
       }).catch((e) => {
+        console.log(e);
         showToast(e.response.data.error.message || e.response.data.error, "danger");
       }).finally(() => {
         setIsLoading(false);
       });
     }).catch((e) => {
+      console.log(e);
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     });
   }
@@ -132,6 +134,7 @@ function VoteSection() {
       showToast("투표에 성공하였습니다.", "info");
       updateScreen();
     }).catch((e) => {
+      console.log(e);
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     }).finally(() => {
       setIsSubmitting(false);
@@ -146,6 +149,7 @@ function VoteSection() {
       showToast("투표 취소에 성공하였습니다.", "info");
       updateScreen();
     }).catch((e) => {
+      console.log(e);
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     }).finally(() => {
       setIsSubmitting(false);

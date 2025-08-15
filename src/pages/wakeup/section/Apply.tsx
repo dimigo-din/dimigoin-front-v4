@@ -87,6 +87,7 @@ function ApplySection() {
       showToast("검색완료.", "info");
       setSearchResults(data);
     }).catch((e) => {
+      console.log(e);
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     }).finally(() => {
       setIsSearching(false);
@@ -100,6 +101,7 @@ function ApplySection() {
     applyWakeupSong(videoId).then(() => {
       showToast("신청되었습니다.", "info")
     }).catch((e) => {
+      console.log(e);
       showToast(e.response.data.error.message || e.response.data.error, "danger");
     }).finally(() => {
       setIsSubmitting(false);
