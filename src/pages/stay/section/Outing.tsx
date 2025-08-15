@@ -255,6 +255,7 @@ function OutingSection() {
 
         updateScreen();
       }).catch((e) => {
+        console.log(e);
         showToast(e.response.data.error.message || e.response.data.error, "danger");
       }).finally(() => {
         setIsSubmitting(false);
@@ -267,6 +268,7 @@ function OutingSection() {
 
         updateScreen();
       }).catch((e) => {
+        console.log(e);
         showToast(e.response.data.error.message || e.response.data.error, "danger");
       }).finally(() => {
         setIsSubmitting(false);

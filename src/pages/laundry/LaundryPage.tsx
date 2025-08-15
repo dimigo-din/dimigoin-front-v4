@@ -91,7 +91,7 @@ function LaundryPage() {
         setMachines(list);
 
         if (!currentMachine && list.length > 0) {
-          setCurrentMachine(list.find((m) => m.type === currentType));
+          setCurrentMachine(list.find((m) => m.type === currentType || "washer"));
         }
 
         return getLaundryApplies();
