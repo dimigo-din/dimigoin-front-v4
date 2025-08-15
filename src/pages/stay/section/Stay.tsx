@@ -3,7 +3,7 @@ import Section from "../../../components/Section";
 import {Button} from "../../../styles/components/button";
 import {Input} from "../../../styles/components/input";
 import {useEffect, useState} from "react";
-import {applyStay, deleteStayApply, getStays, type Stay} from "../../../api/stay.ts";
+import {applyStay, deleteStayApply, getStays, type Stay, stayApplies} from "../../../api/stay.ts";
 import SelectionDialog from "../../../components/SelectionDialog.tsx";
 
 import {genTable, isInRange} from "../../../utils/staySeatUtil.ts";
@@ -113,15 +113,20 @@ function StaySection() {
       setStayList(data);
       setStay(data[0]);
 
-      const my = data[0].stay_apply.find((sapply) => sapply.user.id === localStorage.getItem("id"));
-      if (my) {
-        setMyApply(my.id!);
-        setTargetSeat(my.stay_seat);
-      }else {
-        setMyApply(null);
-        setTargetSeat(null);
-        setNoSeatReason(null);
-      }
+      stayApplies().then((data2) => {
+        const my = data2.find((sapply) => sapply.user.id === localStorage.getItem("id"));
+        if (my) {
+          setMyApply(my.id!);
+          setTargetSeat(my.stay_seat);
+        }else {
+          setMyApply(null);
+          setTargetSeat(null);
+          setNoSeatReason(null);
+        }
+      }).catch((e) => {
+        console.log(e);
+        showToast(e.response.data.error, "danger");
+      });
     }).catch((e) => {
       console.log(e);
       showToast(e.response.data.error, "danger");
