@@ -2,7 +2,7 @@ import SchoolScenery from "../../assets/img/schoolscenery.svg?react";
 import Logo from "../../assets/icons/dimigoin.svg?react";
 import styled from "styled-components";
 import GoogleLogo from "../../assets/icons/google.svg?react";
-import {getPersonalInformation, getRedirectUri, googleLogin} from "../../api/auth.ts";
+import {getPersonalInformation, getRedirectUri, googleLogin, ping} from "../../api/auth.ts";
 import {useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 import {useNotification} from "../../providers/MobileNotifiCationProvider.tsx";
@@ -73,6 +73,7 @@ function LoginPage() {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
+    ping().then((res) => {if (res === "퐁")  location.href = "/"});
     const code = searchParams.get("code") as string;
     if (code) {
       showToast("로그인중입니다...", "info");

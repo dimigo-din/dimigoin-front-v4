@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import DimigoinLogo from "../../assets/icons/dimigoin.svg?react";
 import DINLogo from "../../assets/icons/din_logo.svg?react";
+import LogoutLogo from "../../assets/icons/logout.svg?react";
+import {logout} from "../../api/auth.ts";
 
 const Wrapper = styled.div`
   height: 100%;
@@ -68,6 +70,19 @@ const ItsUS = styled.div`
   }
 `;
 
+const Logout = styled.div`
+  flex: 1;
+  
+  display: flex;
+  justify-content: right;
+  
+  svg {
+    height: 3dvh;
+    width: 3dvh;
+    * { fill: ${({theme}) => theme.Colors.Content.Primary} };
+  }
+`;
+
 function MorePage() {
   return (
     <Wrapper>
@@ -77,6 +92,9 @@ function MorePage() {
           <p className={"info"}>{localStorage.getItem("grade")}학년 {localStorage.getItem("class")}반 {localStorage.getItem("number")}번</p>
           <p className={"name"}>{localStorage.getItem("name")}</p>
         </div>
+        <Logout>
+          <LogoutLogo onClick={() => { logout().finally(() => location.href = "/login"); }} />
+        </Logout>
       </Profile>
       <Menu>
 

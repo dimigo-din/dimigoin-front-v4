@@ -32,7 +32,7 @@ export async function googleLogin(code: string): Promise<{ accessToken: string, 
 }
 
 export async function logout(): Promise<void> {
-  await client.get("/logout");
+  await client.get("/auth/logout");
 }
 
 export async function getPersonalInformationVerifyToken() {
