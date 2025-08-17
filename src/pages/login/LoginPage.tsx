@@ -104,8 +104,8 @@ function LoginPage() {
         showToast(e.response.data.error, "danger");
 
         if (e.response.data.code === "PersonalInformation_NotRegistered") {
-          showToast("5초후에 개인정보 등록 페이지로 이동합니다.", "info")
-          setTimeout(() => location.href = "https://dimiauth.findflag.kr", 5000);
+          showToast("5초후에 개인정보 등록 페이지로 이동합니다.", "info");
+          location.href = "https://dimiauth.findflag.kr"
         }
       });
     }
