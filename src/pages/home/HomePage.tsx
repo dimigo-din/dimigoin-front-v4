@@ -59,7 +59,11 @@ const ApplyContent = styled.div`
   > p {
     font-size: ${({theme}) => theme.Font.Headline.size};
     font-weight: ${({theme}) => theme.Font.Headline.weight.regular};
-    color: ${({theme}) => theme.Colors.Core.Brand.Primary}
+    color: ${({theme}) => theme.Colors.Content.Tertiary};
+  }
+  
+  > p.fill {
+    color: ${({theme}) => theme.Colors.Core.Brand.Primary};
   }
 `;
 
@@ -155,11 +159,11 @@ function HomePage() {
             <ApplyWrapper>
               <ApplyContent>
                 <span>내 좌석</span>
-                <p>{applies?.stayApply ? applies?.stayApply.stay_seat : "없음"}</p>
+                <p className={applies?.stayApply ? "fill": ""}>{applies?.stayApply ? applies?.stayApply.stay_seat : "없음"}</p>
               </ApplyContent>
               <ApplyContent>
                 <span>외출시간</span>
-                <p>
+                <p className={applies?.stayApply && applies.stayApply.outing.length > 0 ? "fill" : ""}>
                   {applies?.stayApply && applies.stayApply.outing.length > 0 ?
                     `${(new Date(outing!.from)).getHours()}:${("0" + (new Date(outing!.from)).getMinutes()).slice(-2)}~${(new Date(outing!.to)).getHours()}:${("0" + (new Date(outing!.to)).getMinutes()).slice(-2)}`
                     : "없음"}
@@ -167,7 +171,7 @@ function HomePage() {
               </ApplyContent>
               <ApplyContent>
                 <span>세탁</span>
-                <p>{applies?.laundryApply ? applies?.laundryApply.laundryTime.time : "없음"}</p>
+                <p className={applies?.laundryApply ? "fill" : ""}>{applies?.laundryApply ? applies?.laundryApply.laundryTime.time : "없음"}</p>
               </ApplyContent>
             </ApplyWrapper>
           </CardBox><CardBox>
