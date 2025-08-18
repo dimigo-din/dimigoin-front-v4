@@ -1,9 +1,9 @@
-name: Build and push
+name: Deploy_prod
 
 on:
   push:
-    tags:
-    - v*
+    branches:
+      - main
   workflow_call:
   workflow_dispatch:
 
