@@ -28,7 +28,7 @@ export async function passwordLogin(email: string, password: string): Promise<{
 }
 
 export async function googleLogin(code: string): Promise<{ accessToken: string, refreshToken: string }> {
-  return (await client.post("/auth/login/google/callback", {code})).data;
+  return (await client.post("/auth/login/google/callback", {code, redirect_uri: location.protocol + "//" + location.host + "/login"})).data;
 }
 
 export async function logout(): Promise<void> {
