@@ -101,7 +101,7 @@ function MorePage() {
       </Menu>
       <ItsUS>
         <p>Copyright 2025. DIN Org. All rights reserved.</p>
-        <p>디미고인 <DimigoinLogo /> By <DINLogo />DIN Org.</p>
+        <p><DimigoinLogo /> 디미고인 By <DINLogo /> DIN Org.</p>
       </ItsUS>
     </Wrapper>
   );
