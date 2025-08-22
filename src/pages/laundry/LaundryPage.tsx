@@ -153,13 +153,13 @@ function LaundryPage() {
         onChange={(_, label) => setCurrentType(label === "세탁기" ? "washer" : "dryer")}
       />
       {(timeline === null || applies === null || isLoading) ? (
-          <>
+          <MachineKind>
             <Skeleton done={false} height={"2dvh"}>&nbsp;</Skeleton>
             <Skeleton done={false} height={"6dvh"}>&nbsp;</Skeleton>
             <Skeleton done={false} height={"6dvh"}>&nbsp;</Skeleton>
             <Skeleton done={false} height={"6dvh"}>&nbsp;</Skeleton>
             <Skeleton done={false} height={"6dvh"}>&nbsp;</Skeleton>
-          </>
+          </MachineKind>
         ) : (
         <>
           <MachineKind
