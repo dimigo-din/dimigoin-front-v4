@@ -51,6 +51,10 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     background: none;
   }
+
+  * {
+    scrollbar-color: #888 #00000000;
+  }
 `;
 
 export default GlobalStyle;
