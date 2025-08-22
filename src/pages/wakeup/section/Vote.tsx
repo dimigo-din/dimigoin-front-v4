@@ -177,7 +177,7 @@ function VoteSection() {
               <div className="left">
                 <img src={music.video_thumbnail} alt="" onClick={() => {window.open(`https://www.youtube.com/watch?v=${music.video_id}`, "_blank")}}/>
                 <div className="details">
-                  <p className="title">{music.video_title.substring(0, 20)}{music.video_title.length > 20 ? "..." : ""}</p>
+                  <p className="title">{music.video_title.substring(0, 25)}{music.video_title.length > 25 ? "..." : ""}</p>
                   <p className="author">{music.video_channel}</p>
                 </div>
               </div>
