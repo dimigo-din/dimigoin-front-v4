@@ -68,8 +68,6 @@ const ApplyContent = styled.div`
 `;
 
 const TimelineWrapper = styled.table`
-  background-color: ${({theme}) => theme.Colors.Background.Tertiary};
-  
   border-collapse: collapse;
   border-radius: 12px;
   
