@@ -15,6 +15,7 @@ import LogoIcon from "../assets/icons/dimigoin.svg?react";
 const Header = () => {
   return location.pathname.startsWith("/login") ? null : (
     <HeaderWrapper>
+      <link rel="manifest" href="/manifest.json" />
       <LogoIcon
         style={{
           height: "32px",
