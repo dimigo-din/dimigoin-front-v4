@@ -9,7 +9,7 @@ const InnerWrapper = styled.div`
   flex: 1;
   min-height: 0;
   
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 function WakeupPage() {

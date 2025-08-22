@@ -11,10 +11,12 @@ const HeaderWrapper = styled.header`
 `;
 
 import LogoIcon from "../assets/icons/dimigoin.svg?react";
+import PWAHeader from "./PWAHeader";
 
 const Header = () => {
   return location.pathname.startsWith("/login") ? null : (
     <HeaderWrapper>
+      <PWAHeader />
       <LogoIcon
         style={{
           height: "32px",

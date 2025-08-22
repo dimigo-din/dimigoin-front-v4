@@ -1,0 +1,16 @@
+{
+  "name": "디미고인",
+  "short_name": "디미고인",
+  "description": "디미고 학생들을 위한 통합 생활 플랫폼",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e83c77",
+  "icons": [
+    {
+      "src": "/dimigoin.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

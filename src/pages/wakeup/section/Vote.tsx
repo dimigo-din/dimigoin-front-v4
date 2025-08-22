@@ -7,8 +7,8 @@ import {
 } from "../../../api/wakeup.ts";
 import {useNotification} from "../../../providers/MobileNotifiCationProvider.tsx";
 
-import Up from "../../../assets/icons/updown/up.svg?react";
-import Down from "../../../assets/icons/updown/down.svg?react";
+import Up from "../../../assets/icons/thumbs/thumb_up.svg?react";
+import Down from "../../../assets/icons/thumbs/thumb_down.svg?react";
 import Skeleton from "../../../components/Skeleton.tsx";
 
 const MusicBox = styled.div`
@@ -73,7 +73,7 @@ const MusicCard = styled.div`
       svg 
         path {
           fill: ${({theme}) => theme.Colors.Content.Tertiary};
-          transform: scale(1.4);
+          transform: scale(0.9);
           transform-origin: center;
         }
       }
@@ -177,7 +177,7 @@ function VoteSection() {
               <div className="left">
                 <img src={music.video_thumbnail} alt="" onClick={() => {window.open(`https://www.youtube.com/watch?v=${music.video_id}`, "_blank")}}/>
                 <div className="details">
-                  <p className="title">{music.video_title.substring(0, 20)}{music.video_title.length > 20 ? "..." : ""}</p>
+                  <p className="title">{music.video_title.substring(0, 25)}{music.video_title.length > 25 ? "..." : ""}</p>
                   <p className="author">{music.video_channel}</p>
                 </div>
               </div>
