@@ -116,7 +116,7 @@ function LoginPage() {
       <div></div>
       <Brand>
         <Title>
-          <Logo/>
+          <Logo style={{ height: "32px" }}/>
           <p>디미고인</p>
         </Title>
         <br/>
