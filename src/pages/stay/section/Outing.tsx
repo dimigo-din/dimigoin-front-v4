@@ -318,31 +318,41 @@ function OutingSection() {
                 <Skeleton done={false} height={"6dvh"} borderRadius={"8px"}>&nbsp;</Skeleton>
                 <Skeleton done={false} height={"6dvh"} borderRadius={"8px"}>&nbsp;</Skeleton>
               </>
-            ) : (outings ? outings : []).map((out) => {
-              const timeFrom = new Date(out.from);
-              const timeTo = new Date(out.to);
+            ) : (() => {
+              const filteredOutings = (outings ? outings : []).filter((out) => {
+                const timeFrom = new Date(out.from);
+                const outingDay = `${timeFrom.getFullYear()}-${("0"+(timeFrom.getUTCMonth()+1)).slice(-2)}-${("0"+(timeFrom.getDate())).slice(-2)}`;
+                return activeOutingDay === outingDay;
+              });
 
-              if (activeOutingDay !== `${timeFrom.getFullYear()}-${("0"+(timeFrom.getUTCMonth()+1)).slice(-2)}-${("0"+(timeFrom.getDate())).slice(-2)}`) return null;
+              if (filteredOutings.length === 0) {
+                return <NoOuting>외출 신청 내역이 없습니다.</NoOuting>;
+              }
 
-              const from = `${timeFrom.getHours() > 12 ? "오후" : "오전"} ${("0"+(timeFrom.getHours() % 12)).slice(-2)}:${("0"+timeFrom.getMinutes()).slice(-2)}`
-              const to = `${timeTo.getHours() > 12 ? "오후" : "오전"} ${("0"+(timeTo.getHours() % 12)).slice(-2)}:${("0"+timeTo.getMinutes()).slice(-2)}`
+              return filteredOutings.map((out) => {
+                const timeFrom = new Date(out.from);
+                const timeTo = new Date(out.to);
 
-              return (
-                <OneLittleOuting onClick={() => {setEditOrDeleteTarget(out.id);setOpenIsEditOrDeleteAddDialog(true);}}>
-                  <div className={"left"}>
-                    <div className="reason">
-                      {out.reason}
+                const from = `${timeFrom.getHours() > 12 ? "오후" : "오전"} ${("0"+(timeFrom.getHours() % 12)).slice(-2)}:${("0"+timeFrom.getMinutes()).slice(-2)}`
+                const to = `${timeTo.getHours() > 12 ? "오후" : "오전"} ${("0"+(timeTo.getHours() % 12)).slice(-2)}:${("0"+timeTo.getMinutes()).slice(-2)}`
+
+                return (
+                  <OneLittleOuting key={out.id} onClick={() => {setEditOrDeleteTarget(out.id);setOpenIsEditOrDeleteAddDialog(true);}}>
+                    <div className={"left"}>
+                      <div className="reason">
+                        {out.reason}
+                      </div>
+                      <time className={"time"}>{from} ~ {to}</time>
                     </div>
-                    <time className={"time"}>{from} ~ {to}</time>
-                  </div>
-                  <div className={"right"}>
-                    <p>아침{out.breakfast_cancel ? "X" : "O"}</p>
-                    <p>점심{out.lunch_cancel ? "X" : "O"}</p>
-                    <p>저녁{out.dinner_cancel ? "X" : "O"}</p>
-                  </div>
-                </OneLittleOuting>
-              )
-            })}
+                    <div className={"right"}>
+                      <p>아침{out.breakfast_cancel ? "X" : "O"}</p>
+                      <p>점심{out.lunch_cancel ? "X" : "O"}</p>
+                      <p>저녁{out.dinner_cancel ? "X" : "O"}</p>
+                    </div>
+                  </OneLittleOuting>
+                )
+              });
+            })()}
           </OutingBox>
           <Button onClick={() => setOpenOutingAddDialog(true)}>외출 추가</Button>
         </OutingWrapper>
