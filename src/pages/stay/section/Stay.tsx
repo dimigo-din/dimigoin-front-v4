@@ -67,7 +67,7 @@ const SeatRow = styled.div<{seat: string | null}>`
     width: 7vh;
     
     padding: 12px 0;
-    margin: 8px;
+    margin: 6px;
     
     background-color: ${({theme}) => theme.Colors.Background.Secondary};
     border-radius: 8px;
@@ -197,23 +197,39 @@ function StaySection() {
         <Button style={{ margin: "8px", width: "calc(100% - 16px)" }} onClick={() => {setTargetSeat(null);setSeatSelectOpen(false);}}>미선택</Button>
         <Divider />
         <SeatBox>
-          {genTable().map((row) => (
-            <SeatRow seat={targetSeat}>
-              {row.map((seat) => {
+          {(() => {
+            const table = genTable();
+            const groupedRows: string[][][] = [];
+            for (let i = 0; i < table.length; i += 2) {
+              groupedRows.push(table.slice(i, i + 2));
+            }
+            return groupedRows.map((group, idx) => (
+              <div key={idx} style={{ marginBottom: "16px" }}>
+          {group.map((row, rowIdx) => (
+            <SeatRow seat={targetSeat} key={rowIdx}>
+              {row.map((seat, seatIdx) => {
                 const isActive = stay?.stay_seat_preset.stay_seat.some((target) => isInRange(target.range.split(":"), seat) && target.target === `${localStorage.getItem("grade")}_${localStorage.getItem("gender")}`);
                 const taken = stay?.stay_apply.find((sapply) => sapply.stay_seat === seat);
                 return (
-                  <span
-                    id={seat}
-                    className={[isActive ? "active" : "inactive", taken && taken.user.id !== localStorage.getItem("id") ? "taken" : "notTaken"].join(" ")}
-                    onClick={isActive ? () => {setTargetSeat(seat);setSeatSelectOpen(false);} : (e) => {e.preventDefault();e.stopPropagation()}}>
-                    {taken && taken.user.id !== localStorage.getItem("id") ? taken.user.name.replace(/[0-9]/g, "") : seat}
-                  </span>
+            <span
+              id={seat}
+              key={seat}
+              className={[isActive ? "active" : "inactive", taken && taken.user.id !== localStorage.getItem("id") ? "taken" : "notTaken"].join(" ")}
+              onClick={isActive ? () => {setTargetSeat(seat);setSeatSelectOpen(false);} : (e) => {e.preventDefault();e.stopPropagation()}}
+              style={{
+                marginRight: (seatIdx + 1) % 9 === 0 && seatIdx !== row.length - 1 ? "20px" : undefined
+              }}>
+              {taken && taken.user.id !== localStorage.getItem("id") ? taken.user.name.replace(/[0-9]/g, "") : seat}
+            </span>
                 )
               })}
             </SeatRow>
           ))}
+              </div>
+            ));
+          })()}
         </SeatBox>
+        
       </SelectionDialog>
     </>
   );
