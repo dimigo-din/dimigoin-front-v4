@@ -20,7 +20,9 @@ const Header = () => {
           height: "32px",
           marginRight: "8px",
           marginTop: "16px",
+          cursor: "pointer"
         }}
+        onClick={() => {location.href = "/"}}
       />
     </HeaderWrapper>
   );
