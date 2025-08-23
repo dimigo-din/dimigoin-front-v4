@@ -112,6 +112,7 @@ function LaundryPage() {
     if (isSubmitting) return showToast("이미 신청중입니다. 잠시만 기다려주세요.", "warning");
     setIsSubmitting(true);
 
+    showToast("신청중입니다...", "info");
     addLaundryApply(time_id, currentMachine!.id).then(() => {
       showToast("신청되었습니다.", "info");
       updateScreen();
@@ -123,7 +124,9 @@ function LaundryPage() {
     });
   }
 
-  const deleteApply = () => {
+  const deleteApply = (target: "me" | "other") => {
+    if (target === 'other') return;
+
     if (isSubmitting) return showToast("이미 신청중입니다. 잠시만 기다려주세요.", "warning");
     setIsSubmitting(true);
 
@@ -172,7 +175,7 @@ function LaundryPage() {
               if (apply) {
                 const target = apply.user.id === localStorage.getItem("id") ? "me" : "other";
                 return (
-                  <TargetCard apply={target} onClick={() => deleteApply()}>
+                  <TargetCard apply={target} onClick={() => deleteApply(target)}>
                     {isAfternoon ? "오후" : "오전"} {hour % 12}시 {minute}분
                   </TargetCard>
                 );
