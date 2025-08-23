@@ -40,7 +40,10 @@ const TargetCardWrapper = styled.div`
 
 const TargetCard = styled.div<{apply?: "me" | "other"}>`
   padding: 14px 12px;
-  
+
+  display: flex;
+  justify-content: space-between;
+
   border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
   border-radius: 12px;
   
@@ -176,7 +179,8 @@ function LaundryPage() {
                 const target = apply.user.id === localStorage.getItem("id") ? "me" : "other";
                 return (
                   <TargetCard apply={target} onClick={() => deleteApply(target)}>
-                    {isAfternoon ? "오후" : "오전"} {hour % 12}시 {minute}분
+                    <span>{isAfternoon ? "오후" : "오전"} {hour % 12}시 {minute}분</span>
+                    <span>{apply.user.name}</span>
                   </TargetCard>
                 );
               }
