@@ -10,6 +10,9 @@ const Wrapper = styled.div`
   
   display: flex;
   flex-direction: column;
+
+  gap: 3dvh;
+
   justify-content: space-between;
 `;
 
@@ -50,6 +53,24 @@ const Menu = styled.div`
   min-height: 0;
 `;
 
+const MenuItem = styled.div`
+  height: 7dvh;
+  width: 100%;
+  
+  border-radius: 16px;
+
+  cursor: pointer;
+
+  background-color: ${({theme}) => theme.Colors.Background.Primary};
+  
+  padding: 0 2dvh;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1dvh;
+`;
+
 const ItsUS = styled.div`
   font-size: ${({theme}) => theme.Font.Footnote.size};
   color: ${({theme}) => theme.Colors.Content.Secondary};
@@ -80,6 +101,7 @@ const Logout = styled.div`
     height: 3dvh;
     width: 3dvh;
     * { fill: ${({theme}) => theme.Colors.Content.Primary} };
+    cursor: pointer;
   }
 `;
 
@@ -97,7 +119,7 @@ function MorePage() {
         </Logout>
       </Profile>
       <Menu>
-
+        <a href="https://pf.kakao.com/_fxhZen/chat" target="_blank"><MenuItem>DIN에 문의하기</MenuItem></a>
       </Menu>
       <ItsUS>
         <p>Copyright 2025. DIN Org. All rights reserved.</p>
