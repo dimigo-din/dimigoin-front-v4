@@ -68,6 +68,23 @@ const LoginButton = styled.button`
   }
 `;
 
+const Forgot = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  width: 80%;
+  margin: auto;
+  margin-top: 8px;
+
+  justify-content: right;
+
+  a {
+    margin: 0;
+    color: ${({theme}) => theme.Colors.Content.Tertiary};
+    text-decoration: underline;
+  }
+`;
+
 function LoginPage() {
   const {showToast} = useNotification();
   const [searchParams] = useSearchParams();
@@ -124,6 +141,9 @@ function LoginPage() {
           <GoogleLogo/>
           <p>디미고 구글 계정으로 로그인</p>
         </LoginButton>
+        <Forgot>
+          <a href="http://pf.kakao.com/_fxhZen/chat" target="_blank">인증번호를 잊으셨나요?</a>
+        </Forgot>
       </Brand>
       <SchoolScenery className={"scenery"}/>
     </Wrapper>

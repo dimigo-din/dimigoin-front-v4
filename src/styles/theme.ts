@@ -46,8 +46,8 @@ const base = {
         },
       },
       Translucent: {
-        Primary: "#484f8a29",
-        Secondary: "#484f8a14",
+        Primary: "#484f8a3a",
+        Secondary: "#484f8a26",
         Tertiary: "#484f8a0f",
         Interactive: "#fefefff5",
       },
