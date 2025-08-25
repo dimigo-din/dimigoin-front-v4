@@ -252,8 +252,10 @@ function OutingSection({ currentStay }: OutingSectionProps) {
     const fromDate = new Date(from);
     const to = `${activeOutingDay}T${outingEnd}:00+09:00`;
     const toDate = new Date(to);
-    if (fromDate.getTime() > toDate.getTime())
-      toDate.setTime(toDate.getTime() + 24 * 60 * 60 * 1000);
+    if (fromDate.getTime() > toDate.getTime()){
+      showToast("종료시간은 시작시간보다 늦어야 합니다.", "warning");
+      return;
+    }
 
     if (editTarget) {
       editStayOuting(editTarget, outingReason, from, to, outingMealCancel_Breakfast, outingMealCancel_Lunch, outingMealCancel_Dinner).then(() => {
