@@ -191,20 +191,33 @@ function OutingSection({ currentStay }: OutingSectionProps) {
       if (stayApplyList.length > 0) {
 
         setApplies(stayApplyList);
-        setCurrentApply(stayApplyList[0]);
+        const foundApply = stayApplyList.find((app) => app.stay.id === currentStay?.id) || null;
+        setCurrentApply(foundApply);
 
-        const days = currentStay ? generateDateList(currentStay.stay_from, currentStay.stay_to) : [];
-        setOutingDays(days);
-        setActiveOutingDay(activeOutingDay || days[0]);
+        console.log(stayApplyList);
+        console.log(currentStay);
+        console.log(foundApply); 
 
-        getStayOuting(stayApplyList[0].id).then((data) => {
-          setOutings(data);
-        }).catch((e) => {
-          console.log(e);
-          showToast(e.response.data.error.message || e.response.data.error, "danger");
-        }).finally(() => {
+        if(foundApply){
+          const days = currentStay ? generateDateList(currentStay.stay_from, currentStay.stay_to) : [];
+          setOutingDays(days);
+          setActiveOutingDay(activeOutingDay || days[0]);
+  
+          getStayOuting(stayApplyList[0].id).then((data) => {
+            setOutings(data);
+          }).catch((e) => {
+            console.log(e);
+            showToast(e.response.data.error.message || e.response.data.error, "danger");
+          }).finally(() => {
+            setIsLoading(false);
+          });
+        }else{
+          setApplies([]);
+          setOutings([]);
+          setOutingDays([]);
           setIsLoading(false);
-        });
+        }
+
       }else {
         setApplies([]);
         setOutings([]);
@@ -254,6 +267,7 @@ function OutingSection({ currentStay }: OutingSectionProps) {
     const toDate = new Date(to);
     if (fromDate.getTime() > toDate.getTime()){
       showToast("종료시간은 시작시간보다 늦어야 합니다.", "warning");
+      setIsSubmitting(false);
       return;
     }
 
