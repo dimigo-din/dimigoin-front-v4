@@ -161,9 +161,9 @@ function HomePage() {
               </ApplyContent>
               <ApplyContent>
                 <span>외출시간</span>
-                <p className={applies?.stayApply && applies.stayApply.outing.length > 0 ? "fill" : ""}>
-                  {applies?.stayApply && applies.stayApply.outing.length > 0 ?
-                    `${(new Date(outing!.from)).getHours()}:${("0" + (new Date(outing!.from)).getMinutes()).slice(-2)}~${(new Date(outing!.to)).getHours()}:${("0" + (new Date(outing!.to)).getMinutes()).slice(-2)}`
+                <p className={applies?.stayApply && applies.stayApply.outing.length > 0 && outing && new Date(outing.from).toDateString() === new Date().toDateString() ? "fill" : ""}>
+                  {applies?.stayApply && applies.stayApply.outing.length > 0 && outing && new Date(outing.from).toDateString() === new Date().toDateString() ?
+                    `${(new Date(outing.from)).getHours()}:${("0" + (new Date(outing.from)).getMinutes()).slice(-2)}~${(new Date(outing.to)).getHours()}:${("0" + (new Date(outing.to)).getMinutes()).slice(-2)}`
                     : "없음"}
                 </p>
               </ApplyContent>
