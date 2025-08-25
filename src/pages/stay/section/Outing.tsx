@@ -4,6 +4,7 @@ import {
   addStayOuting, deleteStayOuting, editStayOuting,
   getStayOuting,
   type Outing,
+  type Stay,
   stayApplies,
   type StayApply
 } from "../../../api/stay.ts";
@@ -153,7 +154,11 @@ const CheckBox = styled.div<{ canceled: boolean }>`
   }
 `;
 
-function OutingSection() {
+interface OutingSectionProps {
+  currentStay: Stay | null;
+}
+
+function OutingSection({ currentStay }: OutingSectionProps) {
   const {showToast} = useNotification();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -188,7 +193,7 @@ function OutingSection() {
         setApplies(stayApplyList);
         setCurrentApply(stayApplyList[0]);
 
-        const days = generateDateList(stayApplyList[0].stay.stay_from, stayApplyList[0].stay.stay_to);
+        const days = currentStay ? generateDateList(currentStay.stay_from, currentStay.stay_to) : [];
         setOutingDays(days);
         setActiveOutingDay(activeOutingDay || days[0]);
 

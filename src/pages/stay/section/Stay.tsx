@@ -95,38 +95,75 @@ const SeatRow = styled.div<{seat: string | null}>`
   }
 `;
 
-function StaySection() {
+const StaySelectionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  
+  gap: 8px;
+`;
+
+const TargetCard = styled.div<{apply?: "me" | "other"}>`
+  padding: 14px 12px;
+
+  border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
+  border-radius: 12px;
+  
+  font-size: ${({theme}) => theme.Font.Callout.size};
+  
+  
+  color: ${({theme, apply}) => apply ? theme.Colors.Solid.White : theme.Colors.Content.Primary};
+  background-color: ${({theme, apply}) => 
+    apply === "me" ? theme.Colors.Core.Brand.Primary :
+    apply === "other" ? theme.Colors.Solid.Black :
+      theme.Colors.Background.Primary
+  };
+`;
+
+interface StaySectionProps {
+  currentStay: Stay | null;
+  setCurrentStay: (stay: Stay) => void;
+}
+
+function StaySection({ currentStay, setCurrentStay }: StaySectionProps) {
   const {showToast} = useNotification();
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const [targetSeat, setTargetSeat] = useState<string | null>(null);
   const [seatSelectOpen, setSeatSelectOpen] = useState<boolean>(false);
+  const [staySelectOpen, setStaySelectOpen] = useState<boolean>(false);
   const [noSeatReason, setNoSeatReason] = useState<string | null>(null);
 
-  const [stay, setStay] = useState<Stay | null>(null);
+  
   const [stayList, setStayList] = useState<Stay[] | null>(null);
   const [myApply, setMyApply] = useState<string | null>(null);
+
+  const getApply = () => {
+    stayApplies().then((data2) => {
+      const my = data2.find((sapply) => sapply.user.id === localStorage.getItem("id") && sapply.stay.id === currentStay?.id);
+      if (my) {
+        setMyApply(my.id!);
+        setTargetSeat(my.stay_seat);
+      }else {
+        setMyApply(null);
+        setTargetSeat(null);
+        setNoSeatReason(null);
+      }
+    }).catch((e) => {
+      console.log(e);
+      showToast(e.response.data.error, "danger");
+    });
+  }
 
   const updateScreen = () => {
     getStays().then((data) => {
       setStayList(data);
-      setStay(data[0]);
 
-      stayApplies().then((data2) => {
-        const my = data2.find((sapply) => sapply.user.id === localStorage.getItem("id"));
-        if (my) {
-          setMyApply(my.id!);
-          setTargetSeat(my.stay_seat);
-        }else {
-          setMyApply(null);
-          setTargetSeat(null);
-          setNoSeatReason(null);
-        }
-      }).catch((e) => {
-        console.log(e);
-        showToast(e.response.data.error, "danger");
-      });
+      if(!currentStay)
+        setCurrentStay(data[0]);
+
+      getApply();
     }).catch((e) => {
       console.log(e);
       showToast(e.response.data.error, "danger");
@@ -136,6 +173,10 @@ function StaySection() {
   useEffect(() => {
     updateScreen();
   }, []);
+
+  useEffect(() => {
+    getApply();
+  }, [currentStay]);
 
   const submit = () => {
     if (myApply) {
@@ -156,7 +197,7 @@ function StaySection() {
       if (!targetSeat && !noSeatReason) return showToast("좌석 미선택 사유를 입력해주세요.", "warning");
 
       setIsSubmitting(true);
-      applyStay(stay!.id, targetSeat || noSeatReason!).then(() => {
+      applyStay(currentStay!.id, targetSeat || noSeatReason!).then(() => {
         setIsSubmitting(false);
         showToast("잔류가 신청되었습니다.", "info");
         updateScreen();
@@ -178,7 +219,7 @@ function StaySection() {
     </>
   ) : (
     <>
-      <StayKind>잔류 종류: <span>{stay?.name}</span></StayKind>
+      <StayKind onClick={() => setStaySelectOpen(true)}>잔류 종류: <span>{currentStay?.name}</span></StayKind>
       <Section label="내가 선택한 좌석">
         <SeatSelect>
           <p>{targetSeat ? targetSeat : "미선택"}</p>
@@ -208,8 +249,8 @@ function StaySection() {
           {group.map((row, rowIdx) => (
             <SeatRow seat={targetSeat} key={rowIdx}>
               {row.map((seat, seatIdx) => {
-                const isActive = stay?.stay_seat_preset.stay_seat.some((target) => isInRange(target.range.split(":"), seat) && target.target === `${localStorage.getItem("grade")}_${localStorage.getItem("gender")}`);
-                const taken = stay?.stay_apply.find((sapply) => sapply.stay_seat === seat);
+                const isActive = currentStay?.stay_seat_preset.stay_seat.some((target) => isInRange(target.range.split(":"), seat) && target.target === `${localStorage.getItem("grade")}_${localStorage.getItem("gender")}`);
+                const taken = currentStay?.stay_apply.find((sapply) => sapply.stay_seat === seat);
                 return (
             <span
               id={seat}
@@ -230,6 +271,19 @@ function StaySection() {
           })()}
         </SeatBox>
         
+      </SelectionDialog>
+
+ {/* 잔류 선택 만들기 */}
+      <SelectionDialog isOpen={staySelectOpen} closeAction={() => setStaySelectOpen(false)}>
+        <StaySelectionWrapper>
+          {stayList.map((stay) => {
+            return (
+              <TargetCard onClick={() => {setCurrentStay(stay); setStaySelectOpen(false);}}>
+                {stay.name}
+              </TargetCard>
+            );
+          })}
+        </StaySelectionWrapper>
       </SelectionDialog>
     </>
   );
