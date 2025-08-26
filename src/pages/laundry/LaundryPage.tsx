@@ -14,14 +14,51 @@ import SelectionDialog from "../../components/SelectionDialog.tsx";
 import SegmentedTabs from "../../components/SegmentedTabs.tsx";
 import Skeleton from "../../components/Skeleton.tsx";
 
+
 const MachineKind = styled.div`
   font-size: ${({theme}) => theme.Font.Body.size};
   color: ${({theme}) => theme.Colors.Content.Secondary};
+
+  flex: 1;
+  height: 4dvh;
+
+  border-left: 1px solid ${({theme}) => theme.Colors.Line.Outline};
+  border-radius: 0 12px 12px 0;
+
+  display: flex;
+  align-items: center;
   
+  padding: 2dvh;
+
+  background-color: ${({theme}) => theme.Colors.Background.Primary};
+
+  color: ${({theme}) => theme.Colors.Core.Brand.Primary};
+`;
+
+const MachineKindWrapper = styled.div`
+  padding: 0 0 0 2dvh;
+
+  border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
+  border-radius: 12px;
+
+  background-color: ${({theme}) => theme.Colors.Background.Primary};
+
+  display: flex;
+  align-items: center;
+  gap: 2dvh;
+
   > span {
-    color: ${({theme}) => theme.Colors.Core.Brand.Primary};
+    margin: auto 0;
+
+    width: 10dvh;
+
+    align-items: center;
+    text-align: center;
+    font-size: ${({theme}) => theme.Font.Body.size};
+    color: ${({theme}) => theme.Colors.Content.Secondary};
   }
 `;
+
 
 const MachineSelectionWrapper = styled.div`
   display: flex;
@@ -165,8 +202,12 @@ function LaundryPage() {
           </>
         ) : (
         <>
-          <MachineKind
-            onClick={() => setOpenMachineSelection(true)}>세탁/건조기: <span>{currentMachine?.name} {currentMachine?.type === "washer" ? "세탁기" : "건조기"}</span></MachineKind><TargetCardWrapper>
+          <MachineKindWrapper>
+            <span>세탁/건조기</span>
+            <MachineKind onClick={() => setOpenMachineSelection(true)}>{currentMachine?.name} {currentMachine?.type === "washer" ? "세탁기" : "건조기"}</MachineKind>
+          </MachineKindWrapper>
+          
+          <TargetCardWrapper>
             {timeline && timeline.times.filter((time) => time.assigns.find((a) => a.id === currentMachine?.id) && time.grade == parseInt(localStorage.getItem("grade")!)).map((time) => {
               const [hour, minute] = time.time.split(":").map((t) => parseInt(t));
               const isAfternoon = hour / 12 >= 1;

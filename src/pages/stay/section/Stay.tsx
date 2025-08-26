@@ -14,9 +14,44 @@ import Skeleton from "../../../components/Skeleton.tsx";
 const StayKind = styled.div`
   font-size: ${({theme}) => theme.Font.Body.size};
   color: ${({theme}) => theme.Colors.Content.Secondary};
+
+  flex: 1;
+  height: 4dvh;
+
+  border-left: 1px solid ${({theme}) => theme.Colors.Line.Outline};
+  border-radius: 0 12px 12px 0;
+
+  display: flex;
+  align-items: center;
   
+  padding: 2dvh;
+
+  background-color: ${({theme}) => theme.Colors.Background.Primary};
+
+  color: ${({theme}) => theme.Colors.Core.Brand.Primary};
+`;
+
+const StayKindWrapper = styled.div`
+  padding: 0 0 0 2dvh;
+
+  border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
+  border-radius: 12px;
+
+  background-color: ${({theme}) => theme.Colors.Background.Primary};
+
+  display: flex;
+  align-items: center;
+  gap: 2dvh;
+
   > span {
-    color: ${({theme}) => theme.Colors.Core.Brand.Primary};
+    margin: auto 0;
+
+    width: 10dvh;
+
+    align-items: center;
+    text-align: center;
+    font-size: ${({theme}) => theme.Font.Body.size};
+    color: ${({theme}) => theme.Colors.Content.Secondary};
   }
 `;
 
@@ -219,7 +254,10 @@ function StaySection({ currentStay, setCurrentStay }: StaySectionProps) {
     </>
   ) : (
     <>
-      <StayKind onClick={() => setStaySelectOpen(true)}>잔류 종류: <span>{currentStay?.name}</span></StayKind>
+      <StayKindWrapper>
+        <span>잔류 종류</span> 
+        <StayKind onClick={() => setStaySelectOpen(true)}>{currentStay?.name}</StayKind>
+      </StayKindWrapper>
       <Section label="내가 선택한 좌석">
         <SeatSelect>
           <p>{targetSeat ? targetSeat : "미선택"}</p>
