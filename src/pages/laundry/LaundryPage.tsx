@@ -20,14 +20,14 @@ const MachineKind = styled.div`
   color: ${({theme}) => theme.Colors.Content.Secondary};
 
   flex: 1;
-  height: 4dvh;
+  height: 3dvh;
 
   border-left: 1px solid ${({theme}) => theme.Colors.Line.Outline};
 
   display: flex;
   align-items: center;
   
-  padding: 2dvh;
+  padding: 0 0 0 2dvh;
 
   color: ${({theme}) => theme.Colors.Core.Brand.Primary};
 `;

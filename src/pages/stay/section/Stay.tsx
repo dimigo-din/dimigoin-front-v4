@@ -16,14 +16,14 @@ const StayKind = styled.div`
   color: ${({theme}) => theme.Colors.Content.Secondary};
 
   flex: 1;
-  height: 4dvh;
+  height: 3dvh;
 
   border-left: 1px solid ${({theme}) => theme.Colors.Line.Outline};
 
   display: flex;
   align-items: center;
   
-  padding: 2dvh;
+  padding: 0 0 0 2dvh;
 
   color: ${({theme}) => theme.Colors.Core.Brand.Primary};
 `;
@@ -253,9 +253,9 @@ function StaySection({ currentStay, setCurrentStay }: StaySectionProps) {
     </>
   ) : (
     <>
-      <StayKindWrapper>
+      <StayKindWrapper onClick={() => setStaySelectOpen(true)}>
         <span>잔류 종류</span> 
-        <StayKind onClick={() => setStaySelectOpen(true)}>{currentStay?.name}</StayKind>
+        <StayKind>{currentStay?.name}</StayKind>
       </StayKindWrapper>
       <Section label="내가 선택한 좌석">
         <SeatSelect>
