@@ -15,23 +15,20 @@ const StayKind = styled.div`
   font-size: ${({theme}) => theme.Font.Body.size};
   color: ${({theme}) => theme.Colors.Content.Secondary};
 
-  flex: 1;
   height: 3dvh;
-
-  border-left: 1px solid ${({theme}) => theme.Colors.Line.Outline};
 
   display: flex;
   align-items: center;
-  
-  padding: 0 0 0 2dvh;
 
+  text-align: right;
+  
   color: ${({theme}) => theme.Colors.Core.Brand.Primary};
 `;
 
 const StayKindWrapper = styled.div`
   margin-top: -16px;
 
-  padding: 0 0 0 2dvh;
+  padding: 0 3dvh 0 3dvh;
 
   border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
   border-radius: 24px;
@@ -39,13 +36,11 @@ const StayKindWrapper = styled.div`
   background-color: ${({theme}) => theme.Colors.Background.Primary};
 
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 2dvh;
 
   > span {
     margin: auto 0;
-
-    width: 10dvh;
 
     align-items: center;
     text-align: center;

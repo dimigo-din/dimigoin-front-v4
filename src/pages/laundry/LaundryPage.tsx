@@ -19,32 +19,27 @@ const MachineKind = styled.div`
   font-size: ${({theme}) => theme.Font.Body.size};
   color: ${({theme}) => theme.Colors.Content.Secondary};
 
-  flex: 1;
   height: 3dvh;
-
-  border-left: 1px solid ${({theme}) => theme.Colors.Line.Outline};
 
   display: flex;
   align-items: center;
   
-  padding: 0 0 0 2dvh;
-
   color: ${({theme}) => theme.Colors.Core.Brand.Primary};
 `;
 
 const MachineKindWrapper = styled.div`
   margin-top: -16px;
 
-  padding: 0 0 0 2dvh;
-
   border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
   border-radius: 24px;
 
   background-color: ${({theme}) => theme.Colors.Background.Primary};
 
+  padding: 0 3dvh 0 3dvh;
+
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 2dvh;
 
   > span {
     margin: auto 0;
@@ -52,7 +47,7 @@ const MachineKindWrapper = styled.div`
     width: 10dvh;
 
     align-items: center;
-    text-align: center;
+    text-align: left;
     font-size: ${({theme}) => theme.Font.Body.size};
     color: ${({theme}) => theme.Colors.Content.Secondary};
   }
@@ -201,9 +196,9 @@ function LaundryPage() {
           </>
         ) : (
         <>
-          <MachineKindWrapper>
+          <MachineKindWrapper onClick={() => setOpenMachineSelection(true)}>
             <span>세탁/건조기</span>
-            <MachineKind onClick={() => setOpenMachineSelection(true)}>{currentMachine?.name} {currentMachine?.type === "washer" ? "세탁기" : "건조기"}</MachineKind>
+            <MachineKind>{currentMachine?.name} {currentMachine?.type === "washer" ? "세탁기" : "건조기"}</MachineKind>
           </MachineKindWrapper>
           
           <TargetCardWrapper>
