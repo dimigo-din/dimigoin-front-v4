@@ -23,23 +23,22 @@ const MachineKind = styled.div`
   height: 4dvh;
 
   border-left: 1px solid ${({theme}) => theme.Colors.Line.Outline};
-  border-radius: 0 12px 12px 0;
 
   display: flex;
   align-items: center;
   
   padding: 2dvh;
 
-  background-color: ${({theme}) => theme.Colors.Background.Primary};
-
   color: ${({theme}) => theme.Colors.Core.Brand.Primary};
 `;
 
 const MachineKindWrapper = styled.div`
+  margin-top: -16px;
+
   padding: 0 0 0 2dvh;
 
   border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
-  border-radius: 12px;
+  border-radius: 24px;
 
   background-color: ${({theme}) => theme.Colors.Background.Primary};
 
