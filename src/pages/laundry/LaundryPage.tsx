@@ -135,8 +135,8 @@ function LaundryPage() {
       })
       .then((data) => {
         setApplies(data);
-        const my = data.find((d) => d.user.id === localStorage.getItem("id"));
-        if (my) setCurrentMachine(my.laundryMachine);
+        // const my = data.find((d) => d.user.id === localStorage.getItem("id"));
+        // if (my) setCurrentMachine(my.laundryMachine);
       })
       .catch((e) => {
         showToast(e.response?.data?.error?.message || e.response?.data?.error || String(e), "danger");
