@@ -4,6 +4,7 @@ import {
   addStayOuting, deleteStayOuting, editStayOuting,
   getStayOuting,
   type Outing,
+  type Stay,
   stayApplies,
   type StayApply
 } from "../../../api/stay.ts";
@@ -153,7 +154,11 @@ const CheckBox = styled.div<{ canceled: boolean }>`
   }
 `;
 
-function OutingSection() {
+interface OutingSectionProps {
+  currentStay: Stay | null;
+}
+
+function OutingSection({ currentStay }: OutingSectionProps) {
   const {showToast} = useNotification();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -186,20 +191,33 @@ function OutingSection() {
       if (stayApplyList.length > 0) {
 
         setApplies(stayApplyList);
-        setCurrentApply(stayApplyList[0]);
+        const foundApply = stayApplyList.find((app) => app.stay.id === currentStay?.id) || null;
+        setCurrentApply(foundApply);
 
-        const days = generateDateList(stayApplyList[0].stay.stay_from, stayApplyList[0].stay.stay_to);
-        setOutingDays(days);
-        setActiveOutingDay(activeOutingDay || days[0]);
+        console.log(stayApplyList);
+        console.log(currentStay);
+        console.log(foundApply); 
 
-        getStayOuting(stayApplyList[0].id).then((data) => {
-          setOutings(data);
-        }).catch((e) => {
-          console.log(e);
-          showToast(e.response.data.error.message || e.response.data.error, "danger");
-        }).finally(() => {
+        if(foundApply){
+          const days = currentStay ? generateDateList(currentStay.stay_from, currentStay.stay_to) : [];
+          setOutingDays(days);
+          setActiveOutingDay(activeOutingDay || days[0]);
+  
+          getStayOuting(stayApplyList[0].id).then((data) => {
+            setOutings(data);
+          }).catch((e) => {
+            console.log(e);
+            showToast(e.response.data.error.message || e.response.data.error, "danger");
+          }).finally(() => {
+            setIsLoading(false);
+          });
+        }else{
+          setApplies([]);
+          setOutings([]);
+          setOutingDays([]);
           setIsLoading(false);
-        });
+        }
+
       }else {
         setApplies([]);
         setOutings([]);
@@ -247,8 +265,11 @@ function OutingSection() {
     const fromDate = new Date(from);
     const to = `${activeOutingDay}T${outingEnd}:00+09:00`;
     const toDate = new Date(to);
-    if (fromDate.getTime() > toDate.getTime())
-      toDate.setTime(toDate.getTime() + 24 * 60 * 60 * 1000);
+    if (fromDate.getTime() > toDate.getTime()){
+      showToast("종료시간은 시작시간보다 늦어야 합니다.", "warning");
+      setIsSubmitting(false);
+      return;
+    }
 
     if (editTarget) {
       editStayOuting(editTarget, outingReason, from, to, outingMealCancel_Breakfast, outingMealCancel_Lunch, outingMealCancel_Dinner).then(() => {
