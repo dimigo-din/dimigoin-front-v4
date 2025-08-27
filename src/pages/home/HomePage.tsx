@@ -103,7 +103,7 @@ const TimelineWrapper = styled.table`
     color: ${({theme}) => theme.Colors.Core.Brand.Primary}
   }
   td.temp {
-    background-color: ${({theme}) => theme.Colors.Solid.Translucent.Yellow};
+    background-color: ${({theme}) => theme.Colors.Solid.Translucent.Pink};
   }
 `;
 

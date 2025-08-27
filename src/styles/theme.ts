@@ -75,7 +75,7 @@ const base = {
         Blue: "#057fff1a",
         Indigo: "#5b59de1a",
         Purple: "#b756e81a",
-        Pink: "#ff325a1a",
+        Pink: "#ff325b38",
         Brown: "#a789631a",
       },
       Black: "#000000",

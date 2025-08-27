@@ -10,28 +10,26 @@ import {genTable, isInRange} from "../../../utils/staySeatUtil.ts";
 import {useNotification} from "../../../providers/MobileNotifiCationProvider.tsx";
 import Divider from "../../../components/Divider.tsx";
 import Skeleton from "../../../components/Skeleton.tsx";
+import Down from "../../../assets/icons/updown/down.svg?react"; 
 
 const StayKind = styled.div`
   font-size: ${({theme}) => theme.Font.Body.size};
   color: ${({theme}) => theme.Colors.Content.Secondary};
 
-  flex: 1;
-  height: 4dvh;
-
-  border-left: 1px solid ${({theme}) => theme.Colors.Line.Outline};
+  height: 3dvh;
 
   display: flex;
   align-items: center;
-  
-  padding: 2dvh;
 
+  text-align: right;
+  
   color: ${({theme}) => theme.Colors.Core.Brand.Primary};
 `;
 
 const StayKindWrapper = styled.div`
   margin-top: -16px;
 
-  padding: 0 0 0 2dvh;
+  padding: 0 3dvh 0 3dvh;
 
   border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
   border-radius: 24px;
@@ -39,18 +37,23 @@ const StayKindWrapper = styled.div`
   background-color: ${({theme}) => theme.Colors.Background.Primary};
 
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 2dvh;
 
   > span {
     margin: auto 0;
-
-    width: 10dvh;
 
     align-items: center;
     text-align: center;
     font-size: ${({theme}) => theme.Font.Body.size};
     color: ${({theme}) => theme.Colors.Content.Secondary};
+
+    display: flex;
+    flex-direction: row;
+
+    > svg > g > path {
+      fill: ${({theme}) => theme.Colors.Content.Secondary};
+    }
   }
 `;
 
@@ -253,9 +256,9 @@ function StaySection({ currentStay, setCurrentStay }: StaySectionProps) {
     </>
   ) : (
     <>
-      <StayKindWrapper>
-        <span>잔류 종류</span> 
-        <StayKind onClick={() => setStaySelectOpen(true)}>{currentStay?.name}</StayKind>
+      <StayKindWrapper onClick={() => setStaySelectOpen(true)}>
+        <span>잔류 종류<Down/></span> 
+        <StayKind>{currentStay?.name}</StayKind>
       </StayKindWrapper>
       <Section label="내가 선택한 좌석">
         <SeatSelect>
