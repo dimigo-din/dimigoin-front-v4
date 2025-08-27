@@ -13,6 +13,7 @@ import {useNotification} from "../../providers/MobileNotifiCationProvider.tsx";
 import SelectionDialog from "../../components/SelectionDialog.tsx";
 import SegmentedTabs from "../../components/SegmentedTabs.tsx";
 import Skeleton from "../../components/Skeleton.tsx";
+import Down from "../../assets/icons/updown/down.svg?react";
 
 
 const MachineKind = styled.div`
@@ -25,6 +26,7 @@ const MachineKind = styled.div`
   align-items: center;
   
   color: ${({theme}) => theme.Colors.Core.Brand.Primary};
+
 `;
 
 const MachineKindWrapper = styled.div`
@@ -44,12 +46,19 @@ const MachineKindWrapper = styled.div`
   > span {
     margin: auto 0;
 
-    width: 10dvh;
+    width: 15dvh;
 
     align-items: center;
     text-align: left;
     font-size: ${({theme}) => theme.Font.Body.size};
     color: ${({theme}) => theme.Colors.Content.Secondary};
+    
+    display: flex;
+    flex-direction: row;
+
+    > svg > g > path {
+      fill: ${({theme}) => theme.Colors.Content.Secondary};
+    }
   }
 `;
 
@@ -197,7 +206,7 @@ function LaundryPage() {
         ) : (
         <>
           <MachineKindWrapper onClick={() => setOpenMachineSelection(true)}>
-            <span>세탁/건조기</span>
+            <span>{currentMachine?.type === "washer" ? "현재 세탁기" : "건조기"}<Down/></span>
             <MachineKind>{currentMachine?.name} {currentMachine?.type === "washer" ? "세탁기" : "건조기"}</MachineKind>
           </MachineKindWrapper>
           

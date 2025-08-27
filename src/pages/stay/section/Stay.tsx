@@ -10,6 +10,7 @@ import {genTable, isInRange} from "../../../utils/staySeatUtil.ts";
 import {useNotification} from "../../../providers/MobileNotifiCationProvider.tsx";
 import Divider from "../../../components/Divider.tsx";
 import Skeleton from "../../../components/Skeleton.tsx";
+import Down from "../../../assets/icons/updown/down.svg?react"; 
 
 const StayKind = styled.div`
   font-size: ${({theme}) => theme.Font.Body.size};
@@ -46,6 +47,13 @@ const StayKindWrapper = styled.div`
     text-align: center;
     font-size: ${({theme}) => theme.Font.Body.size};
     color: ${({theme}) => theme.Colors.Content.Secondary};
+
+    display: flex;
+    flex-direction: row;
+
+    > svg > g > path {
+      fill: ${({theme}) => theme.Colors.Content.Secondary};
+    }
   }
 `;
 
@@ -249,7 +257,7 @@ function StaySection({ currentStay, setCurrentStay }: StaySectionProps) {
   ) : (
     <>
       <StayKindWrapper onClick={() => setStaySelectOpen(true)}>
-        <span>잔류 종류</span> 
+        <span>잔류 종류<Down/></span> 
         <StayKind>{currentStay?.name}</StayKind>
       </StayKindWrapper>
       <Section label="내가 선택한 좌석">
