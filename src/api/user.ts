@@ -10,9 +10,9 @@ export type Applies = {
 }
 
 export const getApplies = async (): Promise<Applies> => {
-  return (await client.get("/user/apply")).data
+  return (await client.get("/student/user/apply")).data
 }
 
 export const getTimetables = async (grade: string, class_num: string): Promise<{content: string, temp: boolean}[][]> => {
-  return (await client.get("/user/timeline?grade="+grade+"&class="+class_num)).data;
+  return (await client.get("/student/user/timeline?grade="+grade+"&class="+class_num)).data;
 }
