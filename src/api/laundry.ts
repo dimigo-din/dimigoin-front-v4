@@ -40,17 +40,17 @@ export type LaundryApply = {
 }
 
 export const getLaundryTimeline = async (): Promise<LaundryTimeline> => {
-  return (await client.get("/laundry/timeline")).data;
+  return (await client.get("/student/laundry/timeline")).data;
 }
 
 export const getLaundryApplies = async (): Promise<LaundryApply[]> => {
-  return (await client.get("/laundry")).data;
+  return (await client.get("/student/laundry")).data;
 }
 
 export const addLaundryApply = async (time: string, machine: string): Promise<LaundryApply> => {
-  return (await client.post("/laundry", { time: time, machine: machine })).data;
+  return (await client.post("/student/laundry", { time: time, machine: machine })).data;
 }
 
 export const deleteLaundryApply = async (): Promise<LaundryApply[]> => {
-  return (await client.delete("/laundry")).data;
+  return (await client.delete("/student/laundry")).data;
 }
