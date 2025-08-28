@@ -104,7 +104,7 @@ const SeatRow = styled.div<{seat: string | null}>`
     width: 7vh;
     
     padding: 12px 0;
-    margin: 6px;
+    margin: 3px;
     
     background-color: ${({theme}) => theme.Colors.Background.Secondary};
     border-radius: 8px;
@@ -222,7 +222,7 @@ function StaySection({ currentStay, setCurrentStay }: StaySectionProps) {
       setIsSubmitting(true);
       deleteStayApply(myApply).then(() => {
         setIsSubmitting(false);
-        showToast("잔류가 신청이 취소되었습니다.", "info");
+        showToast("잔류 신청이 취소되었습니다.", "info");
         updateScreen();
       }).catch((e) => {
         setIsSubmitting(false);
