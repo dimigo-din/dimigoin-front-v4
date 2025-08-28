@@ -211,7 +211,7 @@ function LaundryPage() {
           </MachineKindWrapper>
           
           <TargetCardWrapper>
-            {timeline && timeline.times.filter((time) => time.assigns.find((a) => a.id === currentMachine?.id) && time.grade == parseInt(localStorage.getItem("grade")!)).map((time) => {
+            {timeline && timeline.times.filter((time) => time.assigns.find((a) => a.id === currentMachine?.id) && time.grade == parseInt(localStorage.getItem("grade")!)).sort((a, b) => a.time.localeCompare(b.time)).map((time) => {
               const [hour, minute] = time.time.split(":").map((t) => parseInt(t));
               const isAfternoon = hour / 12 >= 1;
 
@@ -219,14 +219,14 @@ function LaundryPage() {
               if (apply) {
                 const target = apply.user.id === localStorage.getItem("id") ? "me" : "other";
                 return (
-                  <TargetCard apply={target} onClick={() => deleteApply(target)}>
-                    {isAfternoon ? "오후" : "오전"} {hour % 12}시 {minute}분
-                  </TargetCard>
+                    <TargetCard apply={target} onClick={() => deleteApply(target)}>
+                    {isAfternoon ? "오후" : "오전"} {(hour % 12).toString().padStart(2, "0")}시 {minute.toString().padStart(2, "0")}분
+                    </TargetCard>
                 );
               }
               return (
                 <TargetCard onClick={() => addApply(time.id)}>
-                  {isAfternoon ? "오후" : "오전"} {hour % 12}시 {minute}분
+                  {isAfternoon ? "오후" : "오전"} {(hour % 12).toString().padStart(2, "0")}시 {minute.toString().padStart(2, "0")}분
                 </TargetCard>
               );
             })}
