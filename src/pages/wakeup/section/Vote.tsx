@@ -12,6 +12,7 @@ import Down from "../../../assets/icons/thumbs/thumb_down.svg?react";
 import Skeleton from "../../../components/Skeleton.tsx";
 
 const MusicBox = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
   
@@ -96,6 +97,17 @@ const MusicCard = styled.div`
   }
 `;
 
+const NoWakeup = styled.div`
+  height: 100%;
+  width: 100%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  font-size: ${({theme}) => theme.Font.Headline.size};
+`;
+
 function VoteSection() {
   const {showToast} = useNotification();
 
@@ -170,7 +182,7 @@ function VoteSection() {
     ) : (
     <>
       <MusicBox>
-        {musics && musics.sort((a, b) => (b.up - b.down) - (a.up - a.down)).map((music) => {
+        {musics && musics.length > 0 ? (musics.sort((a, b) => (b.up - b.down) - (a.up - a.down)).map((music) => {
           const curVote = myVote ? myVote.find((vote) => vote.wakeupSongApplication.id === music.id) : undefined;
           return (
             <MusicCard>
@@ -193,7 +205,7 @@ function VoteSection() {
               </div>
             </MusicCard>
           );
-        })}
+        })) : <NoWakeup>신청된 기상곡이 없습니다.</NoWakeup>}
       </MusicBox>
     </>
   );
