@@ -60,11 +60,11 @@ export type Outing = {
 }
 
 export async function getStays(): Promise<Stay[]> {
-  return (await client.get("/stay?grade="+localStorage.getItem("grade"))).data;
+  return (await client.get("/student/stay?grade="+localStorage.getItem("grade"))).data;
 }
 
 export async function stayApplies(): Promise<StayApply[]> {
-  return (await client.get("/stay/apply")).data;
+  return (await client.get("/student/stay/apply")).data;
 }
 
 /** Time foramt: YYYY-MM-DDTHH:mm */
@@ -76,7 +76,7 @@ export async function applyStay(target: string, seat: string, ...outing: {
   from: string,
   to: string
 }[]): Promise<StayApply> {
-  return (await client.post("/stay/apply", { stay: target, stay_seat: seat, outing, grade: localStorage.getItem("grade"), gender: localStorage.getItem("gender") })).data;
+  return (await client.post("/student/stay/apply", { stay: target, stay_seat: seat, outing, grade: localStorage.getItem("grade"), gender: localStorage.getItem("gender") })).data;
 }
 
 /** Time foramt: YYYY-MM-DDTHH:mm */
@@ -88,24 +88,24 @@ export async function editStayApply(target: string, seat: string, ...outing: {
   from: string,
   to: string
 }[]): Promise<StayApply> {
-  return (await client.patch("/stay/apply", { stay: target, stay_seat: seat, outing, grade: localStorage.getItem("grade"), gender: localStorage.getItem("gender") })).data;
+  return (await client.patch("/student/stay/apply", { stay: target, stay_seat: seat, outing, grade: localStorage.getItem("grade"), gender: localStorage.getItem("gender") })).data;
 }
 
 export async function deleteStayApply(target: string): Promise<StayApply> {
-  return (await client.delete("/stay/apply?id=" + target + "&grade=" + localStorage.getItem("grade"))).data;
+  return (await client.delete("/student/stay/apply?id=" + target + "&grade=" + localStorage.getItem("grade"))).data;
 }
 
 export async function getStayOuting(stay_id: string): Promise<Outing[]> {
-  return (await client.get("/stay/outing?id=" + stay_id + "&grade=" + localStorage.getItem("grade"))).data;
+  return (await client.get("/student/stay/outing?id=" + stay_id + "&grade=" + localStorage.getItem("grade"))).data;
 }
 
 export async function addStayOuting(apply_id: string, reason: string, from: string, to: string, breakfast_cancel: boolean, lunch_cancel: boolean, dinner_cancel: boolean): Promise<Outing> {
-  return (await client.post("/stay/outing", {apply_id: apply_id, outing: { reason: reason, from: from, to: to, breakfast_cancel: breakfast_cancel, lunch_cancel: lunch_cancel, dinner_cancel: dinner_cancel }, grade: localStorage.getItem("grade") })).data;
+  return (await client.post("/student/stay/outing", {apply_id: apply_id, outing: { reason: reason, from: from, to: to, breakfast_cancel: breakfast_cancel, lunch_cancel: lunch_cancel, dinner_cancel: dinner_cancel }, grade: localStorage.getItem("grade") })).data;
 }
 export async function editStayOuting(outing_id: string, reason: string, from: string, to: string, breakfast_cancel: boolean, lunch_cancel: boolean, dinner_cancel: boolean): Promise<Outing> {
-  return (await client.patch("/stay/outing", {outing_id: outing_id, outing: { reason: reason, from: from, to: to, breakfast_cancel: breakfast_cancel, lunch_cancel: lunch_cancel, dinner_cancel: dinner_cancel }, grade: localStorage.getItem("grade") })).data;
+  return (await client.patch("/student/stay/outing", {outing_id: outing_id, outing: { reason: reason, from: from, to: to, breakfast_cancel: breakfast_cancel, lunch_cancel: lunch_cancel, dinner_cancel: dinner_cancel }, grade: localStorage.getItem("grade") })).data;
 }
 
 export async function deleteStayOuting(outing_id: string) {
-  return (await client.delete("/stay/outing?id=" + outing_id + "&grade=" + localStorage.getItem("grade"))).data;
+  return (await client.delete("/student/stay/outing?id=" + outing_id + "&grade=" + localStorage.getItem("grade"))).data;
 }

@@ -70,25 +70,25 @@ export type WakeupApplicationVotes = {
 }
 
 export async function searchMusic(query: string): Promise<YoutubeSearchResult> {
-  return (await client.get("/wakeup/search?query="+query)).data;
+  return (await client.get("/student/wakeup/search?query="+query)).data;
 }
 
 export async function getWakeupApplications(): Promise<WakeupApplicationWithVote[]> {
-  return (await client.get("/wakeup")).data;
+  return (await client.get("/student/wakeup")).data;
 }
 
 export async function applyWakeupSong(videoId: string): Promise<WakeupApplication> {
-  return (await client.post("/wakeup", { videoId: videoId })).data;
+  return (await client.post("/student/wakeup", { videoId: videoId })).data;
 }
 
 export async function getMyWakeupApplicationVotes(): Promise<WakeupApplicationVotes[]> {
-  return (await client.get("/wakeup/vote")).data;
+  return (await client.get("/student/wakeup/vote")).data;
 }
 
 export async function voteWakeupApplication(songId: string, upvote: boolean): Promise<WakeupApplicationVotes> {
-  return (await client.post("/wakeup/vote", { songId: songId, upvote: upvote })).data;
+  return (await client.post("/student/wakeup/vote", { songId: songId, upvote: upvote })).data;
 }
 
 export async function unVoteWakeupApplication(application_id: string) {
-  return (await client.delete("/wakeup/vote?id="+application_id)).data;
+  return (await client.delete("/student/wakeup/vote?id="+application_id)).data;
 }
