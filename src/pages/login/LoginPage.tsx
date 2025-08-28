@@ -2,7 +2,7 @@ import SchoolScenery from "../../assets/img/schoolscenery.svg?react";
 import Logo from "../../assets/icons/dimigoin.svg?react";
 import styled from "styled-components";
 import GoogleLogo from "../../assets/icons/google.svg?react";
-import {getPersonalInformation, getRedirectUri, googleLogin, ping} from "../../api/auth.ts";
+import {getPersonalInformation, getRedirectUri, googleLogin, logout, ping} from "../../api/auth.ts";
 import {useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 import {useNotification} from "../../providers/MobileNotifiCationProvider.tsx";
@@ -124,6 +124,12 @@ function LoginPage() {
           showToast("개인정보 등록 페이지로 이동합니다.", "info");
           location.href = "https://dimiauth.findflag.kr"
         }
+
+        setTimeout(() => {
+          logout().then(() => {
+            location.href = "/login";
+          })
+        });
       });
     }
   }, []);
