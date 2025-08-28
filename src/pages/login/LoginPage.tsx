@@ -6,6 +6,7 @@ import {getPersonalInformation, getRedirectUri, googleLogin, logout, ping} from 
 import {useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 import {useNotification} from "../../providers/MobileNotifiCationProvider.tsx";
+import {decodeJwt} from "jose";
 
 const Wrapper = styled.div`
   height: 100dvh;
@@ -95,7 +96,8 @@ function LoginPage() {
     if (code) {
       showToast("로그인중입니다...", "info");
       googleLogin(code).then(({accessToken}) => {
-        const payload = JSON.parse(atob(accessToken.split(".")[1]));
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const payload = decodeJwt(accessToken) as unknown as any;
         localStorage.setItem("id", payload.id);
         localStorage.setItem("picture", payload.picture);
         getPersonalInformation(prompt("개인정보를 등록할때 입력한 인증번호를 입력해주세요.")!).then((data) => {
