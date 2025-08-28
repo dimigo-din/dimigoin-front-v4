@@ -128,7 +128,7 @@ function LoginPage() {
             logout().then(() => {
               location.href = "/login";
             })
-          });
+          }, 1000);
         }
       });
     }
