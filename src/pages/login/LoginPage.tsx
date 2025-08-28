@@ -95,7 +95,13 @@ function LoginPage() {
     if (code) {
       showToast("로그인중입니다...", "info");
       googleLogin(code).then(({accessToken}) => {
-        const payload = JSON.parse(atob(accessToken.split(".")[1]));
+        const base64Url = accessToken.split(".")[1];
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        const padded = base64.padEnd(base64.length + (4 - (base64.length % 4)) % 4, "=");
+        const jsonStr = new TextDecoder().decode(
+          Uint8Array.from(atob(padded), c => c.charCodeAt(0))
+        );
+        const payload = JSON.parse(jsonStr);
         localStorage.setItem("id", payload.id);
         localStorage.setItem("picture", payload.picture);
         getPersonalInformation(prompt("개인정보를 등록할때 입력한 인증번호를 입력해주세요.")!).then((data) => {
