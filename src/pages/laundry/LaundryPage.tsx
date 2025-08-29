@@ -117,12 +117,15 @@ function LaundryPage() {
       .then((data) => {
         setTimeline(data);
 
+        console.log(data);
+
         const myGrade = localStorage.getItem("grade");
+        const myGender = localStorage.getItem("gender");
         const map = new Map<string, LaundryMachine>();
         data.times.forEach((time) => {
           if (String(time.grade) === myGrade) {
             time.assigns.forEach((m) => {
-              if (!map.has(m.id)) map.set(m.id, m);
+              if (!map.has(m.id) && String(m.gender) === myGender) map.set(m.id, m);
             });
           }
         });
