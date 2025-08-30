@@ -319,7 +319,7 @@ function StaySection({ currentStay, setCurrentStay }: StaySectionProps) {
           {stayList.map((stay) => {
             return (
               <TargetCard onClick={() => {setCurrentStay(stay); setStaySelectOpen(false);}}>
-                {stay.name}
+                {stay.name} ({stay.stay_from} ~ {stay.stay_to})
               </TargetCard>
             );
           })}
