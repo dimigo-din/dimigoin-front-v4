@@ -51,6 +51,11 @@ const Profile = styled.div`
 const Menu = styled.div`
   flex: 1;
   min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1dvh;
 `;
 
 const MenuItem = styled.div`
@@ -120,6 +125,7 @@ function MorePage() {
       </Profile>
       <Menu>
         <a href="https://pf.kakao.com/_fxhZen/chat" target="_blank"><MenuItem>DIN에 문의하기</MenuItem></a>
+        <a href="https://www.notion.so/dimigo-din/DIN-25f98f8027c680a79e3ecf1e0cb6c6ff" target="_blank"><MenuItem>개인정보 처리방침</MenuItem></a>
       </Menu>
       <ItsUS>
         <p>Copyright 2025. DIN Org. All rights reserved.</p>
