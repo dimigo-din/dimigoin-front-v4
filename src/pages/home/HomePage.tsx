@@ -67,43 +67,47 @@ const ApplyContent = styled.div`
   }
 `;
 
+const TimelineOuter = styled.div`
+  padding: 6px;         
+  margin-top: 4%;
+  border-radius: 12px;  
+  background: transparent;
+`;
+
 const TimelineWrapper = styled.table`
   border-collapse: collapse;
-  border-radius: 12px;
-  
-  padding: 6px;
-  margin-top: 4%;
+  width: 100%;
+  table-layout: fixed;
+
+  thead > tr > td { height: 4dvh; }
+  tbody tr { height: 5dvh; }
 
   tr {
     border-bottom: 1px solid ${({theme}) => theme.Colors.Line.Divider};
     > td {
       text-align: center;
+      padding: 8px 6px;     /* 셀 자체 여백 */
+      word-break: keep-all;
     }
   }
   tr.end {
     border: none !important;
   }
-  thead > tr > td { height: 4dvh }
-  tbody {
-    tr {
-      height: 5dvh;
-      > td.target {
-        height: 100%;
-        width: calc(88% / 5);
 
-        text-align: center;
-      }
-    }
-  }
   td.indicator {
     color: ${({theme}) => theme.Colors.Content.Tertiary};
     border-right: 1px solid ${({theme}) => theme.Colors.Line.Divider};
+    width: 12%;
   }
   td.days {
-    color: ${({theme}) => theme.Colors.Core.Brand.Primary}
+    color: ${({theme}) => theme.Colors.Core.Brand.Primary};
   }
   td.temp {
     background-color: ${({theme}) => theme.Colors.Solid.Translucent.Pink};
+  }
+
+  tbody td.target {
+    width: calc(88% / 5);
   }
 `;
 
@@ -172,37 +176,40 @@ function HomePage() {
                 <p className={applies?.laundryApply ? "fill" : ""}>{applies?.laundryApply ? applies?.laundryApply.laundryTime.time : "없음"}</p>
               </ApplyContent>
             </ApplyWrapper>
-          </CardBox><CardBox>
+          </CardBox>
+          <CardBox>
             <div className="label">시간표&nbsp;&nbsp;{localStorage.getItem("grade")!}학년 {localStorage.getItem("class")!}반</div>
-            <TimelineWrapper>
-              <thead>
-              <tr>
-                {["", "월", "화", "수", "목", "금"].map((d) => {
+            <TimelineOuter>
+              <TimelineWrapper>
+                <thead>
+                <tr>
+                  {["", "월", "화", "수", "목", "금"].map((d) => {
+                    return (
+                      <td className={[d === "" ? "indicator" : "", "days"].join(" ")}>{d}</td>
+                    );
+                  })}
+                </tr>
+                </thead>
+                <tbody>
+                {timetable?.map((times, i) => {
+                  if (i === 7) return;
+
+                  const classes = ["1", "2", "3", "4", "5", "6", "7"];
                   return (
-                    <td className={[d === "" ? "indicator" : "", "days"].join(" ")}>{d}</td>
+                    <tr className={[i === 6 ? "end" : ""].join(" ")}>
+                      {[classes[i], ...times].map((time) => {
+                        return typeof time === "string" ? (
+                          <td className={"indicator"}>{time}</td>
+                        ) : (
+                          <td className={[time.temp ? "temp" : "", "target"].join(" ")}>{time.content.split("\n")[0]}</td>
+                        );
+                      })}
+                    </tr>
                   );
                 })}
-              </tr>
-              </thead>
-              <tbody>
-              {timetable?.map((times, i) => {
-                if (i === 7) return;
-
-                const classes = ["1", "2", "3", "4", "5", "6", "7"];
-                return (
-                  <tr className={[i === 6 ? "end" : ""].join(" ")}>
-                    {[classes[i], ...times].map((time) => {
-                      return typeof time === "string" ? (
-                        <td className={"indicator"}>{time}</td>
-                      ) : (
-                        <td className={[time.temp ? "temp" : "", "target"].join(" ")}>{time.content.split("\n")[0]}</td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
-              </tbody>
-            </TimelineWrapper>
+                </tbody>
+              </TimelineWrapper>
+            </TimelineOuter>
           </CardBox>
         </>
       )}
