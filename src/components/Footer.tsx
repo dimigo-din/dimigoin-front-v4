@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 import Home from "../assets/icons/menu/home.svg?react";
 import Office from "../assets/icons/menu/office.svg?react";
