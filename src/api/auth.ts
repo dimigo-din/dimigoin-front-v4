@@ -47,7 +47,7 @@ export async function getPersonalInformation(passcode: string): Promise<Personal
   else if (location.host === "dimigo.site")
     personalInformation = (await axios.get("https://dimiauth.dimigo.site/personalInformation/my", { headers: { "Authorization": `Bearer ${btoa(`${token}$${passcode}`)}` } }));
   else
-    personalInformation = (await axios.get("http://localhost:9008/personalInformation/my", { headers: { "Authorization": `Bearer ${btoa(`${token}$${passcode}`)}` } }));
+    personalInformation = (await axios.get("http://localhost:5000/personalInformation/my", { headers: { "Authorization": `Bearer ${btoa(`${token}$${passcode}`)}` } }));
 
   const parsedNumber = {
     grade: parseInt(personalInformation.data.number.substring(0, 1)),
