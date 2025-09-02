@@ -43,7 +43,7 @@ export async function getPersonalInformation(passcode: string): Promise<Personal
   const token = await getPersonalInformationVerifyToken();
   let personalInformation;
   if (location.host === "dimigo.site")
-    personalInformation = (await axios.get("https://dimiauth.dimigoin.io/personalInformation/my", { headers: { "Authorization": `Bearer ${btoa(`${token}$${passcode}`)}` } }));
+    personalInformation = (await axios.get("https://dimiauth.dimigo.site/personalInformation/my", { headers: { "Authorization": `Bearer ${btoa(`${token}$${passcode}`)}` } }));
   else
     personalInformation = (await axios.get("https://dimiauth.findflag.kr/personalInformation/my", { headers: { "Authorization": `Bearer ${btoa(`${token}$${passcode}`)}` } }));
 
