@@ -37,7 +37,7 @@ const KindItemStyle = styled.div`
   font-size: ${({theme}) => theme.Font.Body.size};
   color: ${({theme}) => theme.Colors.Content.Secondary};
 
-  height: 3dvh;
+  height: 4px;
 
   display: flex;
   align-items: center;
