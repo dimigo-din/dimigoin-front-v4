@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import ContentWrapper from "../../components/Content.tsx";
+import {KindWrapper, KindItem} from "../../components/KindSelection.tsx";
 import styled from "styled-components";
 import {
   addLaundryApply, deleteLaundryApply,
@@ -14,54 +15,6 @@ import SelectionDialog from "../../components/SelectionDialog.tsx";
 import SegmentedTabs from "../../components/SegmentedTabs.tsx";
 import Skeleton from "../../components/Skeleton.tsx";
 import Down from "../../assets/icons/updown/down.svg?react";
-
-
-const MachineKind = styled.div`
-  font-size: ${({theme}) => theme.Font.Body.size};
-  color: ${({theme}) => theme.Colors.Content.Secondary};
-
-  height: 3dvh;
-
-  display: flex;
-  align-items: center;
-  
-  color: ${({theme}) => theme.Colors.Core.Brand.Primary};
-
-`;
-
-const MachineKindWrapper = styled.div`
-  margin-top: -16px;
-
-  border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
-  border-radius: 24px;
-
-  background-color: ${({theme}) => theme.Colors.Background.Primary};
-
-  padding: 0 3dvh 0 3dvh;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  > span {
-    margin: auto 0;
-
-    width: 15dvh;
-
-    align-items: center;
-    text-align: left;
-    font-size: ${({theme}) => theme.Font.Body.size};
-    color: ${({theme}) => theme.Colors.Content.Secondary};
-    
-    display: flex;
-    flex-direction: row;
-
-    > svg > g > path {
-      fill: ${({theme}) => theme.Colors.Content.Secondary};
-    }
-  }
-`;
-
 
 const MachineSelectionWrapper = styled.div`
   display: flex;
@@ -208,10 +161,10 @@ function LaundryPage() {
           </>
         ) : (
         <>
-          <MachineKindWrapper onClick={() => setOpenMachineSelection(true)}>
+          <KindWrapper onClick={() => setOpenMachineSelection(true)}>
             <span>{currentMachine?.type === "washer" ? "현재 세탁기" : "건조기"}<Down/></span>
-            <MachineKind>{currentMachine?.name} {currentMachine?.type === "washer" ? "세탁기" : "건조기"}</MachineKind>
-          </MachineKindWrapper>
+            <KindItem>{currentMachine?.name} {currentMachine?.type === "washer" ? "세탁기" : "건조기"}</KindItem>
+          </KindWrapper>
           
           <TargetCardWrapper>
             {timeline && timeline.times.filter((time) => time.assigns.find((a) => a.id === currentMachine?.id) && time.grade == parseInt(localStorage.getItem("grade")!)).sort((a, b) => a.time.localeCompare(b.time)).map((time) => {

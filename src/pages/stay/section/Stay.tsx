@@ -5,57 +5,13 @@ import {Input} from "../../../styles/components/input";
 import {useEffect, useState} from "react";
 import {applyStay, deleteStayApply, getStays, type Stay, stayApplies} from "../../../api/stay.ts";
 import SelectionDialog from "../../../components/SelectionDialog.tsx";
+import { KindWrapper, KindItem } from "../../../components/KindSelection.tsx";
 
 import {genTable, isInRange} from "../../../utils/staySeatUtil.ts";
 import {useNotification} from "../../../providers/MobileNotifiCationProvider.tsx";
 import Divider from "../../../components/Divider.tsx";
 import Skeleton from "../../../components/Skeleton.tsx";
 import Down from "../../../assets/icons/updown/down.svg?react"; 
-
-const StayKind = styled.div`
-  font-size: ${({theme}) => theme.Font.Body.size};
-  color: ${({theme}) => theme.Colors.Content.Secondary};
-
-  height: 3dvh;
-
-  display: flex;
-  align-items: center;
-
-  text-align: right;
-  
-  color: ${({theme}) => theme.Colors.Core.Brand.Primary};
-`;
-
-const StayKindWrapper = styled.div`
-  margin-top: -16px;
-
-  padding: 0 3dvh 0 3dvh;
-
-  border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
-  border-radius: 24px;
-
-  background-color: ${({theme}) => theme.Colors.Background.Primary};
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  > span {
-    margin: auto 0;
-
-    align-items: center;
-    text-align: center;
-    font-size: ${({theme}) => theme.Font.Body.size};
-    color: ${({theme}) => theme.Colors.Content.Secondary};
-
-    display: flex;
-    flex-direction: row;
-
-    > svg > g > path {
-      fill: ${({theme}) => theme.Colors.Content.Secondary};
-    }
-  }
-`;
 
 const NoStay = styled.div`
   height: 100%;
@@ -256,10 +212,10 @@ function StaySection({ currentStay, setCurrentStay }: StaySectionProps) {
     </>
   ) : (
     <>
-      <StayKindWrapper onClick={() => setStaySelectOpen(true)}>
+      <KindWrapper onClick={() => setStaySelectOpen(true)}>
         <span>잔류 종류<Down/></span> 
-        <StayKind>{currentStay?.name}</StayKind>
-      </StayKindWrapper>
+        <KindItem>{currentStay?.name}</KindItem>
+      </KindWrapper>
       <Section label="내가 선택한 좌석">
         <SeatSelect>
           <p>{targetSeat ? targetSeat : "미선택"}</p>
