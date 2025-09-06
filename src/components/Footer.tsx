@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 import Home from "../assets/icons/menu/home.svg?react";
 import Office from "../assets/icons/menu/office.svg?react";
 import Music from "../assets/icons/menu/music.svg?react";
 import Washer from "../assets/icons/menu/washer.svg?react";
 import Others from "../assets/icons/menu/others.svg?react";
+import {useEffect} from "react";
 
 const FooterWrapper = styled.footer`
   height: 84px;
@@ -53,8 +54,12 @@ const MenuItem = styled.li<{ active?: boolean }>`
 `;
 
 const Footer = () => {
-  const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!location.pathname.startsWith("/login") && !localStorage.getItem("grade"))
+      location.href = "/login";
+  }, []);
 
   return location.pathname.startsWith("/login") ? null : (
     <FooterWrapper>

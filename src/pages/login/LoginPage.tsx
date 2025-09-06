@@ -91,7 +91,7 @@ function LoginPage() {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    ping().then((res) => {if (res === "퐁")  location.href = "/"});
+    ping().then((res) => {if (res === "퐁" && localStorage.getItem("grade"))  location.href = "/"});
     const code = searchParams.get("code") as string;
     if (code) {
       showToast("로그인중입니다...", "info");
