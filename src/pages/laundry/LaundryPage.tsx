@@ -120,13 +120,13 @@ function LaundryPage() {
     });
   }
 
-  const deleteApply = (target: "me" | "other") => {
+  const deleteApply = (target: "me" | "other", laundry_id: string) => {
     if (target === 'other') return;
 
     if (isSubmitting) return showToast("이미 신청중입니다. 잠시만 기다려주세요.", "warning");
     setIsSubmitting(true);
 
-    deleteLaundryApply().then(() => {
+    deleteLaundryApply(laundry_id).then(() => {
       showToast("신청 취소되었습니다.", "info");
       updateScreen();
     }).catch((e) => {
@@ -175,7 +175,7 @@ function LaundryPage() {
               if (apply) {
                 const target = apply.user.id === localStorage.getItem("id") ? "me" : "other";
                 return (
-                    <TargetCard apply={target} onClick={() => deleteApply(target)}>
+                    <TargetCard apply={target} onClick={() => deleteApply(target, apply.id)}>
                     {isAfternoon ? "오후" : "오전"} {(hour % 12).toString().padStart(2, "0")}시 {minute.toString().padStart(2, "0")}분
                     </TargetCard>
                 );
