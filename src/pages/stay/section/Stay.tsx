@@ -151,7 +151,7 @@ function StaySection({ currentStay, setCurrentStay }: StaySectionProps) {
 
   const updateScreen = () => {
     getStays().then((data) => {
-      setStayList(data);
+      setStayList(data.sort((a, b) => new Date(a.stay_from).getTime() - new Date(b.stay_from).getTime()));
 
       if(!currentStay)
         setCurrentStay(data[0]);
