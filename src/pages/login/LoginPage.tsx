@@ -100,7 +100,7 @@ function LoginPage() {
         const payload = decodeJwt(accessToken) as unknown as any;
         localStorage.setItem("id", payload.id);
         localStorage.setItem("picture", payload.picture);
-        getPersonalInformation(prompt("개인정보를 등록할때 입력한 인증번호를 입력해주세요.")!).then((data) => {
+        getPersonalInformation(prompt("디미인증에서 개인정보를 등록할때 입력한 인증번호를 입력해주세요. (4자리 숫자 PIN번호)")!).then((data) => {
           localStorage.setItem("grade", data.grade.toString());
           localStorage.setItem("class", data.class.toString());
           localStorage.setItem("number", data.number.toString());

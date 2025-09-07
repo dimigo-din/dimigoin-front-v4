@@ -1,3 +1,15 @@
+let isRefreshing = false;
+let refreshSubscribers: ((token?: string) => void)[] = [];
+
+function subscribeTokenRefresh(cb: (token?: string) => void) {
+  refreshSubscribers.push(cb);
+}
+
+function onRefreshed(token?: string) {
+  refreshSubscribers.forEach(cb => cb(token));
+  refreshSubscribers = [];
+}
+
 import axios, {type AxiosInstance} from "axios";
 
 let instance: AxiosInstance;
@@ -15,14 +27,24 @@ export function getInstance(): AxiosInstance {
     }, (err) => {
       console.log(err);
       if (err.response.status === 401 && err.config.url !== "/auth/refresh" && err.config.url !== "/auth/ping") {
-        return new Promise((resolve, reject) => {
-          instance.post("/auth/refresh").then(() => {
-            resolve(instance(err.config));
+        if (!isRefreshing) {
+          isRefreshing = true;
+          return instance.post("/auth/refresh").then(() => {
+            isRefreshing = false;
+            onRefreshed();
+            return instance(err.config);
           }).catch((e) => {
+            isRefreshing = false;
             if (e.response.status === 401 || e.response.status === 404) {
-              location.href = "/login"
+              location.href = "/login";
             }
-            reject(err);
+            return Promise.reject(err);
+          });
+        }
+
+        return new Promise((resolve) => {
+          subscribeTokenRefresh(() => {
+            resolve(instance(err.config));
           });
         });
       }
