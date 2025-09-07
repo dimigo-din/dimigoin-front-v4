@@ -51,6 +51,6 @@ export const addLaundryApply = async (time: string, machine: string): Promise<La
   return (await client.post("/student/laundry", { time: time, machine: machine })).data;
 }
 
-export const deleteLaundryApply = async (): Promise<LaundryApply[]> => {
-  return (await client.delete("/student/laundry")).data;
+export const deleteLaundryApply = async (laundry_id: string): Promise<LaundryApply[]> => {
+  return (await client.delete(`/student/laundry?id=${laundry_id}`)).data;
 }
