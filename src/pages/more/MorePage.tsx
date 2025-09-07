@@ -59,21 +59,16 @@ const Menu = styled.div`
 `;
 
 const MenuItem = styled.div`
-  height: 7dvh;
+  padding: 14px 12px;
   width: 100%;
   
-  border-radius: 16px;
+  border-radius: 12px;
 
   cursor: pointer;
 
   background-color: ${({theme}) => theme.Colors.Background.Primary};
   
-  padding: 0 2dvh;
-  
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1dvh;
+  border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
 `;
 
 const ItsUS = styled.div`
