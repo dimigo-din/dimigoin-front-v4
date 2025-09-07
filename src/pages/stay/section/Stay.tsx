@@ -213,7 +213,7 @@ function StaySection({ currentStay, setCurrentStay }: StaySectionProps) {
   ) : (
     <>
       <KindWrapper onClick={() => setStaySelectOpen(true)}>
-        <span>잔류 종류<Down/></span> 
+        <span>잔류 일정<Down/></span> 
         <KindItem>{currentStay?.name}</KindItem>
       </KindWrapper>
       <Section label="내가 선택한 좌석">
