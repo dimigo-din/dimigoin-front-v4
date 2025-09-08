@@ -9,7 +9,7 @@ const base = {
         Tertiary: "#ebecf5",
       },
       Inverted: {
-        Primary: "#232323ff",
+        Primary: "#232323",
         Secondary: "#111111",
         Tertiary: "#000000",
       },
