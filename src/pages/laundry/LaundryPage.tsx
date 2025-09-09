@@ -169,7 +169,7 @@ function LaundryPage() {
         ) : (
         <>
           <KindWrapper onClick={() => setOpenMachineSelection(true)}>
-            <span>{currentMachine?.type === "washer" ? "현재 세탁기" : "건조기"}<Down/></span>
+            <span>{currentMachine?.type === "washer" ? "세탁기" : "건조기"}<Down/></span>
             <KindItem>{currentMachine?.name} {currentMachine?.type === "washer" ? "세탁기" : "건조기"}</KindItem>
           </KindWrapper>
           
