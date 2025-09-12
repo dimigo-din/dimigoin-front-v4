@@ -83,7 +83,7 @@ function LaundryPage() {
         const myGender = localStorage.getItem("gender");
         const map = new Map<string, LaundryMachine>();
         data.times.forEach((time) => {
-          if (String(time.grade) === myGrade) {
+          if (time.grade.indexOf(parseInt(myGrade!) as 1 | 2 | 3) !== -1) {
             time.assigns.forEach((m) => {
               if (!map.has(m.id) && String(m.gender) === myGender) map.set(m.id, m);
             });
@@ -174,7 +174,7 @@ function LaundryPage() {
           </KindWrapper>
           
           <TargetCardWrapper>
-            {timeline && timeline.times.filter((time) => time.assigns.find((a) => a.id === currentMachine?.id) && time.grade == parseInt(localStorage.getItem("grade")!)).sort((a, b) => a.time.localeCompare(b.time)).map((time) => {
+            {timeline && timeline.times.filter((time) => time.assigns.find((a) => a.id === currentMachine?.id) && time.grade.indexOf(parseInt(localStorage.getItem("grade")!) as 1 | 2 | 3) !== -1).sort((a, b) => a.time.localeCompare(b.time)).map((time) => {
               const [hour, minute] = time.time.split(":").map((t) => parseInt(t));
               const isAfternoon = hour / 12 >= 1;
 

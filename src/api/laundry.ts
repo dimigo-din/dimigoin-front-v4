@@ -13,7 +13,7 @@ export type LaundryTimeline = {
 export type LaundryTime = {
   id: string;
   time: string;
-  grade: 1 | 2 | 3;
+  grade: (1 | 2 | 3)[];
   assigns: LaundryMachine[];
 }
 
