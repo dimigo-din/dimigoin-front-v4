@@ -182,7 +182,7 @@ function VoteSection() {
     ) : (
     <>
       <MusicBox>
-        {musics && musics.length > 0 ? (musics.sort((a, b) => (b.up - b.down) - (a.up - a.down)).map((music) => {
+        {musics && musics.length > 0 ? (musics.sort((a, b) => b.up - a.up).map((music) => {
           const curVote = myVote ? myVote.find((vote) => vote.wakeupSongApplication.id === music.id) : undefined;
           return (
             <MusicCard>
