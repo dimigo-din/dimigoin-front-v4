@@ -44,7 +44,10 @@ const TargetCard = styled.div<{apply?: "me" | "other"}>`
   font-size: ${({theme}) => theme.Font.Callout.size};
   
   
-  color: ${({theme, apply}) => apply ? theme.Colors.Content.Secondary : theme.Colors.Content.Primary};
+  color: ${({theme, apply}) => 
+    apply === "me" ? theme.Colors.Content.Primary :
+    apply ? theme.Colors.Content.Secondary : theme.Colors.Content.Primary
+  };
   background-color: ${({theme, apply}) => 
     apply === "me" ? theme.Colors.Core.Brand.Primary :
     apply === "other" ? theme.Colors.Components.Fill.Primary :
@@ -166,7 +169,7 @@ function LaundryPage() {
         ) : (
         <>
           <KindWrapper onClick={() => setOpenMachineSelection(true)}>
-            <span>{currentMachine?.type === "washer" ? "현재 세탁기" : "건조기"}<Down/></span>
+            <span>{currentMachine?.type === "washer" ? "세탁기" : "건조기"}<Down/></span>
             <KindItem>{currentMachine?.name} {currentMachine?.type === "washer" ? "세탁기" : "건조기"}</KindItem>
           </KindWrapper>
           
