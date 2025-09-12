@@ -48,7 +48,7 @@ export const getLaundryApplies = async (): Promise<LaundryApply[]> => {
 }
 
 export const addLaundryApply = async (time: string, machine: string): Promise<LaundryApply> => {
-  return (await client.post("/student/laundry", { time: time, machine: machine })).data;
+  return (await client.post("/student/laundry", { time: time, grade: localStorage.getItem("grade"), machine: machine })).data;
 }
 
 export const deleteLaundryApply = async (laundry_id: string): Promise<LaundryApply[]> => {
