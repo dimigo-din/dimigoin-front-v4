@@ -83,7 +83,7 @@ function LaundryPage() {
         const myGender = localStorage.getItem("gender");
         const map = new Map<string, LaundryMachine>();
         data.times.forEach((time) => {
-          if (String(time.grade) === myGrade) {
+          if (time.grade.indexOf(parseInt(myGrade!) as 1 | 2 | 3) !== -1) {
             time.assigns.forEach((m) => {
               if (!map.has(m.id) && String(m.gender) === myGender) map.set(m.id, m);
             });
