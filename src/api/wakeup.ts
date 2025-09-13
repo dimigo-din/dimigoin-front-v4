@@ -69,6 +69,16 @@ export type WakeupApplicationVotes = {
   wakeupSongApplication: WakeupApplication;
 }
 
+export type WakeupHistory = {
+  id: string;
+  video_id: string;
+  video_title: string;
+  date: string;
+  gender: "male" | "female";
+  up: number;
+  down: number;
+}
+
 export async function searchMusic(query: string): Promise<YoutubeSearchResult> {
   return (await client.get("/student/wakeup/search?query="+query)).data;
 }
@@ -91,4 +101,8 @@ export async function voteWakeupApplication(songId: string, upvote: boolean): Pr
 
 export async function unVoteWakeupApplication(application_id: string) {
   return (await client.delete("/student/wakeup/vote?id="+application_id)).data;
+}
+
+export async function getWakeUpHistory(gender: "male" | "female"): Promise<WakeupHistory> {
+  return (await client.get("/wakeup/history?date=" + new Date().toISOString().split("T")[0] + "&gender=" + gender)).data;
 }
