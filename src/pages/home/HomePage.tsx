@@ -122,7 +122,7 @@ function HomePage() {
   const updateScreen = () => {
     getApplies().then((data) => {
       setApplies(data);
-      setOuting(data.stayApply.outing.sort((a, b) => (new Date(a.from)).getTime() - (new Date(b.from)).getTime())[0])
+      setOuting(data.stayApply.outing.filter(o => new Date(o.from) > new Date()).sort((a, b) => (new Date(a.from)).getTime() - (new Date(b.from)).getTime())[0])
     }).catch((e) => {
       console.log(e);
       showToast(e.response.data.error.message || e.response.data.error, "danger");
