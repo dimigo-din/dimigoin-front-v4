@@ -131,6 +131,9 @@ function LaundryPage() {
     if (target === 'other') return;
 
     if (isSubmitting) return showToast("이미 신청중입니다. 잠시만 기다려주세요.", "warning");
+
+    if (!window.confirm("정말로 신청을 취소하시겠습니까?")) return;
+
     setIsSubmitting(true);
 
     deleteLaundryApply(laundry_id).then(() => {
