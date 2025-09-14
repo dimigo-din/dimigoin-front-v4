@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {useNotification} from "../../providers/MobileNotifiCationProvider.tsx";
 import type {Outing} from "../../api/stay.ts";
 import Skeleton from "../../components/Skeleton.tsx";
+import PushToggle from "../../components/PushToggle.tsx";
 
 
 const CardBoxWrapper = styled.div`
@@ -156,6 +157,7 @@ function HomePage() {
         </>
       ) : (
         <>
+          <PushToggle />
           <CardBox>
             <div className="label">내 신청</div>
             <ApplyWrapper>
