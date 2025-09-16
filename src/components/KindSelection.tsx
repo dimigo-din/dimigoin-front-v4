@@ -47,6 +47,8 @@ const KindItemStyle = styled.div`
   justify-content: right;
   align-items: center;
 
+  overflow: hidden;
+
   color: ${({theme}) => theme.Colors.Core.Brand.Primary};
 
 `;
