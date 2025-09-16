@@ -16,7 +16,7 @@ export function urlBase64ToUint8ArrayBrowser(base64String: string) {
   return output;
 }
 
-const PUBLIC_VAPID_KEY = import.meta.env.VITE_PUBLIC_VAPID_KEY as string;
+const PUBLIC_VAPID_KEY = import.meta.env.VITE_PUBLIC_VAPID_PUBLIC_KEY as string;
 
 export type PushStatus = "idle" | "on" | "off" | "error";
 
