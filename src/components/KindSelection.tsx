@@ -11,6 +11,7 @@ const KindWrapperStyle = styled.div`
   padding: 0 20px 0 20px;
 
   height: 30px;
+  width: 100%;
 
   display: flex;
   justify-content: space-between;
@@ -19,7 +20,7 @@ const KindWrapperStyle = styled.div`
   > span {
     margin: auto 0;
 
-    width: 100px;
+    width: 120px;
 
     align-items: center;
     text-align: left;
@@ -39,9 +40,11 @@ const KindItemStyle = styled.div`
   font-size: ${({theme}) => theme.Font.Body.size};
   color: ${({theme}) => theme.Colors.Content.Secondary};
 
-  height: 4px;
+  height: 80%;
+  width: 65%;
 
   display: flex;
+  justify-content: right;
   align-items: center;
 
   color: ${({theme}) => theme.Colors.Core.Brand.Primary};

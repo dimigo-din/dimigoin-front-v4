@@ -15,6 +15,12 @@ import SelectionDialog from "../../components/SelectionDialog.tsx";
 import SegmentedTabs from "../../components/SegmentedTabs.tsx";
 import Skeleton from "../../components/Skeleton.tsx";
 import Down from "../../assets/icons/updown/down.svg?react";
+import Notification from "../../assets/icons/notification.svg?react";
+import {
+  enablePush,
+  getCurrentPushStatus,
+  type PushStatus,
+} from '../../utils/push';
 
 const MachineSelectionWrapper = styled.div`
   display: flex;
@@ -55,6 +61,41 @@ const TargetCard = styled.div<{apply?: "me" | "other"}>`
   };
 `;
 
+const NotificationWrapper = styled.div`
+  width: 100%;
+  flex: 1;
+
+  display: flex;
+
+  justify-content: right;
+  align-items: end;
+`;
+
+const NotificationFloating = styled.div`
+  width: 16dvh;
+  height: 6dvh;
+
+  background-color: ${({theme}) => theme.Colors.Background.Primary};
+
+  border: 1px solid ${({theme}) => theme.Colors.Line.Outline};
+  border-radius: 12px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 0.5dvh;
+
+  > svg {
+    height: 60%;
+    width: 20%;
+  }
+
+  > svg > path {
+    stroke: ${({theme}) => theme.Colors.Content.Primary};
+  }
+`;
+
 function LaundryPage() {
   const {showToast} = useNotification();
 
@@ -70,6 +111,36 @@ function LaundryPage() {
   const [openMachineSelection, setOpenMachineSelection] = useState<boolean>(false);
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [isPushSubmitting, setIsPushSubmitting] = useState<boolean | null>(null);
+
+  const [pushStatus, setPushStatus] = useState<PushStatus>('idle');
+
+  const pushEnable = async () => {
+    if(isPushSubmitting){
+      return showToast("푸시 알림 설정 중입니다. 잠시만 기다려주세요.", "warning");
+    }
+
+    showToast("푸시 알림 설정 중입니다...", "info");
+
+    setIsPushSubmitting(true);
+    const res = await enablePush();
+    setPushStatus(res.status);
+    setIsPushSubmitting(false);
+
+    if(res.status === 'on'){
+      showToast("푸시 알림이 설정되었습니다.", "info");
+    } else if(res.status === 'error'){
+      showToast(`푸시 알림 설정 중 오류가 발생했습니다: ${res.msg}`, "danger");
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const s = await getCurrentPushStatus();
+      setPushStatus(s);
+      setIsPushSubmitting(false);
+    })();
+  }, []);
 
   const updateScreen = () => {
     setIsLoading(true);
@@ -200,6 +271,15 @@ function LaundryPage() {
             })}
           </TargetCardWrapper>
         </>
+      )}
+
+      {pushStatus !== 'on' && isPushSubmitting !== null && (
+        <NotificationWrapper>
+          <NotificationFloating onClick={pushEnable}>
+            <Notification />
+            <p>세탁 알림 설정</p>
+          </NotificationFloating>
+        </NotificationWrapper>
       )}
 
       <SelectionDialog isOpen={openMachineSelection} closeAction={() => setOpenMachineSelection(false)}>
