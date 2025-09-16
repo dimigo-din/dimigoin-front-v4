@@ -51,7 +51,7 @@ function WakeupPage() {
       ) : history && (
         <KindWrapper onClick={() => {window.open(`https://www.youtube.com/watch?v=${history.video_id}`, "_blank")}}>
           <span>오늘의 기상곡</span>
-          <KindItem>{history.video_title.length > 30 ? history.video_title.slice(0, 30) + "..." : history.video_title}</KindItem>
+          <KindItem>{history.video_title}</KindItem>
         </KindWrapper>
       )}
       <InnerWrapper>
