@@ -44,6 +44,7 @@ const KindItemStyle = styled.div`
   width: 65%;
 
   display: flex;
+  justify-content: right;
   align-items: center;
 
   color: ${({theme}) => theme.Colors.Core.Brand.Primary};
