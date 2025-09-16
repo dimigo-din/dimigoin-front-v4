@@ -21,6 +21,9 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
 
+      - name: Prepare
+        run: echo '${{ secrets.VITE_PUBLIC_VAPID_PUBLIC_KEY }}' > .env
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
