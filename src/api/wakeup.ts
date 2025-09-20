@@ -56,6 +56,7 @@ export type WakeupApplication = {
   video_thumbnail: string;
   video_channel: string;
   week: string;
+  gender: string;
 }
 
 export type WakeupApplicationWithVote = {
