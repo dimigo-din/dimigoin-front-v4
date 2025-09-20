@@ -121,7 +121,8 @@ function VoteSection() {
     setIsLoading(true);
     getWakeupApplications().then((data) => {
       getMyWakeupApplicationVotes().then((votes) => {
-        setMusics(data);
+        setMusics(data.filter((music) => music.gender === localStorage.getItem("gender")));
+        console.log(data.filter((music) => music.gender === localStorage.getItem("gender")));
         setMyVote(votes);
       }).catch((e) => {
         console.log(e);

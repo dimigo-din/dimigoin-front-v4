@@ -56,6 +56,7 @@ export type WakeupApplication = {
   video_thumbnail: string;
   video_channel: string;
   week: string;
+  gender: string;
 }
 
 export type WakeupApplicationWithVote = {
@@ -104,5 +105,6 @@ export async function unVoteWakeupApplication(application_id: string) {
 }
 
 export async function getWakeUpHistory(gender: "male" | "female"): Promise<WakeupHistory> {
-  return (await client.get("/wakeup/history?date=" + new Date().toISOString().split("T")[0] + "&gender=" + gender)).data;
+  const kstDate = new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString().split("T")[0];
+  return (await client.get("/wakeup/history?date=" + kstDate + "&gender=" + gender)).data;
 }
