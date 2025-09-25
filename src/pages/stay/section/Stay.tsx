@@ -151,7 +151,19 @@ function StaySection({ currentStay, setCurrentStay }: StaySectionProps) {
 
   const updateScreen = () => {
     getStays().then((data) => {
-      setStayList(data.sort((a, b) => new Date(b.stay_from).getTime() - new Date(a.stay_from).getTime()));
+      const now = new Date();
+      setStayList(data.sort((a, b) => {
+        const dateA = new Date(a.stay_from);
+        const dateB = new Date(b.stay_from);
+        
+        const isAfterA = dateA >= now;
+        const isAfterB = dateB >= now;
+        
+        if (isAfterA && !isAfterB) return -1;
+        if (!isAfterA && isAfterB) return 1;
+        
+        return dateA.getTime() - dateB.getTime();
+      }));
 
       if(!currentStay)
         setCurrentStay(data[0]);
