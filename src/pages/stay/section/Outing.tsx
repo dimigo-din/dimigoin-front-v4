@@ -200,7 +200,7 @@ function OutingSection({ currentStay }: OutingSectionProps) {
 
         if(foundApply){
           const days = currentStay ? generateDateList(currentStay.stay_from, currentStay.stay_to) : [];
-          setOutingDays(days);
+          setOutingDays(days.map(date => date.slice(5, 10))); // 2025-10-10
           setActiveOutingDay(activeOutingDay || days[0]);
   
           getStayOuting(stayApplyList[0].id).then((data) => {
