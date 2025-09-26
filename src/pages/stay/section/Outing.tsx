@@ -168,7 +168,7 @@ function OutingSection({ currentStay }: OutingSectionProps) {
   const [currentApply, setCurrentApply] = useState<StayApply | null>(null);
 
   const [outingDays, setOutingDays] = useState<string[] | null>(null);
-  const [activeOutingDay, setActiveOutingDay] = useState<string>();
+  const [activeOutingDay, setActiveOutingDay] = useState<number | undefined>(undefined);
   const [outings, setOutings] = useState<Outing[] | null>(null);
 
   const [editOrDeleteTarget, setEditOrDeleteTarget] = useState<string | null>(null);
@@ -201,9 +201,9 @@ function OutingSection({ currentStay }: OutingSectionProps) {
         if(foundApply){
           const days = currentStay ? generateDateList(currentStay.stay_from, currentStay.stay_to) : [];
           setOutingDays(days.map(date => date.slice(5, 10))); // 2025-10-10
-          setActiveOutingDay(activeOutingDay || days[0]);
+          setActiveOutingDay(activeOutingDay || 0);
   
-          getStayOuting(stayApplyList[0].id).then((data) => {
+          getStayOuting(foundApply.id).then((data) => {
             setOutings(data);
           }).catch((e) => {
             console.log(e);
@@ -249,7 +249,7 @@ function OutingSection({ currentStay }: OutingSectionProps) {
     }
   }, [openOutingAddDialog]);
 
-  const handleTabChange = (tab: string) => {
+  const handleTabChange = (tab: number) => {
     setActiveOutingDay(tab);
   };
 
@@ -261,9 +261,9 @@ function OutingSection({ currentStay }: OutingSectionProps) {
     if (!outingEnd) return showToast("외출 종료시간을 입력해주세요.", "warning");
 
     setIsSubmitting(true);
-    const from = `${activeOutingDay}T${outingStart}:00+09:00`;
+    const from = `${currentStay?.outing_day[activeOutingDay || 0]}T${outingStart}:00+09:00`;
     const fromDate = new Date(from);
-    const to = `${activeOutingDay}T${outingEnd}:00+09:00`;
+    const to = `${currentStay?.outing_day[activeOutingDay || 0]}T${outingEnd}:00+09:00`;
     const toDate = new Date(to);
     if (fromDate.getTime() > toDate.getTime()){
       showToast("종료시간은 시작시간보다 늦어야 합니다.", "warning");
@@ -327,7 +327,7 @@ function OutingSection({ currentStay }: OutingSectionProps) {
       <>
         <SegmentedTabs
             tabs={outingDays}
-            onChange={(_, label) => handleTabChange(label)}
+            onChange={(number, _) => handleTabChange(number)}
             fontSize={"Body"}
             second={true}
         />
@@ -343,7 +343,7 @@ function OutingSection({ currentStay }: OutingSectionProps) {
               const filteredOutings = (outings ? outings : []).filter((out) => {
                 const timeFrom = new Date(out.from);
                 const outingDay = `${timeFrom.getFullYear()}-${("0"+(timeFrom.getUTCMonth()+1)).slice(-2)}-${("0"+(timeFrom.getDate())).slice(-2)}`;
-                return activeOutingDay === outingDay;
+                return currentStay?.outing_day[activeOutingDay || 0] === outingDay;
               });
 
               if (filteredOutings.length === 0) {
@@ -428,7 +428,7 @@ function OutingSection({ currentStay }: OutingSectionProps) {
                 </CheckBox>
               </InputRow>
             </Section>
-            {currentApply?.stay.outing_day.includes(activeOutingDay as string) ? (
+            {currentApply?.stay.outing_day.includes(currentStay?.outing_day[activeOutingDay || 0] as string) ? (
               <Button type={"normal"} onClick={() => {
                 setOutingStart("10:20");
                 setOutingEnd("14:00");
