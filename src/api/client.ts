@@ -17,7 +17,7 @@ let instance: AxiosInstance;
 export function getInstance(): AxiosInstance {
   if (!instance) {
     instance = axios.create({
-      baseURL: !location.host.startsWith("localhost:") ? `https://api.${location.host}` : "http://localhost:3000",
+      baseURL: !location.host.startsWith("localhost:") ? `https://api.${location.host.replace("www.", "")}` : "http://localhost:3000",
       timeout: 30000,
       withCredentials: true,
     });
